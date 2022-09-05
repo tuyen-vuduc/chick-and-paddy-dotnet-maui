@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.SettingItemView"
+    x:Name="root">
+    <Grid
+        ColumnDefinitions="28,*,8"
+        ColumnSpacing="{x:Static app:Dimens.SpacingMd}">
+        <Image
+            Source="{Binding IconSource, Source={Reference root}}"
+            VerticalOptions="Center" >
+            <Image.Behaviors>
+                <mtk:IconTintColorBehavior
+                    TintColor="{x:Static app:AppColors.Purple}" />
+            </Image.Behaviors>
+        </Image>
+        <Label
+            Grid.Column="1"
+            Text="{Binding Title, Source={Reference root}}"
+            Style="{x:Static app:Styles.Subtitle5}"
+            VerticalOptions="Center" />
+        <Image
+            IsVisible="{Binding ShowRightAngle, Source={Reference root}}"
+            Grid.Column="2"
+            Source="ic_angle_right.png"
+            VerticalOptions="Center" />
+    </Grid>
+</ContentView>
+

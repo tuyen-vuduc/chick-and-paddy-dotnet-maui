@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.PairingRejectedPopup"
+    Shell.PresentationMode="Modal"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:DataType="app:PairingRejectedPopupViewModel">
+    <Frame
+        Margin="{app:EdgeInsets
+            All={x:Static app:Dimens.SpacingLg}
+        }"
+        Padding="0"
+        CornerRadius="16"
+        VerticalOptions="Center"
+        HasShadow="False"
+        BackgroundColor="{x:Static app:AppColors.BrColor}">
+        <VerticalStackLayout
+            Spacing="0"
+            Padding="{app:EdgeInsets
+                Vertical={x:Static app:Dimens.SpacingMd},
+                Horizontal={x:Static app:Dimens.SpacingLg}
+            }"
+            VerticalOptions="Center"
+            >
+            <Label
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingSm},
+                    Bottom={x:Static app:Dimens.SpacingMd}
+                }"
+                Text="Ghép đôi thất bại!"
+                Style="{x:Static app:Styles.Title3}"
+                HorizontalTextAlignment="Center" />
+            <Label
+                Text="Partner của bạn từ chối ghép đôi."
+                Style="{x:Static app:Styles.Subtitle6}"
+                Padding="{app:EdgeInsets
+                    Horizontal={x:Static app:Dimens.SpacingMd}
+                }"
+                HorizontalTextAlignment="Center" />
+            <Grid
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingXl}
+                }"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="{x:Static app:Dimens.SpacingSm}"
+                >
+                <Button
+                    Text="Thoát"
+                    Command="{Binding DoneCommand}"
+                    Style="{x:Static app:Styles.ButtonSecondarySm}"/>
+                <Button
+                    Grid.Column="1"
+                    Text="Thử lại"
+                    Command="{Binding RetryCommand}"
+                    Style="{x:Static app:Styles.ButtonPrimarySm}"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Frame>
+</app:BasePopup>

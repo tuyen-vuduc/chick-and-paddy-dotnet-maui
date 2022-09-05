@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.MyPartnerIdPage"
+    BackgroundColor="{x:Static app:AppColors.White}"
+    Title="Nhập ID ghép đôi"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:MyPartnerIdPageViewModel">
+    <Grid
+        RowSpacing="0"
+        RowDefinitions="48,*">
+        <Grid
+            VerticalOptions="End"
+            RowDefinitions="48"
+            BackgroundColor="{x:Static app:AppColors.White}"
+            Shadow="{x:Static app:Styles.Shadow1}">
+            <Label
+                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Nhập ID ghép đôi"
+                Style="{x:Static app:Styles.Title4}"
+                TextColor="{x:Static app:AppColors.Black}" />
+            <ImageButton
+                Margin="{app:EdgeInsets
+                    Left={x:Static app:Dimens.SpacingMd}
+                }"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Source="ic_back.png"
+                Command="{Binding BackCommand}" />
+        </Grid>
+
+        <Grid
+            BackgroundColor="{x:Static app:AppColors.BrColor}"
+            Grid.Row="1">
+            <StackLayout
+                VerticalOptions="Fill"
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingXxl}
+                }"
+                Spacing="0"
+                Grid.Row="1">
+                <Label
+                    Padding="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingXxl}
+                    }"
+                    Style="{x:Static app:Styles.Title3}"
+                    TextColor="{x:Static app:AppColors.Grey60}"
+                    HorizontalTextAlignment="Center"
+                    Text="Nhập mã ID" />
+                <Label
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingSm}
+                    }"
+                    Padding="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingXl}
+                    }"
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    TextColor="{x:Static app:AppColors.Grey50}"
+                    HorizontalTextAlignment="Center"
+                    Text="Bạn đã có mã ID của người thương, nhập mã vào ô phía dưới để CAP giúp 2 bạn kết nối với nhau nhé!" />
+
+                <app:PinCodeEntry
+                    Text="{Binding PartnerId}"
+                    HorizontalOptions="Center"
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingXxl},
+                        Horizontal={x:Static app:Dimens.SpacingLg}
+                    }" 
+                    Padding="{app:EdgeInsets
+                        Vertical={x:Static app:Dimens.SpacingXxl}
+                    }"/>
+
+                <Label
+                    Text="ID không tồn tại!"
+                    TextColor="{x:Static app:AppColors.Red}"
+                    Style="{x:Static app:Styles.Body4}"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding IdNotFound}"
+                    />
+
+                <Button
+                    VerticalOptions="EndAndExpand"
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingXxl},
+                        Horizontal={x:Static app:Dimens.SpacingMd}
+                    }"
+                    Text="Tiếp tục"
+                    Command="{Binding FindPartnerCommand}"
+                    Style="{x:Static app:Styles.ButtonPrimary}" />
+                <Button
+                    Grid.Column="1"
+                    Text="Khi khác"
+                    Command="{Binding BackCommand}"
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingSm},
+                        Bottom={x:Static app:Dimens.SpacingMd},
+                        Horizontal={x:Static app:Dimens.SpacingMd}
+                    }"
+                    Style="{x:Static app:Styles.ButtonSecondary}" />
+            </StackLayout>
+        </Grid>
+    </Grid>
+</app:BasePage>

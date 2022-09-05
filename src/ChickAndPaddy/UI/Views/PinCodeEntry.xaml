@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.PinCodeEntry"
+    x:Name="root">
+    <Grid
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+        <HorizontalStackLayout
+            x:Name="dotContainer"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Spacing="{x:Static app:Dimens.SpacingMd}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate
+                    x:DataType="app:PinDigitModel">
+                    <Grid
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                        <Ellipse
+                            Fill="{x:Static app:AppColors.Grey20}"
+                            StrokeThickness="0"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center">
+                            <Ellipse.Triggers>
+                                <DataTrigger
+                                    TargetType="Ellipse"
+                                    Binding="{Binding HasDigit}"
+                                    Value="True">
+                                    <Setter
+                                        Property="Fill"
+                                        Value="Transparent" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    TargetType="Ellipse"
+                                    Binding="{Binding HasDigit}"
+                                    Value="False">
+                                    <Setter
+                                        Property="Fill"
+                                        Value="{x:Static app:AppColors.Grey20}" />
+                                </DataTrigger>
+                            </Ellipse.Triggers>
+                        </Ellipse>
+                        <Label
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Text="{Binding Digit}"
+                            BackgroundColor="Transparent"
+                            Style="{x:Static app:Styles.Title2}"
+                            TextColor="{x:Static app:AppColors.Black}">
+                            <Label.Triggers>
+                                <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding HasDigit}"
+                                    Value="True">
+                                    <Setter
+                                        Property="Opacity"
+                                        Value="1" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding HasDigit}"
+                                    Value="False">
+                                    <Setter
+                                        Property="Opacity"
+                                        Value="0" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </HorizontalStackLayout>
+        <Entry
+            VerticalOptions="Fill"
+            HorizontalOptions="Fill"
+            TextColor="Transparent"
+            BackgroundColor="Transparent"
+            Opacity="0.02"
+            Text="{Binding Text, Source={Reference root}}"
+            MaxLength="{Binding PinLength, Source={Reference root}}"
+            Keyboard="Numeric" />
+    </Grid>
+</ContentView>
+

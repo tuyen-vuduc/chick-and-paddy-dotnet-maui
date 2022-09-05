@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.CoupleMilestoneCollapsedView"
+    x:Name="root"
+    x:DataType="app:NewsFeedModel">
+    <Grid
+        BackgroundColor="{x:Static app:AppColors.White}"
+        RowSpacing="0"
+        RowDefinitions="16,61,16">
+        <Grid
+            Grid.Row="1"
+            ColumnSpacing="0"
+            ColumnDefinitions="16,61,12,*,16"
+            RowDefinitions="*,*">
+            <Grid
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="1">
+                <Border
+                    StrokeThickness="1"
+                    Stroke="{x:Static app:AppColors.White}"
+                    StrokeShape="RoundRectangle 12"
+                    BackgroundColor="{x:Static app:AppColors.LightBlue}" />
+                <Image
+                    Source="{Binding AvatarUrl}"
+                    Aspect="AspectFill"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    >
+                    <Image.Clip>
+                        <RoundRectangleGeometry
+                            CornerRadius="12"
+                            Rect="0,0,60,60"
+                            />
+                    </Image.Clip>
+                </Image>
+            </Grid>
+
+
+            <Label
+                Grid.Column="3"
+                VerticalOptions="End"
+                Text="{Binding Title}"
+                MaxLines="1"
+                LineBreakMode="TailTruncation"
+                Style="{x:Static app:Styles.Title5}" />
+            <HorizontalStackLayout
+                VerticalOptions="Start"
+                Spacing="{x:Static app:Dimens.SpacingXs}"
+                Grid.Row="1"
+                Grid.Column="3">
+                <Image
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Source="ic_date.png"
+                    />
+                <Label
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Text="{Binding CreatedAt, StringFormat='{0:MMM dd, yy}'}"
+                    TextColor="{x:Static app:AppColors.Grey30}"
+                    Style="{x:Static app:Styles.Body3}" />
+                <Image
+                    Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Source="ic_pin.png"
+                    />
+                <Label
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    Text="{Binding Location}"
+                    TextColor="{x:Static app:AppColors.Grey30}"
+                    Style="{x:Static app:Styles.Body3}" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <ImageButton
+            Padding="{app:EdgeInsets
+                Horizontal={x:Static app:Dimens.SpacingMd},
+                Vertical={x:Static app:Dimens.SpacingSm}
+            }"
+            Source="ic_hoz_more.png"
+            VerticalOptions="Start"
+            HorizontalOptions="End"
+            Grid.RowSpan="2"
+            Command="{Binding MoreCommand, Source={x:Reference root}}"
+            >
+            <ImageButton.Behaviors>
+                <mtk:IconTintColorBehavior
+                    TintColor="{x:Static app:AppColors.Grey30}"/>
+            </ImageButton.Behaviors>
+        </ImageButton>
+    </Grid>
+</ContentView>
+

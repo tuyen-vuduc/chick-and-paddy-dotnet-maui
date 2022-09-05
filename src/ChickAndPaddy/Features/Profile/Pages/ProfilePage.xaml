@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="ChickAndPaddy.ProfilePage"
+    BackgroundColor="{x:Static app:AppColors.Purple}"
+    Title="Cá nhân"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:ProfilePageViewModel">
+    <Grid
+        RowSpacing="0"
+        RowDefinitions="200,*">
+        <Grid
+            Shadow="{x:Static app:Styles.Shadow2}"
+            BackgroundColor="{x:Static app:AppColors.Purple}"
+            RowSpacing="0"
+            ColumnSpacing="0"
+            RowDefinitions="48,*">
+            <HorizontalStackLayout
+                Margin="{app:EdgeInsets
+                    Left={x:Static app:Dimens.SpacingMd}
+                }"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                Spacing="{x:Static app:Dimens.SpacingXs}">
+                <Image
+                    Source="ic_cup.png" />
+                <Label
+                    Text="10"
+                    TextColor="{x:Static app:AppColors.LightYellow}"
+                    Style="{x:Static app:Styles.Subtitle6}" />
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout
+                Spacing="0"                
+                HorizontalOptions="Center"
+                Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
+                Grid.RowSpan="2">
+                <Grid
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    RowDefinitions="88"
+                    ColumnDefinitions="104">
+                    <Border
+                        Stroke="Transparent"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 44,44,44,44"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        HeightRequest="88"
+                        WidthRequest="88"
+                        Background="{x:Static app:AppColors.Grey10}" />
+
+                    <Border
+                        Stroke="Transparent"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18,18,18,18"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"
+                        HeightRequest="36"
+                        WidthRequest="36"
+                        Background="{x:Static app:AppColors.Grey40}">
+                        <Image
+                            Margin="{x:Static app:Dimens.SpacingSm}"
+                            Source="ic_camera.png" />
+                    </Border>
+                </Grid>
+
+                <Label
+                    Margin="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
+                    Text="Newwave Solutions"
+                    TextColor="{x:Static app:AppColors.White}"
+                    HorizontalTextAlignment="Center"
+                    Style="{x:Static app:Styles.Title4}" />
+
+                <Label
+                    Text="Bạn chưa ghép đôi"
+                    TextColor="{x:Static app:AppColors.Green}"
+                    HorizontalTextAlignment="Center"
+                    Style="{x:Static app:Styles.Subtitle6}" />
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Margin="{app:EdgeInsets
+                    Left={x:Static app:Dimens.SpacingMd}
+                }"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Spacing="{x:Static app:Dimens.SpacingXs}">
+                <Image
+                    Source="ic_close.png" />
+                <Label
+                    Text="10"
+                    TextColor="{x:Static app:AppColors.Pink}"
+                    Style="{x:Static app:Styles.Subtitle6}" />
+            </HorizontalStackLayout>
+
+            <ContentView
+                VerticalOptions="Fill"
+                HorizontalOptions="End"
+                >
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding ViewSettingsCommand}"/>
+                </ContentView.GestureRecognizers>
+                <Image
+                    Margin="{app:EdgeInsets
+                        Right={x:Static app:Dimens.SpacingMd}
+                    }"
+                    VerticalOptions="Center"
+                    Source="ic_hoz_more.png" />
+            </ContentView>
+        </Grid>
+        <Grid
+            Grid.Row="1"
+            BackgroundColor="{x:Static app:AppColors.BrColor}">
+            <CollectionView>
+                <CollectionView.ItemsSource>
+                    <Array
+                        Type="{Type x:String}">
+                        <x:String>Gà con</x:String>
+                        <x:String>Gà vườn</x:String>
+                        <x:String>Gà nòi</x:String>
+                        <x:String>Gà chiến</x:String>
+                        <x:String>Gà boss</x:String>
+                        <x:String>Gà vương</x:String>
+                    </Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="3"
+                        VerticalItemSpacing="{x:Static app:Dimens.SpacingMd}"
+                        HorizontalItemSpacing="{x:Static app:Dimens.SpacingMd}" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout
+                            Padding="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
+                            >
+                            <Image
+                                Source="ic_feature_locked.png" />
+                            <Label
+                                Text="{Binding .}"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{x:Static app:AppColors.Grey40}"
+                                Style="{x:Static app:Styles.Title6}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid
+                VerticalOptions="End"
+                Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.SpacingXxl}}"
+                RowDefinitions="48">
+                <Label
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    HorizontalTextAlignment="Center"
+                    Text="Chức năng huy hiệu chưa được hỗ trợ ở phiên bản 1.0"
+                    TextColor="{x:Static app:AppColors.Purple}"
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    />
+            </Grid>
+        </Grid>
+    </Grid>
+</app:BasePage>

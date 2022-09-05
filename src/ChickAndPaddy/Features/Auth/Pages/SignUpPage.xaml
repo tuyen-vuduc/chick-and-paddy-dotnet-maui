@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.SignUpPage"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:SignUpPageViewModel">
+    <Grid>
+        <ScrollView
+            VerticalScrollBarVisibility="Never"
+            >
+            <StackLayout
+                Spacing="0">
+                <Image
+                    Margin="{app:EdgeInsets Top=80, Bottom={x:Static app:Dimens.SpacingMd}}"
+                    Source="cap_icon"
+                    SemanticProperties.Description="Chick and Paddy in MAUI"
+                    HeightRequest="48"
+                    HorizontalOptions="Center" />
+                <Label
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
+                    Style="{x:Static app:Styles.Title3}"
+                    TextColor="{x:Static app:AppColors.Black}"
+                    HorizontalTextAlignment="Center"
+                    Text="Đăng ký" />
+                <Label
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingSm},
+                        Bottom={x:Static app:Dimens.SpacingLg},
+                        Horizontal={x:Static app:Dimens.SpacingXxl}
+                    }"
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    TextColor="{x:Static app:AppColors.Grey50}"
+                    HorizontalTextAlignment="Center"
+                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn." />
+
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingLg},
+                        Bottom={x:Static app:Dimens.SpacingSm}}"
+                    PrefixIcon="ic_user.png"
+                    Text="{Binding FullName}"
+                    Placeholder="Tên của bạn"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingLg},
+                        Bottom={x:Static app:Dimens.SpacingSm}}"
+                    PrefixIcon="ic_phone_call.png"
+                    Text="{Binding PhoneNumber}"
+                    Placeholder="Số điện thoại"
+                    Keyboard="Telephone"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingLg},
+                        Bottom={x:Static app:Dimens.SpacingSm}}"
+                    PrefixIcon="ic_password.png"
+                    Text="{Binding Password}"
+                    Placeholder="Nhập mật khẩu"
+                    IsPassword="True"
+                    />
+                <app:RoundedEntry 
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingLg}
+                    }"
+                    PrefixIcon="ic_password.png"
+                    Text="{Binding ConfirmPassword}"
+                    Placeholder="Nhập lại mật khẩu"
+                    IsPassword="True"
+                    />
+
+                <Label
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingLg},
+                        Top={x:Static app:Dimens.SpacingXl}}"
+                    Text="Mật khẩu của bạn không khớp."
+                    HorizontalTextAlignment="Center"
+                    Style="{x:Static app:Styles.Body2}"
+                    TextColor="{x:Static app:AppColors.Red}" />
+
+                <Button
+                    Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"
+                    HorizontalOptions="Center"
+                    Style="{x:Static app:Styles.ButtonPrimary}"
+                    Text="Đăng ký"
+                    Command="{Binding SignUpCommand}" />
+            </StackLayout>
+        </ScrollView>
+        <ImageButton
+            Margin="{app:EdgeInsets
+                Top={x:Static app:Dimens.SpacingLg},
+                Left={x:Static app:Dimens.SpacingMd}
+            }"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Source="ic_back.png"
+            Command="{Binding BackCommand}" />
+    </Grid>
+</app:BasePage>

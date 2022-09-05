@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.GamesPage"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    Title="Trò chơi"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:GamesPageViewModel">
+    <Grid
+        RowDefinitions="48,*">
+        <Grid
+            VerticalOptions="End"
+            RowDefinitions="48">
+            <Label
+                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Trò chơi"
+                Style="{x:Static app:Styles.Title4}"
+                TextColor="{x:Static app:AppColors.Black}"
+                />       
+            <Grid.Shadow>
+                <Shadow
+                    Radius="20"
+                    Offset="0,4"
+                    Opacity="0.1"
+                    >
+                    <Shadow.Brush>
+                        <SolidColorBrush Color="{x:Static app:AppColors.Purple}"/>
+                    </Shadow.Brush>
+                </Shadow>
+            </Grid.Shadow>
+        </Grid>
+        <ScrollView
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Never"
+            >
+            <StackLayout
+                Spacing="0">                
+                <Label
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingXxl},
+                        Top={x:Static app:Dimens.SpacingXxl},
+                        Bottom={x:Static app:Dimens.SpacingLg}}"
+                    Style="{x:Static app:Styles.Title1}"
+                    TextColor="{x:Static app:AppColors.Grey60}"
+                    HorizontalTextAlignment="Center"
+                    Text="Trang chủ" />
+            </StackLayout>
+        </ScrollView>   
+    </Grid>
+</app:BasePage>

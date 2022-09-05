@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChickAndPaddy", "src\ChickAndPaddy\ChickAndPaddy.csproj", "{235D0FBE-0C17-49F5-B21B-1585C4235032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D76E4E6A-C485-4AE9-95A1-DB5AF8832408}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C888FEA3-EB5C-43B9-A387-A98B6266A688}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235D0FBE-0C17-49F5-B21B-1585C4235032}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{235D0FBE-0C17-49F5-B21B-1585C4235032} = {D76E4E6A-C485-4AE9-95A1-DB5AF8832408}
+	EndGlobalSection
+EndGlobal

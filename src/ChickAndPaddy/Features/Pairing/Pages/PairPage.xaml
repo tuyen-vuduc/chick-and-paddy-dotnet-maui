@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.PairPage"
+    BackgroundColor="{x:Static app:AppColors.White}"
+    Title="Ghép đôi"    
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:PairPageViewModel">
+    <Grid
+        RowSpacing="0"
+        RowDefinitions="48,*">
+        <Grid
+            BackgroundColor="{x:Static app:AppColors.BrColor}"
+            Grid.RowSpan="2">
+            <Image
+                Source="ic_pairing_bg_topright.png"
+                HeightRequest="298"
+                WidthRequest="216"
+                Aspect="AspectFit"
+                HorizontalOptions="End"
+                VerticalOptions="Start" />
+            <Image
+                Source="ic_pairing_bg_middle.png"
+                HeightRequest="130"
+                WidthRequest="101"
+                Aspect="AspectFit"
+                HorizontalOptions="Start"
+                VerticalOptions="Center" />
+        </Grid>
+        <Grid
+            VerticalOptions="End"
+            RowDefinitions="48"
+            BackgroundColor="{x:Static app:AppColors.White}"
+            Shadow="{x:Static app:Styles.Shadow1}">
+            <Label
+                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Ghép đôi"
+                Style="{x:Static app:Styles.Title4}"
+                TextColor="{x:Static app:AppColors.Black}" />
+            <ImageButton
+                Margin="{app:EdgeInsets
+                    Left={x:Static app:Dimens.SpacingMd}
+                }"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Source="ic_back.png"
+                Command="{Binding BackCommand}" />
+        </Grid>
+        <Grid
+            Grid.Row="1">
+            <Grid
+                RowDefinitions="*,*">
+                <Image
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    Source="ic_pairing.png"
+                    Aspect="AspectFill"
+                    HeightRequest="302"
+                    WidthRequest="302" />
+                <StackLayout
+                    VerticalOptions="Fill"
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingXxl}
+                    }"
+                    Grid.Row="1"
+                    Spacing="{x:Static app:Dimens.SpacingXl}">
+                    <Label
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
+                        Padding="{app:EdgeInsets
+                            Horizontal={x:Static app:Dimens.SpacingMd}
+                        }"
+                        Style="{x:Static app:Styles.Subtitle5}"
+                        TextColor="{x:Static app:AppColors.Grey50}"
+                        HorizontalTextAlignment="Center"
+                        Text="Kết nối cùng với partner của bạn để sử dụng tất cả các chức năng của app." />
+                    <Button
+                        HorizontalOptions="Center"
+                        Text="ID của tôi"
+                        Command="{Binding MyPairingIdCommand}"
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
+                        Style="{x:Static app:Styles.ButtonPrimary}" />
+                    <Button
+                        HorizontalOptions="Center"
+                        Text="Nhập ID ghép đôi"
+                        Command="{Binding MyPartnerIdCommand}"
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
+                        Style="{x:Static app:Styles.ButtonAccent}" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</app:BasePage>

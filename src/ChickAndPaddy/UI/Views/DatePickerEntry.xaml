@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.DatePickerEntry"
+    x:Name="root">
+    <Frame
+        Padding="0"
+        BackgroundColor="{x:Static app:AppColors.White}"
+        MaximumHeightRequest="{x:Static app:Dimens.EntryHeight}"
+        MinimumHeightRequest="{x:Static app:Dimens.EntryHeight}"
+        CornerRadius="{x:Static app:Dimens.EntryCornerRadius}"
+        Shadow="{x:Static app:Styles.Shadow1}">
+        <Grid>
+            <StackLayout
+                Margin="{app:EdgeInsets
+                    Horizontal={x:Static app:Dimens.SpacingMd},
+                    Vertical={x:Static app:Dimens.SpacingSm}
+                }"
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0">
+                <ImageButton
+                    HeightRequest="28"
+                    WidthRequest="28"
+                    Source="ic_calendar.png" />
+                <Label
+                    Margin="{app:EdgeInsets
+                        Horizontal={x:Static app:Dimens.SpacingSm}
+                    }"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{x:Static app:Styles.Title5}"
+                    Text="{Binding Date, Source={Reference root}, StringFormat='Ngày {0:dd} thg {0:MM}, {0:yyyy}'}" />
+                <ImageButton
+                    HeightRequest="28"
+                    WidthRequest="28"
+                    Source="ic_angle_down.png" />
+            </StackLayout>
+            <DatePicker
+                HorizontalOptions="FillAndExpand"
+                Opacity="0.02"
+                BackgroundColor="Transparent"
+                TextColor="Transparent"
+                x:Name="txtDate"
+                Date="{Binding Date, Source={Reference root}}" />
+        </Grid>
+    </Frame>
+</ContentView>
+

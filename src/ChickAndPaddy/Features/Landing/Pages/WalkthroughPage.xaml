@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.WalkthroughPage"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    Shell.NavBarIsVisible="False"
+    ios:Page.UseSafeArea="False"
+    x:DataType="app:WalkthroughPageViewModel">
+    <Grid>
+        <CarouselView
+            Loop="False"
+            IsSwipeEnabled="False"
+            HorizontalScrollBarVisibility="Never"
+            Position="{Binding ItemPosition}"
+            IndicatorView="indicatorView"
+            ItemsSource="{Binding Items}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate
+                    x:DataType="app:WalkthroughItemModel">
+                    <StackLayout>
+                        <ContentView
+                            VerticalOptions="FillAndExpand">
+                            <Image
+                                Margin="{Binding ImageMargin}"
+                                Source="{Binding Image}"
+                                Aspect="Fill" />
+                        </ContentView>
+                        <StackLayout
+                            Padding="{app:EdgeInsets Top={x:Static app:Dimens.SpacingLg}}"
+                            Spacing="{x:Static app:Dimens.SpacingMd}"
+                            VerticalOptions="FillAndExpand">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingXxl}}"
+                                Text="{Binding Title}"
+                                Style="{x:Static app:Styles.Title3}"
+                                TextColor="{x:Static app:AppColors.Grey60}" />
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg}}"
+                                Text="{Binding Subtitle}"
+                                Style="{x:Static app:Styles.Subtitle6}"
+                                TextColor="{x:Static app:AppColors.Grey50}" />
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <StackLayout
+            Padding="{app:EdgeInsets
+                Top={x:Static app:Dimens.SpacingLg},
+                Bottom={x:Static app:Dimens.SpacingMd}
+            }"
+            VerticalOptions="End">
+            <IndicatorView
+                Margin="{app:EdgeInsets
+                    Bottom={x:Static app:Dimens.SpacingMd}
+                }"
+                x:Name="indicatorView"
+                IndicatorColor="{x:Static app:AppColors.Grey20}"
+                SelectedIndicatorColor="{x:Static app:AppColors.Green}"
+                HorizontalOptions="Center" />
+
+            <Button
+                IsVisible="{Binding AllowsToContinue}"
+                HorizontalOptions="Center"
+                Style="{x:Static app:Styles.ButtonPrimary}"
+                Text="Tiếp tục"
+                Command="{Binding MoveCommand}" >
+                <Button.CommandParameter>
+                    <x:Boolean>False</x:Boolean>
+                </Button.CommandParameter>
+            </Button>
+            <Button
+                IsVisible="{Binding AllowsToStart}"
+                HorizontalOptions="Center"
+                Style="{x:Static app:Styles.ButtonAccent}"
+                Text="Bắt đầu"
+                Command="{Binding StartCommand}"/>
+            <Button
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingSm}
+                }"
+                HorizontalOptions="Center"
+                Style="{x:Static app:Styles.ButtonFlat}"
+                Text="Bỏ qua"
+                Command="{Binding SkipCommand}" >
+                <Button.Triggers>
+                    <DataTrigger
+                        TargetType="Button"
+                        Binding="{Binding AllowsToSkip}"
+                        Value="True">
+                        <Setter Property="Opacity" Value="1" />
+                    </DataTrigger>
+                    <DataTrigger
+                        TargetType="Button"
+                        Binding="{Binding AllowsToSkip}"
+                        Value="False">
+                        <Setter Property="Opacity" Value="0.01" />
+                    </DataTrigger>
+                </Button.Triggers>
+                </Button>
+        </StackLayout>
+
+        <ImageButton
+            Margin="{app:EdgeInsets
+                Top={x:Static app:Dimens.SpacingLg},
+                Left={x:Static app:Dimens.SpacingMd}
+            }"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            IsVisible="{Binding AllowsToGoback}"
+            Source="ic_back.png"
+            Command="{Binding MoveCommand}">
+            <ImageButton.CommandParameter>
+                <x:Boolean>True</x:Boolean>
+            </ImageButton.CommandParameter>
+        </ImageButton>
+    </Grid>
+</app:BasePage>

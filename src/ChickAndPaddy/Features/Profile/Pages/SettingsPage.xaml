@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="ChickAndPaddy.SettingsPage"
+    Title="Cài đặt"
+    ios:Page.UseSafeArea="False"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:SettingsPageViewModel">
+    <Grid
+        RowSpacing="0"
+        RowDefinitions="48,*">
+        <Grid
+            VerticalOptions="End"
+            RowDefinitions="48"
+            BackgroundColor="{x:Static app:AppColors.White}"
+            Shadow="{x:Static app:Styles.Shadow1}">
+            <Label
+                VerticalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Cài đặt"
+                Style="{x:Static app:Styles.Title4}"
+                TextColor="{x:Static app:AppColors.Black}" />
+            <ImageButton
+                Margin="{app:EdgeInsets
+                    Left={x:Static app:Dimens.SpacingMd}
+                }"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Source="ic_back.png"
+                Command="{Binding BackCommand}" />
+        </Grid>
+        <Grid
+            BackgroundColor="{x:Static app:AppColors.BrColor}"
+            Grid.Row="1">
+            <VerticalStackLayout
+                Padding="{app:EdgeInsets
+                    Vertical={x:Static app:Dimens.SpacingMd}
+                }"
+                Spacing="0">
+
+                <app:SettingItemView
+                    Padding="{app:EdgeInsets
+                        Vertical={x:Static app:Dimens.SpacingSm},
+                        Horizontal={x:Static app:Dimens.SpacingMd}
+                    }"
+                    IconSource="ic_user.png"
+                    Title="Thông tin cá nhân">
+                    <app:SettingItemView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding EditProfileCommand}" />
+                    </app:SettingItemView.GestureRecognizers>
+                </app:SettingItemView>
+
+                <app:SettingItemView
+                    Padding="{app:EdgeInsets
+                        Vertical={x:Static app:Dimens.SpacingSm},
+                        Horizontal={x:Static app:Dimens.SpacingMd}
+                    }"
+                    IconSource="ic_password.png"
+                    Title="Đổi mật khẩu" >
+                    <app:SettingItemView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding ChangePasswordCommand}" />
+                    </app:SettingItemView.GestureRecognizers>
+                </app:SettingItemView>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</app:BasePage>

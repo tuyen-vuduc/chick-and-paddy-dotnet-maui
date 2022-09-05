@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePopup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.PairingAcceptedPopup"
+    Shell.PresentationMode="Modal"
+    BackgroundColor="{x:Static app:AppColors.PopBackground}"
+    x:DataType="app:PairingAcceptedPopupViewModel">
+    <Frame
+        Margin="{app:EdgeInsets
+            All={x:Static app:Dimens.SpacingLg}
+        }"
+        Padding="0"
+        CornerRadius="16"
+        VerticalOptions="Center"
+        HasShadow="False"
+        BackgroundColor="{x:Static app:AppColors.BrColor}">
+        <VerticalStackLayout
+            Spacing="0"
+            Padding="{app:EdgeInsets
+                Vertical={x:Static app:Dimens.SpacingMd},
+                Horizontal={x:Static app:Dimens.SpacingLg}
+            }"
+            VerticalOptions="Center"
+            >
+            <Border
+                VerticalOptions="Start"
+                HorizontalOptions="Center"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 24,24,24,24"
+                WidthRequest="48"
+                HeightRequest="48"
+                BackgroundColor="{x:Static app:AppColors.Green}">
+                <Image
+                    Margin="{app:EdgeInsets All={x:Static app:Dimens.SpacingSm}}"
+                    Source="ic_tick.png" />
+            </Border>
+            <Label
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingSm},
+                    Bottom={x:Static app:Dimens.SpacingMd}
+                }"
+                Text="Ghép đôi thành công!"
+                Style="{x:Static app:Styles.Title3}"
+                HorizontalTextAlignment="Center" />
+            <Label
+                Text="2 bạn đã được kết nối với nhau. CAP mong rằng 2 bạn sẽ có nhiều trải nghiệm thú vị!"
+                Style="{x:Static app:Styles.Subtitle6}"
+                Padding="{app:EdgeInsets
+                    Horizontal={x:Static app:Dimens.SpacingMd}
+                }"
+                HorizontalTextAlignment="Center" />
+            <Button
+                Margin="{app:EdgeInsets
+                    Top={x:Static app:Dimens.SpacingXl}
+                }"
+                Text="Bắt đầu"
+                Command="{Binding DoneCommand}"
+                Style="{x:Static app:Styles.ButtonAccentSm}"/>
+        </VerticalStackLayout>
+    </Frame>
+</app:BasePopup>

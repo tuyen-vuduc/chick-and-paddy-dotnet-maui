@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ChickAndPaddy.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    Shell.FlyoutBehavior="Disabled">
+    <Shell.Resources>
+        <Style
+            TargetType="TabBar">
+            <Setter
+                Property="Shell.TabBarBackgroundColor"
+                Value="{x:Static app:AppColors.White}" />
+            <Setter
+                Property="Shell.TabBarTitleColor"
+                Value="{x:Static app:AppColors.Purple}" />
+            <Setter
+                Property="Shell.TabBarUnselectedColor"
+                Value="{x:Static app:AppColors.Grey40}" />
+            <Setter
+                Property="Shell.TabBarForegroundColor"
+                Value="{x:Static app:AppColors.Purple}" />
+            <Setter
+                Property="Shell.BackgroundColor"
+                Value="{x:Static app:AppColors.White}" />
+            <Setter
+                Property="Shell.TitleColor"
+                Value="{x:Static app:AppColors.Purple}" />
+            <Setter
+                Property="Shell.UnselectedColor"
+                Value="{x:Static app:AppColors.Grey40}" />
+            <Setter
+                Property="Shell.ForegroundColor"
+                Value="{x:Static app:AppColors.Purple}" />
+        </Style>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent
+            Route="landing"
+            Title="Landing"
+            ContentTemplate="{DataTemplate app:LandingPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent
+            Route="walkthrough"
+            Title="Walkthrough"
+            ContentTemplate="{DataTemplate app:WalkthroughPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent
+            Route="signIn"
+            Title="Sign In"
+            ContentTemplate="{DataTemplate app:SignInPage}" />
+    </TabBar>
+
+    <TabBar
+        x:Name="main"
+        Route="main">
+        <Tab
+            Title="Trang chủ"
+            Icon="ic_home.png"
+            Route="home">
+            <ShellContent
+                ContentTemplate="{DataTemplate app:HomePage}" />
+        </Tab>
+        <Tab
+            Title="Trò chuyện"
+            Icon="ic_messaging.png"
+            Route="messaging">
+            <ShellContent
+                ContentTemplate="{DataTemplate app:MessagingPage}" />
+        </Tab>
+        <Tab
+            Title="Trò chơi"
+            Icon="ic_games.png"
+            Route="games">
+            <ShellContent
+                ContentTemplate="{DataTemplate app:GamesPage}" />
+        </Tab>
+        <Tab
+            Title="Cá nhân"
+            Icon="ic_user.png"
+            Route="profile">
+            <ShellContent
+                ContentTemplate="{DataTemplate app:ProfilePage}" />
+        </Tab>
+
+    </TabBar>
+</Shell>

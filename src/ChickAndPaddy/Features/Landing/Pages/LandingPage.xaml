@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<app:BasePage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:app="clr-namespace:ChickAndPaddy"
+    x:Class="ChickAndPaddy.LandingPage"
+    BackgroundColor="{x:Static app:AppColors.Purple}"
+    Shell.NavBarIsVisible="False"
+    x:DataType="app:LandingPageViewModel"
+    >
+
+    <Grid>
+        <Image
+            Source="cap_logo"
+            SemanticProperties.Description="Chick and Paddy in MAUI"
+            HeightRequest="200"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <VerticalStackLayout
+            Padding="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
+            VerticalOptions="End">
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="Chick &amp; Paddy"
+                Style="{x:Static app:Styles.Title5}"
+                TextColor="{x:Static app:AppColors.Secondary1}"/>
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="{Binding VersionInfo}"
+                Style="{x:Static app:Styles.Subtitle6}"
+                TextColor="{x:Static app:AppColors.Secondary1}"/>
+        </VerticalStackLayout>
+    </Grid>
+</app:BasePage>
