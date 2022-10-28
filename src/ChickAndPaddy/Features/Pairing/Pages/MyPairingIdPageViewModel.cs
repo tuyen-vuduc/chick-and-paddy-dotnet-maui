@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class MyPairingIdPageViewModel : NavigationAwareBaseViewModel
+public partial class MyPairingIdPageViewModel : NavigationAwareBaseViewModel
 {
     private readonly IPairingService pairingService;
 
@@ -12,7 +12,9 @@ public class MyPairingIdPageViewModel : NavigationAwareBaseViewModel
         this.pairingService = pairingService;
     }
 
-    public string MyPairingId { get; set; }
+    [ObservableProperty]
+    string myPairingId;
+
     public string SharedLink { get => $"cap://connect/{MyPairingId}"; }
 
     protected override async void OnInit(IDictionary<string, object> query)
@@ -22,8 +24,7 @@ public class MyPairingIdPageViewModel : NavigationAwareBaseViewModel
         MyPairingId = await pairingService.GetMyPairingIdAsync();
     }
 
-    ICommand _ShareLinkCommand;
-    public ICommand ShareLinkCommand => _ShareLinkCommand ??= new Command(ExecuteShareLinkCommand);
-    private void ExecuteShareLinkCommand() => AppNavigator.ShareAsync(SharedLink, "ID ghép đôi");
+    [RelayCommand]
+    private Task ShareLinkAsync() => AppNavigator.ShareAsync(SharedLink, "ID ghép đôi");
 }
 

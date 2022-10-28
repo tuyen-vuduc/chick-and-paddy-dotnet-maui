@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class SettingsPageViewModel : NavigationAwareBaseViewModel
+public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
 {
     public SettingsPageViewModel(
         IAppNavigator appNavigator)
@@ -8,16 +8,14 @@ public class SettingsPageViewModel : NavigationAwareBaseViewModel
     {
     }
 
-    ICommand _EditProfileCommand;
-    public ICommand EditProfileCommand => _EditProfileCommand ??= new Command(ExecuteEditProfileCommand);
-    private void ExecuteEditProfileCommand()
+    [RelayCommand]
+    private void EditProfile()
     {
 
     }
 
-    ICommand _ChangePasswordCommand;
-    public ICommand ChangePasswordCommand => _ChangePasswordCommand ??= new Command(ExecuteChangePasswordCommand);
-    private void ExecuteChangePasswordCommand()
+    [RelayCommand]
+    private void ChangePassword()
     {
 
     }

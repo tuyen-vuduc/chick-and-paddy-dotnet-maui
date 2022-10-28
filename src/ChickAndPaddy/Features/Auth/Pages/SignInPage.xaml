@@ -34,7 +34,8 @@
                         Bottom={x:Static app:Dimens.SpacingSm}
                     }"
                     PrefixIcon="ic_phone_call.png"
-                    Text="{Binding UserName}"
+                    Text="{Binding Form.UserName}"
+                    IsValid="{Binding Form.UserNameValid}"
                     Placeholder="Nhập số điện thoại của bạn"
                     Keyboard="Telephone"
                     />
@@ -43,7 +44,8 @@
                         Horizontal={x:Static app:Dimens.SpacingLg}
                     }"
                     PrefixIcon="ic_password.png"
-                    Text="{Binding Password}"
+                    Text="{Binding Form.Password}"
+                    IsValid="{Binding Form.PasswordValid}"
                     Placeholder="Nhập mật khẩu"
                     IsPassword="True"
                     />
@@ -64,10 +66,23 @@
                 </Label>
 
                 <Label
-                    Text="Số điện thoại hoặc mật khẩu không đúng."
+                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Body2}"
-                    TextColor="{x:Static app:AppColors.Red}" />
+                    TextColor="{x:Static app:AppColors.Red}">
+                    <Label.Opacity>
+                        <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
+                            <Binding Path="Form.UserNameValid"/>
+                            <Binding Path="Form.PasswordValid"/>
+                        </MultiBinding>
+                    </Label.Opacity>
+                    <Label.Text>
+                        <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
+                            <Binding Path="Form.UserNameInvalidMessage"/>
+                            <Binding Path="Form.PasswordInvalidMessage"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
 
                 <Button
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"

@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace ChickAndPaddy
 {
-    public class WalkthroughPageViewModel : NavigationAwareBaseViewModel
+    public partial class WalkthroughPageViewModel : NavigationAwareBaseViewModel
     {
         private readonly ILandingService landingService;
 
@@ -16,11 +16,22 @@ namespace ChickAndPaddy
             this.landingService = landingService;
         }
 
-        public ObservableCollection<WalkthroughItemModel> Items { get; set; }
-        public int ItemPosition { get; set; }
-        public bool AllowsToGoback => ItemPosition > 0;
-        public bool AllowsToContinue => ItemPosition < Items?.Count - 1;
-        public bool AllowsToStart => ItemPosition == Items?.Count - 1;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(AllowsToContinue))]
+        [NotifyPropertyChangedFor(nameof(AllowsToStart))]
+        [NotifyPropertyChangedFor(nameof(AllowsToSkip))]
+        ObservableCollection<WalkthroughItemModel> items;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(AllowsToGoback))]
+        [NotifyPropertyChangedFor(nameof(AllowsToContinue))]
+        [NotifyPropertyChangedFor(nameof(AllowsToStart))]
+        [NotifyPropertyChangedFor(nameof(AllowsToSkip))]
+        int itemPosition;
+
+        public bool AllowsToGoback => itemPosition > 0;
+        public bool AllowsToContinue => itemPosition < items?.Count - 1;
+        public bool AllowsToStart => itemPosition == items?.Count - 1;
         public bool AllowsToSkip => AllowsToContinue;
 
         protected async override void OnInit(IDictionary<string, object> query)
@@ -32,26 +43,14 @@ namespace ChickAndPaddy
             Items = new ObservableCollection<WalkthroughItemModel>(items);
         }
 
-        ICommand _MoveCommand;
-        public ICommand MoveCommand => _MoveCommand ??= new Command<bool>(ExecuteMoveCommand);
-        private void ExecuteMoveCommand(bool goback)
-        {
-            ItemPosition += goback ?  -1 : 1;
-        }
+        [RelayCommand]
+        void Move(bool goback) => ItemPosition += goback ?  -1 : 1;
 
-        ICommand _StartCommand;
-        public ICommand StartCommand => _StartCommand ??= new Command(ExecuteStartCommand);
-        private void ExecuteStartCommand()
-        {
-            SignInAsync();
-        }
+        [RelayCommand]
+        Task StartAsync() => SignInAsync();
 
-        ICommand _SkipCommand;
-        public ICommand SkipCommand => _SkipCommand ??= new Command(ExecuteSkipCommand);
-        private void ExecuteSkipCommand()
-        {
-            SignInAsync();
-        }
+        [RelayCommand]
+        Task SkipAsync() => SignInAsync();
 
         Task SignInAsync() => AppNavigator.NavigateAsync(AppRoutes.SignIn);
     }

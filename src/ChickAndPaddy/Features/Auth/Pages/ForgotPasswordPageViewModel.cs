@@ -1,20 +1,26 @@
 ﻿namespace ChickAndPaddy;
 
-public class ForgotPasswordPageViewModel : NavigationAwareBaseViewModel
+public partial class ForgotPasswordPageViewModel : NavigationAwareBaseViewModel
 {
     public ForgotPasswordPageViewModel(
         IAppNavigator appNavigator)
         : base(appNavigator)
     {
+        Form = new();
     }
 
-    public string PhoneNumber { get; set; }
+    [ObservableProperty]
+    ForgotPasswordFormModel form;
 
-    ICommand _GetOTPCommand;
-    public ICommand GetOTPCommand => _GetOTPCommand ??= new Command(ExecuteGetOTPCommand);
-    private void ExecuteGetOTPCommand()
+    [RelayCommand]
+    private void GetOTP()
     {
+        var isValid = Form.IsValid();
 
+        if (!isValid)
+        {
+            // Do something
+        }
     }
 }
 

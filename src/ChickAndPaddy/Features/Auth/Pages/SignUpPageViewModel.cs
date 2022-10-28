@@ -1,20 +1,27 @@
 ﻿namespace ChickAndPaddy;
 
-public class SignUpPageViewModel : NavigationAwareBaseViewModel
+public partial class SignUpPageViewModel : NavigationAwareBaseViewModel
 {
     public SignUpPageViewModel(
         IAppNavigator appNavigator)
         : base(appNavigator)
     {
+        Form = new();
     }
 
-    public string FullName { get; set; }
-    public string PhoneNumber { get; set; }
-    public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
+    public SignUpFormModel Form { get; init; }
 
-    ICommand _SignUpCommand;
-    public ICommand SignUpCommand => _SignUpCommand ??= new Command(ExecuteSignUpCommand);
-    void ExecuteSignUpCommand() => AppNavigator.GoBackAsync();
+    [RelayCommand]
+    Task SignUpAsync()
+    {
+        var isValid = Form.IsValid();
+
+        if (!isValid)
+        {
+            return Task.CompletedTask;
+        }
+
+        return AppNavigator.GoBackAsync(); 
+    }
 }
 

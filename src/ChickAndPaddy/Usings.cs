@@ -7,3 +7,6 @@ global using System.Collections;
 global using System.Collections.Generic;
 global using Bogus;
 global using System.Globalization;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.Input;
+global using System.ComponentModel.DataAnnotations;

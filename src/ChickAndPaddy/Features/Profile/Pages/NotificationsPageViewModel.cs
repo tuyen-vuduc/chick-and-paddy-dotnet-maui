@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class NotificationsPageViewModel : NavigationAwareBaseViewModel
+public partial class NotificationsPageViewModel : NavigationAwareBaseViewModel
 {
     private readonly INotificationService notificationService;
 
@@ -16,9 +16,14 @@ public class NotificationsPageViewModel : NavigationAwareBaseViewModel
         this.notificationService = notificationService;
     }
 
-    public ObservableCollection<NotificationModel> Notifications { get; set; }
-    public bool IsBusy { get; set; }
-    public bool IsRefreshing { get; set; }
+    [ObservableProperty]
+    ObservableCollection<NotificationModel> notifications;
+
+    [ObservableProperty]
+    bool isBusy;
+
+    [ObservableProperty]
+    bool isRefreshing;
 
     public override async Task OnAppearingAsync()
     {
@@ -44,7 +49,7 @@ public class NotificationsPageViewModel : NavigationAwareBaseViewModel
         {
             Notifications = new ObservableCollection<NotificationModel>(items);
             return;
-        } 
+        }
 
         if (forced)
         {
@@ -57,13 +62,11 @@ public class NotificationsPageViewModel : NavigationAwareBaseViewModel
         }
     }
 
-    ICommand _LoadMoreCommand;
-    public ICommand LoadMoreCommand => _LoadMoreCommand ??= new Command(ExecuteLoadMoreCommand);
-    private void ExecuteLoadMoreCommand() => LoadDataAsync(false).FireAndForget();
+    [RelayCommand]
+    private void LoadMore() => LoadDataAsync(false).FireAndForget();
 
-    ICommand _RefreshCommand;
-    public ICommand RefreshCommand => _RefreshCommand ??= new Command(ExecuteRefreshCommand);
-    private void ExecuteRefreshCommand() => LoadDataAsync(true)
+    [RelayCommand]
+    private void Refresh() => LoadDataAsync(true)
         .ContinueWith(x => IsRefreshing = false)
         .FireAndForget();
 }

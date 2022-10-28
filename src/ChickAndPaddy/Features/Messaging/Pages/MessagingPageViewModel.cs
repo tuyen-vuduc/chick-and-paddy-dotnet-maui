@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class MessagingPageViewModel : NavigationAwareBaseViewModel
+public partial class MessagingPageViewModel : NavigationAwareBaseViewModel
 {
     public MessagingPageViewModel(
         IAppNavigator appNavigator)
@@ -8,11 +8,11 @@ public class MessagingPageViewModel : NavigationAwareBaseViewModel
     {
     }
 
-    public string PhoneNumber { get; set; }
+    [ObservableProperty]
+    string phoneNumber;
 
-    ICommand _GetOTPCommand;
-    public ICommand GetOTPCommand => _GetOTPCommand ??= new Command(ExecuteGetOTPCommand);
-    private void ExecuteGetOTPCommand()
+    [RelayCommand]
+    private void GetOTP()
     {
 
     }

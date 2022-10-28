@@ -2,7 +2,7 @@
 
 namespace ChickAndPaddy;
 
-public abstract class BaseViewModel : BaseModel
+public abstract partial class BaseViewModel : ObservableRecipient
 {
     protected IAppNavigator AppNavigator { get; }
 
@@ -31,7 +31,6 @@ public abstract class BaseViewModel : BaseModel
         return Task.CompletedTask;
     }
 
-    ICommand _BackCommand;
-    public ICommand BackCommand => _BackCommand ??= new Command(ExecuteBackCommand);
-    void ExecuteBackCommand() => AppNavigator.GoBackAsync();
+    [RelayCommand]
+    protected virtual Task BackAsync() => AppNavigator.GoBackAsync();
 }

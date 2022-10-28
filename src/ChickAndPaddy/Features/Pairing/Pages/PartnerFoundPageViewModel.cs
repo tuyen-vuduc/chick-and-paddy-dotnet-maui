@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
+public partial class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
 {
     private readonly IProfileService profileService;
     private readonly IPairingService pairingService;
@@ -17,19 +17,24 @@ public class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
         this.pairingService = pairingService;
         this.messagingCenter = messagingCenter;
 
+        messagingCenter.Unsubscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE);
         messagingCenter.Subscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE, HandlePairingResponse);
     }
 
-    public PartnerModel Partner { get; set; }
-    public DateTime FirstMet { get; set; } = DateTime.Today;
+    [ObservableProperty]
+    PartnerModel partner;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DaysSinceMet))]
+    DateTime firstMet = DateTime.Today;
 
     public int DaysSinceMet { get => (DateTime.Today - FirstMet.Date).Days + 1; }
 
-    public void OnFirstMetChanged()
+    partial void OnFirstMetChanged(DateTime value)
     {
         if (Partner == null) return;
 
-        Partner.FirstMet = FirstMet;
+        Partner.FirstMet = value;
     }
 
     protected override void OnInit(IDictionary<string, object> query)
@@ -39,9 +44,15 @@ public class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
         Partner = query.GetData<PartnerModel>();
     }
 
-    ICommand _SendRequestCommand;
-    public ICommand SendRequestCommand => _SendRequestCommand ??= new Command(ExecuteSendRequestCommand);
-    private void ExecuteSendRequestCommand()
+    protected override Task BackAsync()
+    {
+        messagingCenter.Unsubscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE);
+
+        return base.BackAsync();
+    }
+
+    [RelayCommand]
+    private void SendRequest()
     {
         pairingService
             .SendPairingRequestAsync(Partner)
