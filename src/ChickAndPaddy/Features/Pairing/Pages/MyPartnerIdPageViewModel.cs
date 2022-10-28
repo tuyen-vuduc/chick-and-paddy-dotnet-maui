@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class MyPartnerIdPageViewModel : NavigationAwareBaseViewModel
+public partial class MyPartnerIdPageViewModel : NavigationAwareBaseViewModel
 {
     private readonly IPairingService pairingService;
 
@@ -12,12 +12,14 @@ public class MyPartnerIdPageViewModel : NavigationAwareBaseViewModel
         this.pairingService = pairingService;
     }
 
-    public string PartnerId { get; set; }
-    public bool IdNotFound { get; set; } = false;
+    [ObservableProperty]
+    string partnerId;
 
-    ICommand _FindPartnerCommand;
-    public ICommand FindPartnerCommand => _FindPartnerCommand ??= new Command(ExecuteFindPartnerCommand);
-    private async void ExecuteFindPartnerCommand()
+    [ObservableProperty]
+    bool idNotFound;
+
+    [RelayCommand]
+    private async Task FindPartnerAsync()
     {
         var partner = await pairingService.FindPartnerByPairingIdAsync(PartnerId);      
 

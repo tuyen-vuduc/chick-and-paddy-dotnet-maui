@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class HomePageViewModel : NavigationAwareBaseViewModel
+public partial class HomePageViewModel : NavigationAwareBaseViewModel
 {
     const int PAGE_SIZE = 10;
     private readonly IProfileService profileService;
@@ -19,17 +19,34 @@ public class HomePageViewModel : NavigationAwareBaseViewModel
         this.newsFeedService = newsFeedService;
     }
 
-    public string CoupleCoverUrl { get; set; }
-    public PartnerModel Partner { get; set; }
+    [ObservableProperty]
+    string coupleCoverUrl;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(DaysSinceMet))]
+    PartnerModel partner;
+
     public int DaysSinceMet { get => ((DateTime.Today - Partner?.FirstMet.Date)?.Days ?? 0) + 1; }
 
-    public ObservableCollection<NewsFeedModel> NewsFeeds { get; set; }
-    public bool IsBusy { get; set; }
-    public bool IsRefreshing { get; set; }
-    public HomeItemType ItemType { get; set; } = HomeItemType.CoupleMilestoneExpanded;
-    public HomeTab HomeTab { get; set; } = HomeTab.OurStories;
+    [ObservableProperty]
+    ObservableCollection<NewsFeedModel> newsFeeds;
 
-    public bool HasRelationship { get; set; }
+    [ObservableProperty]
+    bool isBusy;
+
+    [ObservableProperty]
+    bool isRefreshing;
+
+    [ObservableProperty]
+    HomeItemType itemType = HomeItemType.CoupleMilestoneExpanded;
+
+    [ObservableProperty]
+    HomeTab homeTab = HomeTab.OurStories;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NoRelationship))]
+    bool hasRelationship;
+
     public bool NoRelationship => !HasRelationship;
 
     protected override void OnInit(IDictionary<string, object> query)
@@ -91,33 +108,22 @@ public class HomePageViewModel : NavigationAwareBaseViewModel
         }
     }
 
-    ICommand _LoadMoreCommand;
-    public ICommand LoadMoreCommand => _LoadMoreCommand ??= new Command(ExecuteLoadMoreCommand);
-    private void ExecuteLoadMoreCommand() => LoadDataAsync(false).FireAndForget();
+    [RelayCommand]
+    private void LoadMore() => LoadDataAsync(false).FireAndForget();
 
-    ICommand _RefreshCommand;
-    public ICommand RefreshCommand => _RefreshCommand ??= new Command(ExecuteRefreshCommand);
-    private void ExecuteRefreshCommand() => LoadDataAsync(true)
+    [RelayCommand]
+    private void Refresh() => LoadDataAsync(true)
         .ContinueWith(x => IsRefreshing = false)
         .FireAndForget();
 
-    ICommand _PairCommand;
-    public ICommand PairCommand => _PairCommand ??= new Command(ExecutePairCommand);
-    private void ExecutePairCommand()
-    {
-        AppNavigator.NavigateAsync(AppRoutes.Pair);
-    }
+    [RelayCommand]
+    private Task PairAsync() => AppNavigator.NavigateAsync(AppRoutes.Pair);
 
-    ICommand _ViewNotificationsCommand;
-    public ICommand ViewNotificationsCommand => _ViewNotificationsCommand ??= new Command(ExecuteViewNotificationsCommand);
-    private void ExecuteViewNotificationsCommand()
-    {
-        AppNavigator.NavigateAsync(AppRoutes.Notifications);
-    }
+    [RelayCommand]
+    private Task ViewNotificationsAsync() => AppNavigator.NavigateAsync(AppRoutes.Notifications);
 
-    ICommand _ChangeModeCommand;
-    public ICommand ChangeModeCommand => _ChangeModeCommand ??= new Command(ExecuteChangeModeCommand);
-    void ExecuteChangeModeCommand()
+    [RelayCommand]
+    void ChangeMode()
     {
         switch (ItemType)
         {
@@ -131,9 +137,8 @@ public class HomePageViewModel : NavigationAwareBaseViewModel
         NewsFeeds = new ObservableCollection<NewsFeedModel>(NewsFeeds);
     }
 
-    ICommand _ChangeTabCommand;
-    public ICommand ChangeTabCommand => _ChangeTabCommand ??= new Command<HomeTab>(ExecuteChangeTabCommand);
-    void ExecuteChangeTabCommand(HomeTab selectedTab)
+    [RelayCommand]
+    void ChangeTab(HomeTab selectedTab)
     {
         if (selectedTab == HomeTab) return;
 
@@ -152,9 +157,8 @@ public class HomePageViewModel : NavigationAwareBaseViewModel
         NewsFeeds = new ObservableCollection<NewsFeedModel>(NewsFeeds);
     }
 
-    ICommand _CreateStoryCommand;
-    public ICommand CreateStoryCommand => _CreateStoryCommand ??= new Command(ExecuteCreateStoryCommand);
-    void ExecuteCreateStoryCommand()
+    [RelayCommand]
+    void CreateStory()
     {
 
     }

@@ -81,13 +81,13 @@
                     <Button
                         HorizontalOptions="Center"
                         Text="ID của tôi"
-                        Command="{Binding MyPairingIdCommand}"
+                        Command="{Binding ViewMyPairingIdCommand}"
                         WidthRequest="{x:Static app:Dimens.ButtonWidth}"
                         Style="{x:Static app:Styles.ButtonPrimary}" />
                     <Button
                         HorizontalOptions="Center"
                         Text="Nhập ID ghép đôi"
-                        Command="{Binding MyPartnerIdCommand}"
+                        Command="{Binding EnterMyPartnerIdCommand}"
                         WidthRequest="{x:Static app:Dimens.ButtonWidth}"
                         Style="{x:Static app:Styles.ButtonAccent}" />
                 </StackLayout>

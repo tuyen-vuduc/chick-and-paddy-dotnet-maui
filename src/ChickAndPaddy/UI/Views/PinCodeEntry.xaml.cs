@@ -12,7 +12,6 @@ public partial class PinCodeEntry : ContentView
 		InitializeComponent();
 
         HandlePinLengthChanged(this, 0, DEFAULT_PIN_LENGTH);
-
     }
 
 	public static readonly BindableProperty TextProperty = BindableProperty.Create(
@@ -84,10 +83,13 @@ public partial class PinCodeEntry : ContentView
     }
 }
 
-class PinDigitModel : BaseModel
+public partial class PinDigitModel : BaseModel
 {
     public const string DEFAULT_PIN_DIGIT = " ";
 
-    public string Digit { get; set; } = DEFAULT_PIN_DIGIT;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasDigit))]
+    string digit = DEFAULT_PIN_DIGIT;
+
     public bool HasDigit => !string.IsNullOrWhiteSpace(Digit);
 }

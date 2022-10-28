@@ -36,7 +36,8 @@ public partial class RoundedEntry : ContentView
         nameof(Text),
         typeof(string),
         typeof(RoundedEntry),
-        default(string)
+        default(string),
+        BindingMode.TwoWay
         );
     public string Text
     {
@@ -66,5 +67,37 @@ public partial class RoundedEntry : ContentView
     {
         get => (Keyboard)GetValue(KeyboardProperty);
         set => SetValue(KeyboardProperty, value);
+    }
+
+    public static readonly BindableProperty IsValidProperty = BindableProperty.Create(
+        nameof(IsValid),
+        typeof(bool),
+        typeof(RoundedEntry),
+        true,
+        BindingMode.OneWay,
+        propertyChanged: HandleIsValidChanged
+    );
+    private static void HandleIsValidChanged(BindableObject bindable, object oldValue, object newValue)
+    {
+        if (bindable is not RoundedEntry entry) return;
+
+        entry.border.BorderColor = (bool)newValue ? AppColors.Green : AppColors.Red;
+    }
+
+    public bool IsValid
+    {
+        get => (bool)GetValue(IsValidProperty);
+        set => SetValue(IsValidProperty, value);
+    }
+
+    void Entry_Focused(System.Object sender, Microsoft.Maui.Controls.FocusEventArgs e)
+    {
+        if (e.IsFocused)
+        {
+            border.BorderColor = Colors.Transparent;
+            return;
+        }
+
+        border.BorderColor = IsValid ? AppColors.Green : AppColors.Red;
     }
 }

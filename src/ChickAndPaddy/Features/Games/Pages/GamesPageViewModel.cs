@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class GamesPageViewModel : NavigationAwareBaseViewModel
+public partial class GamesPageViewModel : NavigationAwareBaseViewModel
 {
     public GamesPageViewModel(
         IAppNavigator appNavigator)
@@ -8,10 +8,9 @@ public class GamesPageViewModel : NavigationAwareBaseViewModel
     {
     }
 
-    public string PhoneNumber { get; set; }
+    string phoneNumber;
 
-    ICommand _GetOTPCommand;
-    public ICommand GetOTPCommand => _GetOTPCommand ??= new Command(ExecuteGetOTPCommand);
+    [RelayCommand]
     private void ExecuteGetOTPCommand()
     {
 

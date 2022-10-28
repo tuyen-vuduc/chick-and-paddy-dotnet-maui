@@ -1,34 +1,39 @@
 ﻿namespace ChickAndPaddy;
 
-public class SignInPageViewModel : BaseViewModel
+public partial class SignInPageViewModel : BaseViewModel
 {
     public SignInPageViewModel(
         IAppNavigator appNavigator)
         : base(appNavigator)
     {
+        Form = new();
     }
 
-    public string UserName { get; set; }
-    public string Password { get; set; }
+    public SignInFormModel Form { get; init; }
 
-    ICommand _SignInCommand;
-    public ICommand SignInCommand => _SignInCommand ??= new Command(ExecuteSignInCommand);
-    void ExecuteSignInCommand() {
-        GoHomeAsync();
+    [RelayCommand]
+    Task SignInAsync()
+    {
+        var isValid = Form.IsValid();
+
+        if (!isValid)
+        {
+            return Task.CompletedTask;
+        }
+
+        return GoHomeAsync();
     }
 
-    ICommand _SignUpCommand;
-    public ICommand SignUpCommand => _SignUpCommand ??= new Command(ExecuteSignUpCommand);
-    void ExecuteSignUpCommand() => AppNavigator.NavigateAsync(AppRoutes.SignUp);
+    [RelayCommand]
+    Task SignUpAsync() => AppNavigator.NavigateAsync(AppRoutes.SignUp);
 
-    ICommand _ForgotPasswordCommand;
-    public ICommand ForgotPasswordCommand => _ForgotPasswordCommand ??= new Command(ExecuteForgotPasswordCommand);
-    void ExecuteForgotPasswordCommand() => AppNavigator.NavigateAsync(AppRoutes.ForgotPassword);
+    [RelayCommand]
+    Task ForgotPasswordAsync() => AppNavigator.NavigateAsync(AppRoutes.ForgotPassword);
 
-    ICommand _SignInWithSocialAccountCommand;
-    public ICommand SignInWithSocialAccountCommand => _SignInWithSocialAccountCommand ??= new Command<SocialAccountType>(ExecuteSignInWithSocialAccountCommand);
-    void ExecuteSignInWithSocialAccountCommand(SocialAccountType socialAccountType) {
-        GoHomeAsync();
+    [RelayCommand]
+    Task SignInWithSocialAccountAsync(SocialAccountType socialAccountType)
+    {
+        return GoHomeAsync();
     }
 
     Task GoHomeAsync() => AppNavigator.NavigateAsync(AppRoutes.Home);

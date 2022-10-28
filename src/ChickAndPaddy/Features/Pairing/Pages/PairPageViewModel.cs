@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class PairPageViewModel : NavigationAwareBaseViewModel
+public partial class PairPageViewModel : NavigationAwareBaseViewModel
 {
     public PairPageViewModel(
         IAppNavigator appNavigator)
@@ -8,12 +8,10 @@ public class PairPageViewModel : NavigationAwareBaseViewModel
     {
     }
 
-    ICommand _MyPairingIdCommand;
-    public ICommand MyPairingIdCommand => _MyPairingIdCommand ??= new Command(ExecuteMyPairingIdCommand);
-    private void ExecuteMyPairingIdCommand() => AppNavigator.NavigateAsync(AppRoutes.MyPairingId);
+    [RelayCommand]
+    private Task ViewMyPairingIdAsync() => AppNavigator.NavigateAsync(AppRoutes.MyPairingId);
 
-    ICommand _MyPartnerIdCommand;
-    public ICommand MyPartnerIdCommand => _MyPartnerIdCommand ??= new Command(ExecuteMyPartnerIdCommand);
-    private void ExecuteMyPartnerIdCommand() => AppNavigator.NavigateAsync(AppRoutes.MyPartnerId);
+    [RelayCommand]
+    private Task EnterMyPartnerIdAsync() => AppNavigator.NavigateAsync(AppRoutes.MyPartnerId);
 }
 

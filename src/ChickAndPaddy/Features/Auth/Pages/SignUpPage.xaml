@@ -43,7 +43,8 @@
                         Horizontal={x:Static app:Dimens.SpacingLg},
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_user.png"
-                    Text="{Binding FullName}"
+                    Text="{Binding Form.FullName}"
+                    IsValid="{Binding Form.FullNameValid}"
                     Placeholder="Tên của bạn"
                     />
                 <app:RoundedEntry 
@@ -51,7 +52,8 @@
                         Horizontal={x:Static app:Dimens.SpacingLg},
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_phone_call.png"
-                    Text="{Binding PhoneNumber}"
+                    Text="{Binding Form.PhoneNumber}"
+                    IsValid="{Binding Form.PhoneNumberValid}"
                     Placeholder="Số điện thoại"
                     Keyboard="Telephone"
                     />
@@ -60,7 +62,8 @@
                         Horizontal={x:Static app:Dimens.SpacingLg},
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_password.png"
-                    Text="{Binding Password}"
+                    Text="{Binding Form.Password}"
+                    IsValid="{Binding Form.PasswordValid}"
                     Placeholder="Nhập mật khẩu"
                     IsPassword="True"
                     />
@@ -69,7 +72,8 @@
                         Horizontal={x:Static app:Dimens.SpacingLg}
                     }"
                     PrefixIcon="ic_password.png"
-                    Text="{Binding ConfirmPassword}"
+                    Text="{Binding Form.ConfirmPassword}"
+                    IsValid="{Binding Form.ConfirmPasswordValid}"
                     Placeholder="Nhập lại mật khẩu"
                     IsPassword="True"
                     />
@@ -78,10 +82,26 @@
                     Margin="{app:EdgeInsets
                         Horizontal={x:Static app:Dimens.SpacingLg},
                         Top={x:Static app:Dimens.SpacingXl}}"
-                    Text="Mật khẩu của bạn không khớp."
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Body2}"
-                    TextColor="{x:Static app:AppColors.Red}" />
+                    TextColor="{x:Static app:AppColors.Red}" >
+                    <Label.Opacity>
+                        <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
+                            <Binding Path="Form.FullNameValid"/>
+                            <Binding Path="Form.PhoneNumberValid"/>
+                            <Binding Path="Form.PasswordValid"/>
+                            <Binding Path="Form.ConfirmPasswordValid"/>
+                        </MultiBinding>
+                    </Label.Opacity>
+                    <Label.Text>
+                        <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
+                            <Binding Path="Form.FullNameInvalidMessage"/>
+                            <Binding Path="Form.PhoneNumberInvalidMessage"/>
+                            <Binding Path="Form.PasswordInvalidMessage"/>
+                            <Binding Path="Form.ConfirmPasswordInvalidMessage"/>
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
 
                 <Button
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"

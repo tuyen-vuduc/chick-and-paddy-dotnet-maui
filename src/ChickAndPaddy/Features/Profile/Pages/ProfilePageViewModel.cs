@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class ProfilePageViewModel : NavigationAwareBaseViewModel
+public partial class ProfilePageViewModel : NavigationAwareBaseViewModel
 {
     public ProfilePageViewModel(
         IAppNavigator appNavigator)
@@ -8,12 +8,9 @@ public class ProfilePageViewModel : NavigationAwareBaseViewModel
     {
     }
 
-    public string PhoneNumber { get; set; }
+    [ObservableProperty]
+    string phoneNumber;
 
-    ICommand _ViewSettingsCommand;
-    public ICommand ViewSettingsCommand => _ViewSettingsCommand ??= new Command(ExecuteViewSettingsCommand);
-    private void ExecuteViewSettingsCommand()
-    {
-        AppNavigator.NavigateAsync(AppRoutes.SettingsAndHelp);
-    }
+    [RelayCommand]
+    private Task ViewSettings() => AppNavigator.NavigateAsync(AppRoutes.SettingsAndHelp);
 }

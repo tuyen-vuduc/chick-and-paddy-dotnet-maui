@@ -6,6 +6,7 @@
     x:Name="root"
     x:Class="ChickAndPaddy.RoundedEntry">
     <Frame
+        x:Name="border"
         Padding="{app:EdgeInsets
             Horizontal={x:Static app:Dimens.SpacingMd}
         }"
@@ -38,6 +39,8 @@
                 FontFamily="{x:Static app:FontNames.ArchiaSemiBold}"
                 PlaceholderColor="{x:Static app:AppColors.Grey20}"
                 TextColor="{x:Static app:AppColors.Grey50}"
+                Focused="Entry_Focused"
+                Unfocused="Entry_Focused"
                 />
         </StackLayout>
     </Frame>

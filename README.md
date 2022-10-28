@@ -30,17 +30,20 @@ The app is built based on [Chick & Paddy UI/UX design](https://www.figma.com/fil
 
 # Open Source libraries
 - [MAUI Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit)
-- [PropertyChanged - Fody](https://github.com/Fody/PropertyChanged)
-- [EFCore SQLite](https://docs.microsoft.com/en-us/ef/core/get-started/xamarin)
+- [MVVM Toolkit](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction)
 
 # Other resources
 - [Material Design Icons](https://materialdesignicons.com/)
 - [Archia Font](https://befonts.com/archia-font-family.html) - paid and in design
 - [Montserrat Font](https://fonts.google.com/specimen/Montserrat?query=monts) - Free, alternative
 
-# Contributors
+# Maintainer
 
-- [Tuyen Vu](https://github.com/tuyen-vuduc): [Twitter](https://twitter.com/tuyen_vuduc), [Facebook](https://facebook.com/tuyen-vuduc0902)
+This project is maintained by [tuyen-vuduc](https://github.com/tuyen-vuduc) in his spare time.<br>
+
+If you find this project is useful, please become a sponsor of the project and/or buy him a coffee.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/tuyen.vuduc)
 
 # License
 The 3rd libraries will follow their associated licenses. This project itself is license under MIT license.

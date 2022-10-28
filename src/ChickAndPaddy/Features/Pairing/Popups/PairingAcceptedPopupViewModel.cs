@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ChickAndPaddy
 {
-    public class PairingAcceptedPopupViewModel : BaseViewModel
+    public partial class PairingAcceptedPopupViewModel : BaseViewModel
     {
         public PairingAcceptedPopupViewModel(
             IAppNavigator appNavigator
@@ -9,8 +9,7 @@ namespace ChickAndPaddy
         {
         }
 
-        ICommand _DoneCommand;
-        public ICommand DoneCommand { get => _DoneCommand ??= new Command(ExecuteDoneCommand); }
-        private void ExecuteDoneCommand(object obj) => AppNavigator.NavigateAsync(AppRoutes.Home);
+        [RelayCommand]
+        private Task Done(object obj) => AppNavigator.NavigateAsync(AppRoutes.Home);
     }
 }
