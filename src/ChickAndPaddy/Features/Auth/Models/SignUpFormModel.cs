@@ -4,13 +4,15 @@ public partial class SignUpFormModel : BaseFormModel
 {
     [ObservableProperty]
     [Required(ErrorMessage = "Please enter your full name")]
-    [NotifyPropertyChangedFor(nameof(FullNameValid), nameof(FullNameInvalidMessage))]
+    [NotifyPropertyChangedFor(nameof(FullNameErrors))]
+    [NotifyDataErrorInfo]
     string fullName;
 
     [ObservableProperty]
     [Required(ErrorMessage = "Please enter your phone number")]
     [Phone(ErrorMessage = "Please a valid your phone number")]
-    [NotifyPropertyChangedFor(nameof(PhoneNumberValid), nameof(PhoneNumberInvalidMessage))]
+    [NotifyPropertyChangedFor(nameof(PhoneNumberErrors))]
+    [NotifyDataErrorInfo]
     string phoneNumber;
 
     [ObservableProperty]
@@ -23,61 +25,32 @@ public partial class SignUpFormModel : BaseFormModel
         MinimumLength = 6,
         ErrorMessage = "Please enter a strong password: from 8 characters, 1 upper, 1 lower, 1 digit, 1 special character"
     )]
-    [NotifyPropertyChangedFor(nameof(PasswordValid), nameof(PasswordInvalidMessage))]
+    [NotifyPropertyChangedFor(nameof(PasswordErrors))]
+    [NotifyDataErrorInfo]
     string password;
 
     [ObservableProperty]
     [Required(ErrorMessage = "Please enter a confirm password")]
     [FieldCompare(nameof(Password))]
-    [NotifyPropertyChangedFor(nameof(ConfirmPasswordValid), nameof(ConfirmPasswordInvalidMessage))]
+    [NotifyPropertyChangedFor(nameof(ConfirmPasswordErrors))]
+    [NotifyDataErrorInfo]
     string confirmPassword;
 
-    public bool FullNameValid => GetErrors(nameof(FullName)).Any() == false;
-    public string FullNameInvalidMessage => GetErrors(nameof(FullName)).FirstOrDefault()?.ErrorMessage;
-
-    partial void OnFullNameChanging(string value)
-    {
-        ValidateProperty(value, nameof(FullName));
-    }
-
-    public bool PhoneNumberValid => GetErrors(nameof(PhoneNumber)).Any() == false;
-    public string PhoneNumberInvalidMessage => GetErrors(nameof(PhoneNumber)).FirstOrDefault()?.ErrorMessage;
-
-    partial void OnPhoneNumberChanging(string value)
-    {
-        ValidateProperty(value, nameof(PhoneNumber));
-    }
-
-    public bool PasswordValid => GetErrors(nameof(Password)).Any() == false;
-    public string PasswordInvalidMessage => GetErrors(nameof(Password)).FirstOrDefault()?.ErrorMessage;
-
-    partial void OnPasswordChanging(string value)
-    {
-        ValidateProperty(value, nameof(Password));
-    }
-
-    public bool ConfirmPasswordValid => GetErrors(nameof(ConfirmPassword)).Any() == false;
-    public string ConfirmPasswordInvalidMessage => GetErrors(nameof(ConfirmPassword)).FirstOrDefault()?.ErrorMessage;
-
-    partial void OnConfirmPasswordChanging(string value)
-    {
-        ValidateProperty(value, nameof(ConfirmPassword));
-    }
+    public IEnumerable<ValidationResult> FullNameErrors => GetErrors(nameof(FullName));
+    public IEnumerable<ValidationResult> PhoneNumberErrors => GetErrors(nameof(PhoneNumber));
+    public IEnumerable<ValidationResult> PasswordErrors => GetErrors(nameof(Password));
+    public IEnumerable<ValidationResult> ConfirmPasswordErrors => GetErrors(nameof(ConfirmPassword));
 
     protected override string[] ValidatableAndSupportPropertyNames => new[]
     {
         nameof(FullName),
-        nameof(FullNameValid),
-        nameof(FullNameInvalidMessage),
+        nameof(FullNameErrors),
         nameof(PhoneNumber),
-        nameof(PhoneNumberValid),
-        nameof(PhoneNumberInvalidMessage),
+        nameof(PhoneNumberErrors),
         nameof(Password),
-        nameof(PasswordValid),
-        nameof(PasswordInvalidMessage),
+        nameof(PasswordErrors),
         nameof(ConfirmPassword),
-        nameof(ConfirmPasswordValid),
-        nameof(ConfirmPasswordInvalidMessage),
+        nameof(ConfirmPasswordErrors),
     };
 }
 

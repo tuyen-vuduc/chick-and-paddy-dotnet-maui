@@ -35,7 +35,7 @@
                     }"
                     PrefixIcon="ic_phone_call.png"
                     Text="{Binding Form.UserName}"
-                    IsValid="{Binding Form.UserNameValid}"
+                    IsValid="{Binding Form.UserNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập số điện thoại của bạn"
                     Keyboard="Telephone"
                     />
@@ -45,7 +45,7 @@
                     }"
                     PrefixIcon="ic_password.png"
                     Text="{Binding Form.Password}"
-                    IsValid="{Binding Form.PasswordValid}"
+                    IsValid="{Binding Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập mật khẩu"
                     IsPassword="True"
                     />
@@ -72,14 +72,14 @@
                     TextColor="{x:Static app:AppColors.Red}">
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
-                            <Binding Path="Form.UserNameValid"/>
-                            <Binding Path="Form.PasswordValid"/>
+                            <Binding Path="Form.UserNameErrors" Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" />
+                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" />
                         </MultiBinding>
                     </Label.Opacity>
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
-                            <Binding Path="Form.UserNameInvalidMessage"/>
-                            <Binding Path="Form.PasswordInvalidMessage"/>
+                            <Binding Path="Form.UserNameErrors" Converter="{x:Static app:AppConverters.FirstItem}" />
+                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>

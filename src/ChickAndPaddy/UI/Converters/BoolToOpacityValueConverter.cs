@@ -60,18 +60,5 @@ namespace ChickAndPaddy
             throw new NotImplementedException();
         }
     }
-
-    public class FirstItemValueConverter : IMultiValueConverter
-    {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
-        {
-            return values?.FirstOrDefault(x => x != null);
-        }
-
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
 

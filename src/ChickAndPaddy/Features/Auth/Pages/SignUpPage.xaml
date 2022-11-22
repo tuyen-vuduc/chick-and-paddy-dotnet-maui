@@ -44,7 +44,7 @@
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_user.png"
                     Text="{Binding Form.FullName}"
-                    IsValid="{Binding Form.FullNameValid}"
+                    IsValid="{Binding Form.FullNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Tên của bạn"
                     />
                 <app:RoundedEntry 
@@ -53,7 +53,7 @@
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_phone_call.png"
                     Text="{Binding Form.PhoneNumber}"
-                    IsValid="{Binding Form.PhoneNumberValid}"
+                    IsValid="{Binding Form.PhoneNumberErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Số điện thoại"
                     Keyboard="Telephone"
                     />
@@ -63,7 +63,7 @@
                         Bottom={x:Static app:Dimens.SpacingSm}}"
                     PrefixIcon="ic_password.png"
                     Text="{Binding Form.Password}"
-                    IsValid="{Binding Form.PasswordValid}"
+                    IsValid="{Binding Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập mật khẩu"
                     IsPassword="True"
                     />
@@ -73,7 +73,7 @@
                     }"
                     PrefixIcon="ic_password.png"
                     Text="{Binding Form.ConfirmPassword}"
-                    IsValid="{Binding Form.ConfirmPasswordValid}"
+                    IsValid="{Binding Form.ConfirmPasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập lại mật khẩu"
                     IsPassword="True"
                     />
@@ -87,18 +87,18 @@
                     TextColor="{x:Static app:AppColors.Red}" >
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
-                            <Binding Path="Form.FullNameValid"/>
-                            <Binding Path="Form.PhoneNumberValid"/>
-                            <Binding Path="Form.PasswordValid"/>
-                            <Binding Path="Form.ConfirmPasswordValid"/>
+                            <Binding Path="Form.FullNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
+                            <Binding Path="Form.PhoneNumberErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
+                            <Binding Path="Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
+                            <Binding Path="Form.ConfirmPasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
                         </MultiBinding>
                     </Label.Opacity>
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
-                            <Binding Path="Form.FullNameInvalidMessage"/>
-                            <Binding Path="Form.PhoneNumberInvalidMessage"/>
-                            <Binding Path="Form.PasswordInvalidMessage"/>
-                            <Binding Path="Form.ConfirmPasswordInvalidMessage"/>
+                            <Binding Path="Form.FullNameErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
+                            <Binding Path="Form.PhoneNumberErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
+                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
+                            <Binding Path="Form.ConfirmPasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
                         </MultiBinding>
                     </Label.Text>
                 </Label>
