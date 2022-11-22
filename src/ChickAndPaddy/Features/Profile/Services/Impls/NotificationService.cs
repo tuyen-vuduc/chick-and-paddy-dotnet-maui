@@ -1,4 +1,6 @@
-﻿namespace ChickAndPaddy;
+﻿using Bogus;
+
+namespace ChickAndPaddy;
 
 public class NotificationService : INotificationService
 {

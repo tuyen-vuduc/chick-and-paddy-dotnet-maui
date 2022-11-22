@@ -1,4 +1,5 @@
-﻿using Bogus.DataSets;
+﻿using Bogus;
+using Bogus.DataSets;
 
 namespace ChickAndPaddy;
 
