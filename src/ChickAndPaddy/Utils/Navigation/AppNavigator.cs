@@ -35,6 +35,11 @@ public class AppNavigator : IAppNavigator
             navArgs.Add(UriHelper.DataQueryParameterName, args);
         }
 
+        if (target == UriHelper.GoBackSegment)
+        {
+            navArgs.Add(UriHelper.GoBackQueryParameterName, true);
+        }
+
         return MainThread.InvokeOnMainThreadAsync(() => Shell.Current.GoToAsync(
             target,
             animated,

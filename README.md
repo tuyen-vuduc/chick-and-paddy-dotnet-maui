@@ -28,6 +28,187 @@ The app is built based on [Chick & Paddy UI/UX design](https://www.figma.com/fil
 # Documents
 - [High Level Design](./docs/high-level-design.md)
 
+## How-tos
+
+## Steps to create a new page
+
+As we organize our app in Features with a consistent fold structure as description in [High Level Design](./docs/high-level-design.md), below are key steps to add a new page for a feature.
+
+- Create a feature folder under `Features` if not exist
+  - folder name must be the feature name
+- Create a `Pages` folder under the created feature folder
+- Create
+  - a XAML page - inherits from `BasePage`
+  - a VM class - inherits from `NavigationAwareBaseViewModel` or `BaseViewModel`
+
+e.g The `SignIn` page of `Auth` feature will have below structure
+```
+|
+|--Features
+    |--Auth
+        |--Pages
+            |--SignInPage.xaml
+            |--SignInPage.xaml.cs
+            |--SignInPageViewModel.cs
+```
+
+class diagram
+```mermaid
+classDiagram
+    BasePage <|-- SignInPage: extends
+    BaseViewModel <|-- NavigationAwareBaseViewModel: extends
+    NavigationAwareBaseViewModel <|-- SignInPageViewModel: extends
+    SignInPage o-- SignInPageViewModel: BindingContext
+
+    class BaseViewModel {
+        + Task OnAppearingAsync()
+        + Task OnDisappearingAsync()
+    }
+    <<abstract>> BaseViewModel
+    class NavigationAwareBaseViewModel {
+        + void OnBack(IDictionary<string, object> query)
+        + void OnInit(IDictionary<string, object> query)
+    }
+    <<abstract>> NavigationAwareBaseViewModel
+    class BasePage {
+        # void OnAppearing()
+        # void OnDisappearing()
+    }
+    <<abstract>> BasePage
+```
+
+### Use script
+
+```
+# e.g dotnet cake --target=page --feature Auth --name SignIn
+dotnet cake --target=page --feature FEATURE_NAME --name PAGE_NAME_WO_SUFFIX
+```
+
+## Steps to create a new popup
+
+As we organize our app in Features with a consistent fold structure as description in [High Level Design](./docs/high-level-design.md), below are key steps to add a new popup for a feature.
+
+- Create a feature folder under `Features` if not exist
+  - folder name must be the feature name
+- Create a `Popups` folder under the created feature folder
+- Create
+  - a XAML page - inherits from `BasePopup`
+  - a VM class - inherits from `NavigationAwareBaseViewModel` or `BaseViewModel`
+
+e.g The `PairingRejectedPopup` page of `Pairing` feature will have below structure
+```
+|
+|--Features
+    |--Pairing
+        |--Popups
+            |--PairingRejectedPopup.xaml
+            |--PairingRejectedPopup.xaml.cs
+            |--PairingRejectedPopupViewModel.cs
+```
+
+class diagram
+```mermaid
+classDiagram
+    BasePage <|-- BasePopup: extends
+    BasePopup <|-- PairingRejectedPopup: extends
+    BaseViewModel <|-- NavigationAwareBaseViewModel: extends
+    NavigationAwareBaseViewModel <|-- PairingRejectedPopupViewModel: extends
+    PairingRejectedPopup o-- PairingRejectedPopupViewModel: BindingContext
+
+    class BaseViewModel {
+        + Task OnAppearingAsync()
+        + Task OnDisappearingAsync()
+    }
+    <<abstract>> BaseViewModel
+    class NavigationAwareBaseViewModel {
+        + void OnBack(IDictionary<string, object> query)
+        + void OnInit(IDictionary<string, object> query)
+    }
+    class BasePopup {
+        // Shell.PresentationMode="Modal"
+    }
+    <<abstract>> BasePopup
+    class BasePage {
+        # void OnAppearing()
+        # void OnDisappearing()
+    }
+    <<abstract>> BasePage
+```
+
+### Use script
+
+```
+# e.g dotnet cake --target=popup --feature Pairing --name PairingRejected
+dotnet cake --target=popup --feature FEATURE_NAME --name POPUP_NAME_WO_SUFFIX
+```
+
+## Steps to create a new model
+
+As we organize our app in Features with a consistent fold structure as description in [High Level Design](./docs/high-level-design.md), below are key steps to add a new model for a feature.
+
+- Create a feature folder under `Features` if not exist
+  - folder name must be the feature name
+- Create a `Models` folder under the created feature folder
+- Create
+  - a Model class - inherits from `BaseModel` or `BaseFormModel`
+
+> `BaseFormModel` will be used when the UI are entry elements; otherwise `BaseModel`. `BaseFormModel` will leverage [the validation feature](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/observablevalidator) of [MVVM toolkit](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction).
+
+e.g.
+- The `SignIn` form model of `Auth` feature will have below structure
+```
+|
+|--Features
+    |--Auth
+        |--Models
+            |--SignInFormModel.cs
+```
+
+- The `WalkthroughItem` model of `Landing` feature will have below structure
+```
+|
+|--Features
+    |--Landing
+        |--Models
+            |--WalkthroughItemModel.cs
+```
+
+class diagram
+```mermaid
+classDiagram
+    BaseModel <|-- WalkthroughItemModel: extends
+    BaseFormModel <|-- SignInFormModel: extends
+    ObservableValidator <|-- BaseFormModel: extends
+    ObservableObject <|-- ObservableValidator: extends
+    ObservableObject <|-- BaseModel: extends
+l
+    class BaseFormModel
+    <<abstract>> BaseFormModel
+    class BaseFormModel {
+        # string[] ValidatableAndSupportPropertyNames
+        + bool IsValid()
+    }
+    <<abstract>> BaseFormModel
+    class ObservableValidator {
+        // MVVM toolkit
+    }
+    <<abstract>> ObservableValidator
+    class ObservableObject {
+        // MVVM toolkit
+    }
+    <<abstract>> ObservableObject
+```
+
+### Use script
+
+```
+# e.g dotnet cake --target=model --form true --feature Auth --name SignIn
+dotnet cake --target=popup --feature FEATURE_NAME --name MODEL_NAME_WO_SUFFIX --form true
+
+# e.g dotnet cake --target=model --feature Landing --name WalkthroughItem
+dotnet cake --target=popup --feature FEATURE_NAME --name MODEL_NAME_WO_SUFFIX
+```
+
 # Open Source libraries
 - [MAUI Community Toolkit](https://github.com/xamarin/XamarinCommunityToolkit)
 - [MVVM Toolkit](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction)

@@ -32,5 +32,5 @@ public abstract partial class BaseViewModel : ObservableRecipient
     }
 
     [RelayCommand]
-    protected virtual Task BackAsync() => AppNavigator.GoBackAsync();
+    protected virtual Task BackAsync() => AppNavigator.GoBackAsync(data: this.GetType().FullName);
 }

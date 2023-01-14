@@ -59,6 +59,7 @@ public static class MauiProgram
     {
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IPreferences>(Preferences.Default);
+        builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
         builder.Services.AddSingleton<IMessagingCenter>(MessagingCenter.Instance);
 
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();

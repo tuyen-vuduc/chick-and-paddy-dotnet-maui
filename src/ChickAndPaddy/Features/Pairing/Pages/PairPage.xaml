@@ -6,7 +6,7 @@
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     x:Class="ChickAndPaddy.PairPage"
     BackgroundColor="{x:Static app:AppColors.White}"
-    Title="Ghép đôi"    
+    Title="Ghép đôi"
     ios:Page.UseSafeArea="False"
     Shell.NavBarIsVisible="False"
     x:DataType="app:PairPageViewModel">
@@ -68,16 +68,19 @@
                         Top={x:Static app:Dimens.SpacingXxl}
                     }"
                     Grid.Row="1"
-                    Spacing="{x:Static app:Dimens.SpacingXl}">
-                    <Label
+                    Spacing="{x:Static app:Dimens.SpacingLg}">
+                    <Grid
+                        HorizontalOptions="Center"
                         WidthRequest="{x:Static app:Dimens.ButtonWidth}"
                         Padding="{app:EdgeInsets
                             Horizontal={x:Static app:Dimens.SpacingMd}
-                        }"
-                        Style="{x:Static app:Styles.Subtitle5}"
-                        TextColor="{x:Static app:AppColors.Grey50}"
-                        HorizontalTextAlignment="Center"
-                        Text="Kết nối cùng với partner của bạn để sử dụng tất cả các chức năng của app." />
+                        }">
+                        <Label
+                            Style="{x:Static app:Styles.Subtitle5}"
+                            TextColor="{x:Static app:AppColors.Grey50}"
+                            HorizontalTextAlignment="Center"
+                            Text="Kết nối cùng với partner của bạn để sử dụng tất cả các chức năng của app." />
+                    </Grid>
                     <Button
                         HorizontalOptions="Center"
                         Text="ID của tôi"

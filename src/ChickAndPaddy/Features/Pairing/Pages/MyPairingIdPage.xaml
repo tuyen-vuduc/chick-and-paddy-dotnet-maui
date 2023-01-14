@@ -51,17 +51,20 @@
                     TextColor="{x:Static app:AppColors.Grey60}"
                     HorizontalTextAlignment="Center"
                     Text="ID ghép đôi" />
-                <Label
+                <Grid
+                    HorizontalOptions="Center"
                     Margin="{app:EdgeInsets
                         Top={x:Static app:Dimens.SpacingSm}
                     }"
                     Padding="{app:EdgeInsets
                         Horizontal={x:Static app:Dimens.SpacingXl}
-                    }"
-                    Style="{x:Static app:Styles.Subtitle6}"
-                    TextColor="{x:Static app:AppColors.Grey50}"
-                    HorizontalTextAlignment="Center"
-                    Text="Cung cấp mã ghép đôi/gửi link cho người yêu của bạn để ghép đôi trên CAP." />
+                    }">
+                    <Label
+                        Style="{x:Static app:Styles.Subtitle6}"
+                        TextColor="{x:Static app:AppColors.Grey50}"
+                        HorizontalTextAlignment="Center"
+                        Text="Cung cấp mã ghép đôi/gửi link cho người yêu của bạn để ghép đôi trên CAP." />
+                </Grid>
 
                 <Border
                     Margin="{app:EdgeInsets
@@ -69,23 +72,20 @@
                         Horizontal={x:Static app:Dimens.SpacingLg}
                     }"
                     Style="{x:Static app:Styles.BorderMd}"
-                    HorizontalOptions="Center"
-                    >
+                    HorizontalOptions="Center">
                     <HorizontalStackLayout
                         Padding="{app:EdgeInsets
                             Horizontal={x:Static app:Dimens.SpacingLg},
                             Vertical={x:Static app:Dimens.SpacingSm}
                         }"
                         Spacing="{x:Static app:Dimens.SpacingMd}"
-                        BindableLayout.ItemsSource="{Binding MyPairingId}"
-                        >
+                        BindableLayout.ItemsSource="{Binding MyPairingId}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Label
                                     Text="{Binding .}"
                                     Style="{x:Static app:Styles.Title2}"
-                                    TextColor="{x:Static app:AppColors.Grey60}"
-                                    />
+                                    TextColor="{x:Static app:AppColors.Grey60}" />
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </HorizontalStackLayout>
@@ -101,8 +101,7 @@
                         Text="Gửi link"
                         Command="{Binding ShareLinkCommand}"
                         TextColor="{x:Static app:AppColors.Purple}"
-                        Style="{x:Static app:Styles.ButtonFlatSm}"
-                        />
+                        Style="{x:Static app:Styles.ButtonFlatSm}" />
                     <Button
                         Grid.Column="1"
                         Text="Khi khác"

@@ -12,21 +12,23 @@
     Shell.NavBarIsVisible="False"
     x:DataType="app:HomePageViewModel">
     <app:BasePage.Resources>
-        <DataTemplate x:Key="CoupleMilestoneExpandedTemplate">
+        <DataTemplate
+            x:Key="CoupleMilestoneExpandedTemplate">
             <app:CoupleMilestoneExpandedView />
         </DataTemplate>
-        <DataTemplate x:Key="CoupleMilestoneCollapsedTemplate">
+        <DataTemplate
+            x:Key="CoupleMilestoneCollapsedTemplate">
             <app:CoupleMilestoneCollapsedView />
         </DataTemplate>
-        <DataTemplate x:Key="StoryTemplate">
+        <DataTemplate
+            x:Key="StoryTemplate">
             <app:StoryView />
         </DataTemplate>
         <app:HomeItemTemplateSeclector
             x:Key="HomeItemTemplateSeclector"
             Collapsed="{x:StaticResource CoupleMilestoneCollapsedTemplate}"
             Expanded="{x:StaticResource CoupleMilestoneExpandedTemplate}"
-            Story="{x:StaticResource StoryTemplate}"
-            />
+            Story="{x:StaticResource StoryTemplate}" />
     </app:BasePage.Resources>
     <Grid
         RowSpacing="0"
@@ -96,21 +98,23 @@
                     CommandParameter="{x:Static app:HomeTab.OurStories}"
                     BackgroundColor="{x:Static app:AppColors.LightBlue}"
                     TextColor="{x:Static app:AppColors.BrColor}"
-                    Style="{x:Static app:Styles.ButtonPrimaryXs}" >                    
+                    Style="{x:Static app:Styles.ButtonPrimaryXs}">
                     <Button.Triggers>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.OurStories}"
-                            >
-                            <Setter Property="IsVisible" Value="True" />
+                            Value="{x:Static app:HomeTab.OurStories}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="True" />
                         </DataTrigger>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.MyWall}"
-                            >
-                            <Setter Property="IsVisible" Value="False" />
+                            Value="{x:Static app:HomeTab.MyWall}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
@@ -120,21 +124,23 @@
                     Command="{Binding ChangeTabCommand}"
                     CommandParameter="{x:Static app:HomeTab.MyWall}"
                     TextColor="{x:Static app:AppColors.LightBlue}"
-                    Style="{x:Static app:Styles.ButtonFlatXs}" >
+                    Style="{x:Static app:Styles.ButtonFlatXs}">
                     <Button.Triggers>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.OurStories}"
-                            >
-                            <Setter Property="IsVisible" Value="True" />
+                            Value="{x:Static app:HomeTab.OurStories}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="True" />
                         </DataTrigger>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.MyWall}"
-                            >
-                            <Setter Property="IsVisible" Value="False" />
+                            Value="{x:Static app:HomeTab.MyWall}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
@@ -144,21 +150,23 @@
                     CommandParameter="{x:Static app:HomeTab.OurStories}"
                     TextColor="{x:Static app:AppColors.LightBlue}"
                     Style="{x:Static app:Styles.ButtonFlatXs}"
-                    IsVisible="False">                    
+                    IsVisible="False">
                     <Button.Triggers>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.MyWall}"
-                            >
-                            <Setter Property="IsVisible" Value="True" />
+                            Value="{x:Static app:HomeTab.MyWall}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="True" />
                         </DataTrigger>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.OurStories}"
-                            >
-                            <Setter Property="IsVisible" Value="False" />
+                            Value="{x:Static app:HomeTab.OurStories}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
@@ -170,21 +178,23 @@
                     BackgroundColor="{x:Static app:AppColors.LightBlue}"
                     TextColor="{x:Static app:AppColors.BrColor}"
                     Style="{x:Static app:Styles.ButtonPrimaryXs}"
-                    IsVisible="False" >
+                    IsVisible="False">
                     <Button.Triggers>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.MyWall}"
-                            >
-                            <Setter Property="IsVisible" Value="True" />
+                            Value="{x:Static app:HomeTab.MyWall}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="True" />
                         </DataTrigger>
                         <DataTrigger
                             TargetType="Button"
                             Binding="{Binding HomeTab}"
-                            Value="{x:Static app:HomeTab.OurStories}"
-                            >
-                            <Setter Property="IsVisible" Value="False" />
+                            Value="{x:Static app:HomeTab.OurStories}">
+                            <Setter
+                                Property="IsVisible"
+                                Value="False" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
@@ -210,15 +220,21 @@
                     }"
                     Grid.Row="1"
                     Spacing="{x:Static app:Dimens.SpacingXl}">
-                    <Label
+                    <Grid
+                        HorizontalOptions="Center"
                         WidthRequest="{x:Static app:Dimens.ButtonWidth}"
                         Padding="{app:EdgeInsets
                             Horizontal={x:Static app:Dimens.SpacingMd}
                         }"
-                        Style="{x:Static app:Styles.Subtitle5}"
-                        TextColor="{x:Static app:AppColors.Grey50}"
-                        HorizontalTextAlignment="Center"
-                        Text="Bạn đã có Partner chưa? Thực hiện ghép đôi ngay!" />
+                        RowDefinitions="*"
+                        >
+                        <Label
+                            Style="{x:Static app:Styles.Subtitle5}"
+                            TextColor="{x:Static app:AppColors.Grey50}"
+                            HorizontalTextAlignment="Center"
+                            Text="Bạn đã có Partner chưa? Thực hiện ghép đôi ngay!" />
+
+                    </Grid>
                     <Button
                         HorizontalOptions="Center"
                         Text="Ghép đôi"
@@ -233,13 +249,11 @@
                     <MultiBinding
                         Converter="{x:Static app:AppConverters.AllTrue}">
                         <Binding
-                            Path="HasRelationship"
-                            />
+                            Path="HasRelationship" />
                         <Binding
                             Path="HomeTab"
                             Converter="{x:Static app:AppConverters.EnumToBool}"
-                            ConverterParameter="{x:Static app:HomeTab.OurStories}"
-                            />
+                            ConverterParameter="{x:Static app:HomeTab.OurStories}" />
                     </MultiBinding>
                 </Grid.IsVisible>
                 <CollectionView
@@ -255,15 +269,13 @@
                         <DataTemplate>
                             <app:CoupleHeaderView
                                 ModeCommand="{Binding ChangeModeCommand}"
-                                AddCommand="{Binding CreateStoryCommand}"
-                                />
+                                AddCommand="{Binding CreateStoryCommand}" />
                         </DataTemplate>
                     </CollectionView.HeaderTemplate>
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout
                             Orientation="Vertical"
-                            ItemSpacing="6"
-                            />
+                            ItemSpacing="6" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
                         <ActivityIndicator
@@ -277,13 +289,11 @@
                     <MultiBinding
                         Converter="{x:Static app:AppConverters.AllTrue}">
                         <Binding
-                            Path="HasRelationship"
-                            />
+                            Path="HasRelationship" />
                         <Binding
                             Path="HomeTab"
                             Converter="{x:Static app:AppConverters.EnumToBool}"
-                            ConverterParameter="{x:Static app:HomeTab.MyWall}"
-                            />
+                            ConverterParameter="{x:Static app:HomeTab.MyWall}" />
                     </MultiBinding>
                 </Grid.IsVisible>
                 <CollectionView
@@ -299,15 +309,13 @@
                         <DataTemplate>
                             <app:MyWallHeaderView
                                 ModeCommand="{Binding ChangeModeCommand}"
-                                AddCommand="{Binding CreateStoryCommand}"
-                                />
+                                AddCommand="{Binding CreateStoryCommand}" />
                         </DataTemplate>
                     </CollectionView.HeaderTemplate>
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout
                             Orientation="Vertical"
-                            ItemSpacing="6"
-                            />
+                            ItemSpacing="6" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.EmptyView>
                         <ActivityIndicator
