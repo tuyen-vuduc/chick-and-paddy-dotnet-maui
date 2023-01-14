@@ -2,25 +2,25 @@
 
 public class ProfileService : IProfileService
 {
-    private readonly IPreferences preferences;
+    private readonly IAppSettingsService appSettings;
 
     public ProfileService(
-        IPreferences preferences
+        IAppSettingsService appSettings
         )
 	{
-        this.preferences = preferences;
+        this.appSettings = appSettings;
     }
 
     public string MyPairingId => "123789";
 
     public Task<bool> CheckRelationshipAsync()
     {
-        return Task.Run(() => preferences.Get<bool>(nameof(CheckRelationshipAsync), false));
+        return Task.FromResult(appSettings.InARelationship);
     }
 
     public Task SetRelationshipAsync(bool paired)
     {
-        return Task.Run(() => preferences.Set<bool>(nameof(CheckRelationshipAsync), paired));
+        return Task.Run(() => appSettings.InARelationship = paired);
     }
 }
 

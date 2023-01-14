@@ -52,17 +52,21 @@
                     TextColor="{x:Static app:AppColors.Grey60}"
                     HorizontalTextAlignment="Center"
                     Text="Nhập mã ID" />
-                <Label
+                <Grid
+                    HorizontalOptions="Center"
                     Margin="{app:EdgeInsets
                         Top={x:Static app:Dimens.SpacingSm}
                     }"
                     Padding="{app:EdgeInsets
                         Horizontal={x:Static app:Dimens.SpacingXl}
-                    }"
-                    Style="{x:Static app:Styles.Subtitle6}"
-                    TextColor="{x:Static app:AppColors.Grey50}"
-                    HorizontalTextAlignment="Center"
-                    Text="Bạn đã có mã ID của người thương, nhập mã vào ô phía dưới để CAP giúp 2 bạn kết nối với nhau nhé!" />
+                    }">
+                    <Label
+                        Style="{x:Static app:Styles.Subtitle6}"
+                        TextColor="{x:Static app:AppColors.Grey50}"
+                        HorizontalTextAlignment="Center"
+                        Text="Bạn đã có mã ID của người thương, nhập mã vào ô phía dưới để CAP giúp 2 bạn kết nối với nhau nhé!" />
+
+                </Grid>
 
                 <app:PinCodeEntry
                     Text="{Binding PartnerId}"
@@ -70,18 +74,17 @@
                     Margin="{app:EdgeInsets
                         Top={x:Static app:Dimens.SpacingXxl},
                         Horizontal={x:Static app:Dimens.SpacingLg}
-                    }" 
+                    }"
                     Padding="{app:EdgeInsets
                         Vertical={x:Static app:Dimens.SpacingXxl}
-                    }"/>
+                    }" />
 
                 <Label
                     Text="ID không tồn tại!"
                     TextColor="{x:Static app:AppColors.Red}"
                     Style="{x:Static app:Styles.Body4}"
                     HorizontalTextAlignment="Center"
-                    IsVisible="{Binding IdNotFound}"
-                    />
+                    IsVisible="{Binding IdNotFound}" />
 
                 <Button
                     VerticalOptions="EndAndExpand"

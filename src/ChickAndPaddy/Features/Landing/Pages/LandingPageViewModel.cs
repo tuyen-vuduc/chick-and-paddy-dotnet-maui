@@ -2,13 +2,16 @@
 
 public class LandingPageViewModel : BaseViewModel
 {
+    private readonly IAppSettingsService appSettingsService;
     private readonly IAppInfo appInfo;
 
     public LandingPageViewModel(
+        IAppSettingsService appSettingsService,
         IAppNavigator appNavigator,
         IAppInfo appInfo)
         : base(appNavigator)
     {
+        this.appSettingsService = appSettingsService;
         this.appInfo = appInfo;
     }
 
@@ -18,7 +21,15 @@ public class LandingPageViewModel : BaseViewModel
     {
         await Task.Delay(500);
 
-        await AppNavigator.NavigateAsync(AppRoutes.Walkthrough);
+        var accessToken = await appSettingsService.GetAccessTokenAsync();
+        var route = string.IsNullOrWhiteSpace(accessToken)
+            ? appSettingsService.IsFirstTime
+            ? AppRoutes.Walkthrough
+            : AppRoutes.SignIn
+            : AppRoutes.Home;
+
+        appSettingsService.IsFirstTime = false;
+        await AppNavigator.NavigateAsync(route);
     }
 }
 

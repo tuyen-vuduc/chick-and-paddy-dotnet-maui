@@ -2,14 +2,14 @@
 
 public partial class SettingsAndHelpPageViewModel : NavigationAwareBaseViewModel
 {
-    private readonly IPreferences preferences;
+    private readonly IAppSettingsService appSettings;
 
     public SettingsAndHelpPageViewModel(
-        IPreferences preferences,
+        IAppSettingsService appSettings,
         IAppNavigator appNavigator)
         : base(appNavigator)
     {
-        this.preferences = preferences;
+        this.appSettings = appSettings;
     }
 
     [RelayCommand]
@@ -33,7 +33,7 @@ public partial class SettingsAndHelpPageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     private Task SignOut()
     {
-        preferences.Clear();
+        appSettings.Clear();
         return AppNavigator.NavigateAsync(AppRoutes.SignIn);
     }
 }

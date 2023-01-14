@@ -91,15 +91,10 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
 
         hasMoreItems = items.Count() >= PAGE_SIZE;
 
-        if (NewsFeeds == null)
+        if (NewsFeeds == null || forced)
         {
             NewsFeeds = new ObservableCollection<NewsFeedModel>(items);
             return;
-        }
-
-        if (forced)
-        {
-            NewsFeeds.Clear();
         }
 
         foreach (var item in items)

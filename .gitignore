@@ -405,3 +405,6 @@ ASALocalRun/
 .localhistory/
 
 .vs
+
+# cake
+tools/
