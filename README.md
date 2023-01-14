@@ -41,7 +41,7 @@ As we organize our app in Features with a consistent fold structure as descripti
   - a XAML page - inherits from `BasePage`
   - a VM class - inherits from `NavigationAwareBaseViewModel` or `BaseViewModel`
 
-e.g The `SignIn` page of `Auth` feature will have below structure
+e.g. The `SignIn` page of `Auth` feature will have below structure
 ```
 |
 |--Features
@@ -80,7 +80,7 @@ classDiagram
 ### Use script
 
 ```
-# e.g dotnet cake --target=page --feature Auth --name SignIn
+# e.g. dotnet cake --target=page --feature Auth --name SignIn
 dotnet cake --target=page --feature FEATURE_NAME --name PAGE_NAME_WO_SUFFIX
 ```
 
@@ -95,7 +95,7 @@ As we organize our app in Features with a consistent fold structure as descripti
   - a XAML page - inherits from `BasePopup`
   - a VM class - inherits from `NavigationAwareBaseViewModel` or `BaseViewModel`
 
-e.g The `PairingRejectedPopup` page of `Pairing` feature will have below structure
+e.g. The `PairingRejectedPopup` page of `Pairing` feature will have below structure
 ```
 |
 |--Features
@@ -138,7 +138,7 @@ classDiagram
 ### Use script
 
 ```
-# e.g dotnet cake --target=popup --feature Pairing --name PairingRejected
+# e.g. dotnet cake --target=popup --feature Pairing --name PairingRejected
 dotnet cake --target=popup --feature FEATURE_NAME --name POPUP_NAME_WO_SUFFIX
 ```
 
@@ -202,10 +202,10 @@ l
 ### Use script
 
 ```
-# e.g dotnet cake --target=model --form true --feature Auth --name SignIn
+# e.g. dotnet cake --target=model --form true --feature Auth --name SignIn
 dotnet cake --target=popup --feature FEATURE_NAME --name MODEL_NAME_WO_SUFFIX --form true
 
-# e.g dotnet cake --target=model --feature Landing --name WalkthroughItem
+# e.g. dotnet cake --target=model --feature Landing --name WalkthroughItem
 dotnet cake --target=popup --feature FEATURE_NAME --name MODEL_NAME_WO_SUFFIX
 ```
 

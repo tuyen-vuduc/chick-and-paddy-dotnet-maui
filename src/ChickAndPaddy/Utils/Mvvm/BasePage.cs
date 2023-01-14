@@ -1,6 +1,6 @@
 ﻿namespace ChickAndPaddy;
 
-public class BasePage : ContentPage
+public abstract class BasePage : ContentPage
 {
     protected override void OnAppearing()
     {
