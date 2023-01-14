@@ -25,8 +25,7 @@ public static class MauiProgram
                 essentials.UseVersionTracking();
             })
             .RegisterServices()
-            .RegisterPages()
-            .RegisterPopups();
+            .RegisterPages();
 
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
         {
@@ -76,29 +75,30 @@ public static class MauiProgram
 
     static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
-        builder.Services.AddPage<LandingPage, LandingPageViewModel>();
-        builder.Services.AddPage<WalkthroughPage, WalkthroughPageViewModel>();
-        builder.Services.AddPage<SignInPage, SignInPageViewModel>();
-        builder.Services.AddPage<SignUpPage, SignUpPageViewModel>();
-        builder.Services.AddPage<ForgotPasswordPage, ForgotPasswordPageViewModel>();
-        builder.Services.AddPage<HomePage, HomePageViewModel>();
-        builder.Services.AddPage<MessagingPage, MessagingPageViewModel>();
-        builder.Services.AddPage<GamesPage, GamesPageViewModel>();
-        builder.Services.AddPage<ProfilePage, ProfilePageViewModel>();
-        builder.Services.AddPage<PairPage, PairPageViewModel>();
-        builder.Services.AddPage<MyPairingIdPage, MyPairingIdPageViewModel>();
-        builder.Services.AddPage<MyPartnerIdPage, MyPartnerIdPageViewModel>();
-        builder.Services.AddPage<PartnerFoundPage, PartnerFoundPageViewModel>();
-        builder.Services.AddPage<NotificationsPage, NotificationsPageViewModel>();
-        builder.Services.AddPage<SettingsAndHelpPage, SettingsAndHelpPageViewModel>();
-        builder.Services.AddPage<SettingsPage, SettingsPageViewModel>();
-        return builder;
-    }
+        var pageTypes = typeof(MauiProgram).Assembly
+                            .GetTypes()
+                            .Where(x => !x.IsAbstract &&
+                                    x != typeof(BasePage) &&
+                                    x.IsAssignableTo(typeof(BasePage)));
+        foreach (var pageType in pageTypes)
+        {
+            builder.Services.AddTransient(pageType);
+        }
 
-    static MauiAppBuilder RegisterPopups(this MauiAppBuilder builder)
-    {
-        builder.Services.AddPopup<PairingAcceptedPopup, PairingAcceptedPopupViewModel>(AppRoutes.PairingAccepted);
-        builder.Services.AddPopup<PairingRejectedPopup, PairingRejectedPopupViewModel>(AppRoutes.PairingRejected);
+        var viewModelTypes = typeof(MauiProgram).Assembly
+                            .GetTypes()
+                            .Where(
+                                x => !x.IsAbstract &&
+                                    x != typeof(BaseViewModel) &&
+                                    x != typeof(NavigationAwareBaseViewModel) &&
+                                    (x.IsAssignableTo(typeof(BaseViewModel)) ||
+                                     x.IsAssignableTo(typeof(NavigationAwareBaseViewModel)))
+                            )
+                            .ToList();
+        foreach (var vmType in viewModelTypes)
+        {
+            builder.Services.AddTransient(vmType);
+        }
 
         return builder;
     }
@@ -115,8 +115,6 @@ public static class MauiProgram
         where TPopup : BasePopup where TViewModel : BaseViewModel
     {
         Routing.RegisterRoute(name, typeof(TPopup));
-        services.AddTransient<TPopup>();
-        services.AddTransient<TViewModel>();
         return services;
     }
 }

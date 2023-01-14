@@ -13,9 +13,10 @@ public partial class SettingsAndHelpPageViewModel : NavigationAwareBaseViewModel
     }
 
     [RelayCommand]
-    private void CancelRelationship()
+    private Task CancelRelationshipAsync()
     {
-
+        appSettings.InARelationship = false;
+        return AppNavigator.NavigateAsync(AppRoutes.Home);
     }
 
     [RelayCommand]

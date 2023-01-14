@@ -15,6 +15,9 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("notifications", typeof(NotificationsPage));
         Routing.RegisterRoute("settings-n-help", typeof(SettingsAndHelpPage));
         Routing.RegisterRoute("settings", typeof(SettingsPage));
+
+        Routing.RegisterRoute(AppRoutes.PairingAccepted, typeof(PairingAcceptedPopup));
+        Routing.RegisterRoute(AppRoutes.PairingRejected, typeof(PairingRejectedPopup));
     }
 
     protected override void OnNavigating(ShellNavigatingEventArgs args)
