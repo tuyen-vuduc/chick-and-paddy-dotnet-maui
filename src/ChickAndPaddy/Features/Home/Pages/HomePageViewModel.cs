@@ -120,6 +120,8 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     void ChangeMode()
     {
+        if (NewsFeeds == null) return;
+
         switch (ItemType)
         {
             case HomeItemType.CoupleMilestoneExpanded:

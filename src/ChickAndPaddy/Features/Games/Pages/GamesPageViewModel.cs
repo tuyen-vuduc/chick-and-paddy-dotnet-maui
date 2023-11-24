@@ -7,13 +7,4 @@ public partial class GamesPageViewModel : NavigationAwareBaseViewModel
         : base(appNavigator)
     {
     }
-
-    string phoneNumber;
-
-    [RelayCommand]
-    private void ExecuteGetOTPCommand()
-    {
-
-    }
 }
-

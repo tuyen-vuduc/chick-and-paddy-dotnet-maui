@@ -1,6 +1,7 @@
 ﻿using Microsoft.Maui.Platform;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 
 namespace ChickAndPaddy;
 public static class MauiProgram
@@ -30,8 +31,12 @@ public static class MauiProgram
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
         {
 #if ANDROID
-            handler.PlatformView.SetBackgroundColor(Colors.Transparent.ToPlatform());
-#elif IOS
+            handler.PlatformView.Background = null;
+            handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
+            handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+#elif IOS || MACCATALYST
+            handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+            handler.PlatformView.Layer.BorderWidth = 0;
             handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #elif WINDOWS
             handler.PlatformView.FontWeight = Microsoft.UI.Text.FontWeights.Thin;
