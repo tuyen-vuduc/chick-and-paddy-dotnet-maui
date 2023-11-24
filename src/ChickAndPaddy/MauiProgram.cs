@@ -1,7 +1,4 @@
-﻿using Microsoft.Maui.Platform;
-using CommunityToolkit.Maui;
-using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+﻿using CommunityToolkit.Maui;
 
 namespace ChickAndPaddy;
 public static class MauiProgram
