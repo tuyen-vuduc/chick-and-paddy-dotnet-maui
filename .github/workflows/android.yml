@@ -12,6 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
             
+      # How to encode keystore as base64 string
+      # https://tecadmin.net/base64-encoding-and-decoding-in-bash/
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          SIGNING_KEY_STORE_PATH: src/ChickAndPaddy/x_release.keystore
+
+        run: |
+          echo $ENCODED_STRING | base64 -d > $SIGNING_KEY_STORE_PATH
+    
       - name: Install .NET 8.x
         uses: actions/setup-dotnet@v4
         with:
@@ -33,16 +43,6 @@ jobs:
         run: |
           dotnet workload install android maui-android
     
-      # How to encode keystore as base64 string
-      # https://tecadmin.net/base64-encoding-and-decoding-in-bash/
-      - name: Decode Keystore
-        env:
-          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
-          SIGNING_KEY_STORE_PATH: src/ChickAndPaddy/x_release.keystore
-  
-        run: |
-          echo $ENCODED_STRING | base64 -d > $SIGNING_KEY_STORE_PATH
-      
       - name: Install .NET Android workload
         env:
           KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
