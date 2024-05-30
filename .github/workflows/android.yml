@@ -13,14 +13,14 @@ jobs:
       - uses: actions/checkout@v4
             
       # How to encode keystore as base64 string
-      # https://tecadmin.net/base64-encoding-and-decoding-in-bash/
+      # https://tecadmin.net/base64-encoding-and-decoding-in-bash      
       - name: Decode Keystore
-        env:
-          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
-          SIGNING_KEY_STORE_PATH: src/ChickAndPaddy/x_release.keystore
-
-        run: |
-          echo $ENCODED_STRING | base64 -d > $SIGNING_KEY_STORE_PATH
+        id: decode_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: "x_release.keystore"
+          fileDir: "src/ChickAndPaddy"
+          encodedString: "${{ secrets.SIGNING_KEY_STORE_BASE64 }}"
     
       - name: Install .NET 8.x
         uses: actions/setup-dotnet@v4
