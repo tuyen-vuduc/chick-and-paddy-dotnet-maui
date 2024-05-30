@@ -41,8 +41,7 @@ jobs:
           SIGNING_KEY_STORE_PATH: src/ChickAndPaddy/x_release.keystore
   
         run: |
-          echo $ENCODED_STRING > src/ChickAndPaddy/keystore-b64.txt
-          base64 -d src/ChickAndPaddy/keystore-b64.txt > $SIGNING_KEY_STORE_PATH
+          echo $ENCODED_STRING | base64 -d > $SIGNING_KEY_STORE_PATH
       
       - name: Install .NET Android workload
         env:
