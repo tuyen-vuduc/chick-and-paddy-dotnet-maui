@@ -31,7 +31,7 @@ jobs:
       
       - name: Install .NET Android workload
         run: |
-          dotnet workload install android maui maui-android
+          dotnet workload install android maui-android
     
       # How to encode keystore as base64 string
       # https://tecadmin.net/base64-encoding-and-decoding-in-bash/
