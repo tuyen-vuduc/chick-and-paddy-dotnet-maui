@@ -51,21 +51,23 @@ jobs:
         run: |
           sh build.android.sh
 
-      - name: Upload Release Build to Artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v4
         with:
-          name: android-builds
-          path: src/ChickAndPaddy/bin/Release/net8.0-android/publish
+          name: dev.tuyentv.dotnet.maui.social-Signed.aab
+          path: src/ChickAndPaddy/bin/Release/net8.0-android/publish/dev.tuyentv.dotnet.maui.social-Signed.aab
+          if-no-files-found: error
+          overwrite: true
 
-  publish:
+  playstore:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download artifact
+      - name: Download app bundle
         uses: actions/download-artifact@v4
         with:
-          name: android-builds
+          name: dev.tuyentv.dotnet.maui.social-Signed.aab
           path: android-builds
       
       # How to create service account JSON file
