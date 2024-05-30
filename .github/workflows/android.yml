@@ -41,7 +41,7 @@ jobs:
       
       - name: Install .NET Android workload
         run: |
-          dotnet workload install android maui-android
+          dotnet workload install android maui-android  maui-ios
     
       - name: Install .NET Android workload
         env:
