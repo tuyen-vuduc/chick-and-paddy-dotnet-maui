@@ -39,11 +39,12 @@ jobs:
           cmdline-tools-version: 11076708
           packages: tools platform-tools platforms;android-34
       
-      - name: Install .NET Android workload
+      - name: Restore .NET workloads
         run: |
-          dotnet workload install android
+          cd src/ChickAndPaddy
+          dotnet workload restore
     
-      - name: Install .NET Android workload
+      - name: Build Android app bundle
         env:
           KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
