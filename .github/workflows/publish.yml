@@ -8,7 +8,12 @@ on:
         description: 'Run ID'
         type: string
         required: true
-        default: '9310640560'
+        default: '9310748902'
+      ARTIFACT_NAME:
+        description: 'Artifact name'
+        type: string
+        required: true
+        default: 'dev.tuyentv.dotnet.maui.social-Signed.aab.zip'
 
 permissions: read-all
 
@@ -20,7 +25,7 @@ jobs:
       - name: Download app bundle
         uses: actions/download-artifact@v4
         with:
-          name: dev.tuyentv.dotnet.maui.social-Signed.aab
+          name: ${{ inputs.ARTIFACT_NAME }}
           path: android-builds
           run-id: ${{ inputs.RUN_ID }}
     
