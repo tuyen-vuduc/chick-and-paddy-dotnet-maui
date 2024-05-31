@@ -61,6 +61,7 @@ jobs:
           overwrite: true
 
   playstore:
+    needs: aab
     name: 'Publish to PlayStore'
     runs-on: ubuntu-latest
 
