@@ -83,6 +83,6 @@ jobs:
         with:
             serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
             packageName: dev.tuyentv.dotnet.maui.social
-            releaseFiles: android-builds/dev.tuyentv.dotnet.maui.social-Signed.aab
+            releaseFiles: ./android-builds/dev.tuyentv.dotnet.maui.social-Signed.aab
             track: production
     
