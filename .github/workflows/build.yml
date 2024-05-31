@@ -1,0 +1,61 @@
+name: Build app(s)
+
+on:
+  workflow_dispatch
+
+permissions: read-all
+
+jobs:
+  build:
+    runs-on: macos-latest
+        
+    steps:
+      - uses: actions/checkout@v4
+            
+      # How to encode keystore as base64 string
+      # https://tecadmin.net/base64-encoding-and-decoding-in-bash      
+      - name: Decode Keystore
+        id: decode_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: "x_release.keystore"
+          fileDir: "src/ChickAndPaddy"
+          encodedString: "${{ secrets.SIGNING_KEY_STORE_BASE64 }}"
+    
+      - name: Install .NET 8.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+    
+      - name: Install Java 17
+        uses: actions/setup-java@v3
+        with:
+            distribution: 'microsoft'
+            java-version: '17'
+        
+      - name: Install Android SDK 34
+        uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: 11076708
+          packages: tools platform-tools platforms;android-34
+      
+      - name: Restore .NET workloads
+        run: |
+          cd src/ChickAndPaddy
+          dotnet workload restore
+    
+      - name: Build Android app bundle
+        env:
+          KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          sh build.android.sh
+
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev.tuyentv.dotnet.maui.social-Signed.aab
+          path: src/ChickAndPaddy/bin/Release/net8.0-android/publish/dev.tuyentv.dotnet.maui.social-Signed.aab
+          if-no-files-found: error
+          overwrite: true
+    
