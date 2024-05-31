@@ -1,4 +1,4 @@
-name: Build app(s)
+name: Android app
 
 on:
   workflow_dispatch
@@ -6,7 +6,7 @@ on:
 permissions: read-all
 
 jobs:
-  android:
+  aab:
     name: Build Android app
     runs-on: macos-latest
         
@@ -60,36 +60,28 @@ jobs:
           if-no-files-found: error
           overwrite: true
 
-  ios:
-    name: Build iOS app
-    runs-on: macos-latest
-        
-    steps:
-      - uses: actions/checkout@v4
-            
-      - name: Install .NET 8.x
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-    
-      - name: Restore .NET workloads
-        run: |
-          cd src/ChickAndPaddy
-          dotnet workload restore
-    
-      - name: Build IPA
-        env:
-          KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-        run: |
-          cd src/ChickAndPaddy
-          dotnet publish -f net8.0-ios -c Release
+  playstore:
+    name: 'Publish to PlayStore'
+    runs-on: ubuntu-latest
 
-      - name: Upload IPA
-        uses: actions/upload-artifact@v4
+    steps:
+      - name: Download app bundle
+        uses: actions/download-artifact@v4
         with:
-          name: dev.tuyentv.dotnet.maui.social-Signed.aab
-          path: src/ChickAndPaddy/bin/Release/net8.0-android/publish/dev.tuyentv.dotnet.maui.social-Signed.aab
-          if-no-files-found: error
-          overwrite: true
+          path: android-builds
+    
+      - name: Listing
+        run: |
+          ls -a
+          ls -a android-builds
+      
+      # How to create service account JSON file
+      # https://github.com/marketplace/actions/upload-android-release-to-play-store
+      - name: Upload to Google Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+            serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+            packageName: dev.tuyentv.dotnet.maui.social
+            releaseFiles: android-builds/dev.tuyentv.dotnet.maui.social-Signed.aab
+            track: production
     
