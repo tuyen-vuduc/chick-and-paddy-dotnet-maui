@@ -1,4 +1,4 @@
-name: Android app
+name: Android
 
 on:
   workflow_dispatch
