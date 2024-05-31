@@ -1,4 +1,4 @@
-name: Android
+name: Build app(s)
 
 on:
   workflow_dispatch
@@ -58,25 +58,4 @@ jobs:
           path: src/ChickAndPaddy/bin/Release/net8.0-android/publish/dev.tuyentv.dotnet.maui.social-Signed.aab
           if-no-files-found: error
           overwrite: true
-
-  playstore:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download app bundle
-        uses: actions/download-artifact@v4
-        with:
-          name: dev.tuyentv.dotnet.maui.social-Signed.aab
-          path: android-builds
-      
-      # How to create service account JSON file
-      # https://github.com/marketplace/actions/upload-android-release-to-play-store
-      - name: Upload to Google Play Store
-        uses: r0adkll/upload-google-play@v1
-        with:
-            serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-            packageName: dev.tuyentv.dotnet.maui.social
-            releaseFiles: android-builds/dev.tuyentv.dotnet.maui.social-Signed.aab
-            track: production
     
