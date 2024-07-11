@@ -1,67 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.SignInPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:app="clr-namespace:ChickAndPaddy"
-    x:Class="ChickAndPaddy.SignInPage"
-    BackgroundColor="{x:Static app:AppColors.BrColor}"
-    Shell.NavBarIsVisible="False"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="False"
     x:DataType="app:SignInPageViewModel"
-    ios:Page.UseSafeArea="False">
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    Shell.NavBarIsVisible="False">
     <Grid>
-        <ScrollView
-            VerticalScrollBarVisibility="Never"
-            >
-            <StackLayout
-                Spacing="0">
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="0">
                 <Image
-                    Margin="{app:EdgeInsets Top=118, Bottom={x:Static app:Dimens.SpacingMd}}"
-                    Source="cap_icon"
-                    SemanticProperties.Description="Chick and Paddy in MAUI"
+                    Margin="{app:EdgeInsets Top=118,
+                                            Bottom={x:Static app:Dimens.SpacingMd}}"
                     HeightRequest="48"
-                    HorizontalOptions="Center" />
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Chick and Paddy in MAUI"
+                    Source="cap_icon" />
                 <Label
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"
-                    Style="{x:Static app:Styles.Title3}"
-                    TextColor="{x:Static app:AppColors.Black}"
                     HorizontalTextAlignment="Center"
-                    Text="Đăng nhập" />
+                    Style="{x:Static app:Styles.Title3}"
+                    Text="Đăng nhập"
+                    TextColor="{x:Static app:AppColors.Black}" />
 
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Bottom={x:Static app:Dimens.SpacingSm}
-                    }"
-                    PrefixIcon="ic_phone_call.png"
-                    Text="{Binding Form.UserName}"
-                    IsValid="{Binding Form.UserNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
-                    Placeholder="Nhập số điện thoại của bạn"
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Bottom={x:Static app:Dimens.SpacingSm}}"
+                    IsValid="{x:Binding Form.UserNameErrors,
+                                        Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Keyboard="Telephone"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg}
-                    }"
-                    PrefixIcon="ic_password.png"
-                    Text="{Binding Form.Password}"
-                    IsValid="{Binding Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
-                    Placeholder="Nhập mật khẩu"
+                    Placeholder="Nhập số điện thoại của bạn"
+                    PrefixIcon="ic_phone_call.png"
+                    Text="{x:Binding Form.UserName}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg}}"
                     IsPassword="True"
-                    />
+                    IsValid="{x:Binding Form.PasswordErrors,
+                                        Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
+                    Placeholder="Nhập mật khẩu"
+                    PrefixIcon="ic_password.png"
+                    Text="{x:Binding Form.Password}" />
 
                 <Label
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Bottom={x:Static app:Dimens.SpacingMd}}"
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Bottom={x:Static app:Dimens.SpacingMd}}"
                     Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingMd}}"
                     HorizontalOptions="End"
                     Style="{x:Static app:Styles.Title6}"
-                    TextColor="{x:Static app:AppColors.LightBlue}"
-                    Text="Quên mật khẩu?">
+                    Text="Quên mật khẩu?"
+                    TextColor="{x:Static app:AppColors.LightBlue}">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding ForgotPasswordCommand}" />
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
@@ -72,29 +64,29 @@
                     TextColor="{x:Static app:AppColors.Red}">
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
-                            <Binding Path="Form.UserNameErrors" Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" />
-                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" />
+                            <Binding Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" Path="Form.UserNameErrors" />
+                            <Binding Converter="{x:Static app:AppConverters.IsListNullOrEmpty}" Path="Form.PasswordErrors" />
                         </MultiBinding>
                     </Label.Opacity>
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
-                            <Binding Path="Form.UserNameErrors" Converter="{x:Static app:AppConverters.FirstItem}" />
-                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}" />
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.UserNameErrors" />
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.PasswordErrors" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
 
                 <Button
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"
+                    Command="{Binding SignInCommand}"
                     HorizontalOptions="Center"
                     Style="{x:Static app:Styles.ButtonPrimary}"
-                    Text="Đăng nhập"
-                    Command="{Binding SignInCommand}" />
+                    Text="Đăng nhập" />
 
                 <Label
-                    Text="Đăng nhập bằng"
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Title6}"
+                    Text="Đăng nhập bằng"
                     TextColor="{x:Static app:AppColors.Grey40}" />
 
                 <HorizontalStackLayout
@@ -103,59 +95,45 @@
                     Spacing="{x:Static app:Dimens.SpacingXl}">
                     <HorizontalStackLayout.Resources>
                         <ResourceDictionary>
-                            <Style
-                                x:Key="SocialAccountButton"
-                                TargetType="ImageButton">
-                                <Setter
-                                    Property="MaximumHeightRequest"
-                                    Value="{x:Static app:Dimens.ButtonHeight}" />
-                                <Setter
-                                    Property="MinimumHeightRequest"
-                                    Value="{x:Static app:Dimens.ButtonHeight}" />
-                                <Setter
-                                    Property="MaximumWidthRequest"
-                                    Value="{x:Static app:Dimens.ButtonHeight}" />
-                                <Setter
-                                    Property="MinimumWidthRequest"
-                                    Value="{x:Static app:Dimens.ButtonHeight}" />
+                            <Style x:Key="SocialAccountButton" TargetType="ImageButton">
+                                <Setter Property="MaximumHeightRequest" Value="{x:Static app:Dimens.ButtonHeight}" />
+                                <Setter Property="MinimumHeightRequest" Value="{x:Static app:Dimens.ButtonHeight}" />
+                                <Setter Property="MaximumWidthRequest" Value="{x:Static app:Dimens.ButtonHeight}" />
+                                <Setter Property="MinimumWidthRequest" Value="{x:Static app:Dimens.ButtonHeight}" />
                             </Style>
                         </ResourceDictionary>
                     </HorizontalStackLayout.Resources>
                     <ImageButton
-                        Style="{x:StaticResource SocialAccountButton}"
+                        Command="{Binding SignInWithSocialAccountCommand}"
+                        CommandParameter="{x:Static app:SocialAccountType.Apple}"
                         Source="apple_logo.png"
-                        Command="{Binding SignInWithSocialAccountCommand}"
-                        CommandParameter="{x:Static app:SocialAccountType.Apple}" />
+                        Style="{x:StaticResource SocialAccountButton}" />
                     <ImageButton
-                        Style="{x:StaticResource SocialAccountButton}"
+                        Command="{Binding SignInWithSocialAccountCommand}"
+                        CommandParameter="{x:Static app:SocialAccountType.Facebook}"
                         Source="facebook_logo.png"
-                        Command="{Binding SignInWithSocialAccountCommand}"
-                        CommandParameter="{x:Static app:SocialAccountType.Facebook}" />
+                        Style="{x:StaticResource SocialAccountButton}" />
                     <ImageButton
-                        Style="{x:StaticResource SocialAccountButton}"
-                        Source="google_logo.png"
                         Command="{Binding SignInWithSocialAccountCommand}"
-                        CommandParameter="{x:Static app:SocialAccountType.Google}" />
+                        CommandParameter="{x:Static app:SocialAccountType.Google}"
+                        Source="google_logo.png"
+                        Style="{x:StaticResource SocialAccountButton}" />
                 </HorizontalStackLayout>
 
                 <Label
-                    VerticalOptions="EndAndExpand"
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingMd}}"
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Title6}"
-                    TextColor="{x:Static app:AppColors.Grey40}">
+                    TextColor="{x:Static app:AppColors.Grey40}"
+                    VerticalOptions="EndAndExpand">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span
-                                Text="Chưa có tài khoản? " />
-                            <Span
-                                Text="Đăng ký."
-                                TextColor="{x:Static app:AppColors.LightBlue}" />
+                            <Span Text="Chưa có tài khoản? " />
+                            <Span Text="Đăng ký." TextColor="{x:Static app:AppColors.LightBlue}" />
                         </FormattedString>
                     </Label.FormattedText>
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SignUpCommand}" />
+                        <TapGestureRecognizer Command="{Binding SignUpCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>

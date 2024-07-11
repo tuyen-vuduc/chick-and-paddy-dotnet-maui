@@ -137,7 +137,7 @@ public partial class HomePageViewModel : NavigationAwareBaseViewModel
     [RelayCommand]
     void ChangeTab(HomeTab selectedTab)
     {
-        if (selectedTab == HomeTab) return;
+        if (selectedTab == HomeTab || NewsFeeds is null) return;
 
         switch (selectedTab)
         {

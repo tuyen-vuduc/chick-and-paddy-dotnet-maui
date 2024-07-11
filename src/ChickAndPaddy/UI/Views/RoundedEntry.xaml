@@ -1,47 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
+    x:Class="ChickAndPaddy.RoundedEntry"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
-    x:Name="root"
-    x:Class="ChickAndPaddy.RoundedEntry">
+    x:Name="root">
     <Frame
         x:Name="border"
-        Padding="{app:EdgeInsets
-            Horizontal={x:Static app:Dimens.SpacingMd}
-        }"
+        Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
         BackgroundColor="{x:Static app:AppColors.White}"
+        CornerRadius="{x:Static app:Dimens.EntryCornerRadius}"
+        HasShadow="True"
         MaximumHeightRequest="{x:Static app:Dimens.EntryHeight}"
         MinimumHeightRequest="{x:Static app:Dimens.EntryHeight}"
-        CornerRadius="{x:Static app:Dimens.EntryCornerRadius}"
-        Shadow="{x:Static app:Styles.Shadow1}"
-        >
-        <StackLayout
-            Orientation="Horizontal"
-            Spacing="0">
+        Shadow="{x:Static app:Styles.Shadow2}">
+        <StackLayout Orientation="Horizontal" Spacing="0">
             <ImageButton
-                Margin="{app:EdgeInsets
-                    Vertical={x:Static app:Dimens.SpacingMd}
-                }"
+                Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingMd}}"
                 HeightRequest="28"
-                WidthRequest="28"
                 Source="{Binding PrefixIcon, Source={x:Reference root}}"
-                />
+                WidthRequest="28" />
             <Entry
                 Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingSm}}"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center"
-                Placeholder="{Binding Placeholder, Source={x:Reference root}}"
-                Keyboard="{Binding Keyboard, Source={x:Reference root}}"
-                IsPassword="{Binding IsPassword, Source={x:Reference root}}"
-                Text="{Binding Text, Source={x:Reference root}}"
-                FontSize="{x:Static app:Dimens.FontSizeT5}"
-                FontFamily="{x:Static app:FontNames.ArchiaSemiBold}"
-                PlaceholderColor="{x:Static app:AppColors.Grey20}"
-                TextColor="{x:Static app:AppColors.Grey50}"
                 Focused="Entry_Focused"
+                FontFamily="{x:Static app:FontNames.ArchiaSemiBold}"
+                FontSize="{x:Static app:Dimens.FontSizeT5}"
+                HorizontalOptions="FillAndExpand"
+                IsPassword="{Binding IsPassword, Source={x:Reference root}}"
+                Keyboard="{Binding Keyboard, Source={x:Reference root}}"
+                Placeholder="{Binding Placeholder, Source={x:Reference root}}"
+                PlaceholderColor="{x:Static app:AppColors.Grey20}"
+                Text="{Binding Text, Source={x:Reference root}}"
+                TextColor="{x:Static app:AppColors.Grey50}"
                 Unfocused="Entry_Focused"
-                />
+                VerticalOptions="Center" />
         </StackLayout>
     </Frame>
 </ContentView>
