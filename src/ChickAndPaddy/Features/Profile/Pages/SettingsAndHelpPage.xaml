@@ -1,103 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.SettingsAndHelpPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="ChickAndPaddy.SettingsAndHelpPage"
     Title="Cài đặt và Hỗ trợ"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:SettingsAndHelpPageViewModel">
-    <Grid
-        RowSpacing="0"
-        RowDefinitions="48,*">
+    x:DataType="app:SettingsAndHelpPageViewModel"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="48,*" RowSpacing="0">
         <Grid
-            VerticalOptions="End"
-            RowDefinitions="48"
             BackgroundColor="{x:Static app:AppColors.White}"
-            Shadow="{x:Static app:Styles.Shadow1}">
+            RowDefinitions="48"
+            Shadow="{x:Static app:Styles.Shadow1}"
+            VerticalOptions="End">
             <Label
-                VerticalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="Cài đặt và Hỗ trợ"
                 Style="{x:Static app:Styles.Title4}"
-                TextColor="{x:Static app:AppColors.Black}" />
+                Text="Cài đặt và Hỗ trợ"
+                TextColor="{x:Static app:AppColors.Black}"
+                VerticalOptions="Center" />
             <ImageButton
-                Margin="{app:EdgeInsets
-                    Left={x:Static app:Dimens.SpacingMd}
-                }"
-                VerticalOptions="Center"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
+                Command="{Binding BackCommand}"
                 HorizontalOptions="Start"
                 Source="ic_back.png"
-                Command="{Binding BackCommand}" />
+                VerticalOptions="Center" />
         </Grid>
-        <Grid
-            BackgroundColor="{x:Static app:AppColors.BrColor}"
-            Grid.Row="1">
-            <VerticalStackLayout
-                Spacing="0">
+        <Grid Grid.Row="1" BackgroundColor="{x:Static app:AppColors.BrColor}">
+            <VerticalStackLayout Spacing="0">
                 <Button
-                    Margin="{app:EdgeInsets
-                        Vertical={x:Static app:Dimens.SpacingLg},
-                        Horizontal={x:Static app:Dimens.SpacingMd}
-                    }"
-                    Text="Hủy ghép đôi"
-                    Style="{x:Static app:Styles.ButtonAccent}"
+                    Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg},
+                                            Horizontal={x:Static app:Dimens.SpacingMd}}"
                     Command="{Binding CancelRelationshipCommand}"
-                    />
+                    Style="{x:Static app:Styles.ButtonAccent}"
+                    Text="Hủy ghép đôi" />
 
                 <app:SettingItemView
-                    Padding="{app:EdgeInsets
-                        Vertical={x:Static app:Dimens.SpacingSm},
-                        Horizontal={x:Static app:Dimens.SpacingMd}
-                    }"
-                    IconSource="ic_cog.png"
-                    Title="Cài đặt">
+                    Title="Cài đặt"
+                    Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingSm},
+                                             Horizontal={x:Static app:Dimens.SpacingMd}}"
+                    IconSource="ic_cog.png">
                     <app:SettingItemView.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding ViewSettingsCommand}" />
+                        <TapGestureRecognizer Command="{Binding ViewSettingsCommand}" />
                     </app:SettingItemView.GestureRecognizers>
                 </app:SettingItemView>
 
                 <app:SettingItemView
-                    Padding="{app:EdgeInsets
-                        Vertical={x:Static app:Dimens.SpacingSm},
-                        Horizontal={x:Static app:Dimens.SpacingMd}
-                    }"
-                    IconSource="ic_bell.png"
-                    Title="Thông báo" >
+                    Title="Thông báo"
+                    Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingSm},
+                                             Horizontal={x:Static app:Dimens.SpacingMd}}"
+                    IconSource="ic_bell.png">
                     <app:SettingItemView.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding ViewNotificationsCommand}" />
+                        <TapGestureRecognizer Command="{Binding ViewNotificationsCommand}" />
                     </app:SettingItemView.GestureRecognizers>
                 </app:SettingItemView>
-                
+
                 <app:SettingItemView
-                    Padding="{app:EdgeInsets
-                        Vertical={x:Static app:Dimens.SpacingSm},
-                        Horizontal={x:Static app:Dimens.SpacingMd}
-                    }"
-                    IconSource="ic_phone_call.png"
                     Title="Trung tâm hỗ trợ"
+                    Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingSm},
+                                             Horizontal={x:Static app:Dimens.SpacingMd}}"
+                    IconSource="ic_phone_call.png"
                     ShowRightAngle="False">
                     <app:SettingItemView.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SupportCommand}" />
+                        <TapGestureRecognizer Command="{Binding SupportCommand}" />
                     </app:SettingItemView.GestureRecognizers>
                 </app:SettingItemView>
-                
+
                 <app:SettingItemView
-                    Padding="{app:EdgeInsets
-                        Vertical={x:Static app:Dimens.SpacingSm},
-                        Horizontal={x:Static app:Dimens.SpacingMd}
-                    }"
-                    IconSource="ic_exit.png"
                     Title="Đăng xuất"
+                    Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingSm},
+                                             Horizontal={x:Static app:Dimens.SpacingMd}}"
+                    IconSource="ic_exit.png"
                     ShowRightAngle="False">
                     <app:SettingItemView.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SignOutCommand}" />
+                        <TapGestureRecognizer Command="{Binding SignOutCommand}" />
                     </app:SettingItemView.GestureRecognizers>
                 </app:SettingItemView>
             </VerticalStackLayout>

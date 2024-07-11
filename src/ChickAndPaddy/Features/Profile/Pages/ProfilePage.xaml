@@ -1,128 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.ProfilePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
     xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    x:Class="ChickAndPaddy.ProfilePage"
-    BackgroundColor="{x:Static app:AppColors.Purple}"
     Title="Cá nhân"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:ProfilePageViewModel">
-    <Grid
-        RowSpacing="0"
-        RowDefinitions="200,*">
+    x:DataType="app:ProfilePageViewModel"
+    BackgroundColor="{x:Static app:AppColors.Purple}"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="200,*" RowSpacing="0">
         <Grid
-            Shadow="{x:Static app:Styles.Shadow2}"
             BackgroundColor="{x:Static app:AppColors.Purple}"
-            RowSpacing="0"
             ColumnSpacing="0"
-            RowDefinitions="48,*">
+            RowDefinitions="48,*"
+            RowSpacing="0"
+            Shadow="{x:Static app:Styles.Shadow2}">
             <HorizontalStackLayout
-                Margin="{app:EdgeInsets
-                    Left={x:Static app:Dimens.SpacingMd}
-                }"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
                 HorizontalOptions="Start"
-                VerticalOptions="Center"
-                Spacing="{x:Static app:Dimens.SpacingXs}">
-                <Image
-                    Source="ic_cup.png" />
+                Spacing="{x:Static app:Dimens.SpacingXs}"
+                VerticalOptions="Center">
+                <Image Source="ic_cup.png" />
                 <Label
+                    Style="{x:Static app:Styles.Subtitle6}"
                     Text="10"
-                    TextColor="{x:Static app:AppColors.LightYellow}"
-                    Style="{x:Static app:Styles.Subtitle6}" />
+                    TextColor="{x:Static app:AppColors.LightYellow}" />
             </HorizontalStackLayout>
 
             <VerticalStackLayout
-                Spacing="0"                
-                HorizontalOptions="Center"
+                Grid.RowSpan="2"
                 Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
-                Grid.RowSpan="2">
+                HorizontalOptions="Center"
+                Spacing="0">
                 <Grid
-                    VerticalOptions="Start"
+                    ColumnDefinitions="104"
                     HorizontalOptions="Center"
                     RowDefinitions="88"
-                    ColumnDefinitions="104">
+                    VerticalOptions="Start">
                     <Border
-                        Stroke="Transparent"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 44,44,44,44"
-                        VerticalOptions="Start"
-                        HorizontalOptions="Center"
+                        Background="{x:Static app:AppColors.Grey10}"
                         HeightRequest="88"
-                        WidthRequest="88"
-                        Background="{x:Static app:AppColors.Grey10}" />
+                        HorizontalOptions="Center"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 44,44,44,44"
+                        StrokeThickness="1"
+                        VerticalOptions="Start"
+                        WidthRequest="88" />
 
                     <Border
-                        Stroke="Transparent"
-                        StrokeThickness="1"
-                        StrokeShape="RoundRectangle 18,18,18,18"
-                        VerticalOptions="End"
-                        HorizontalOptions="End"
+                        Background="{x:Static app:AppColors.Grey40}"
                         HeightRequest="36"
-                        WidthRequest="36"
-                        Background="{x:Static app:AppColors.Grey40}">
-                        <Image
-                            Margin="{x:Static app:Dimens.SpacingSm}"
-                            Source="ic_camera.png" />
+                        HorizontalOptions="End"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 18,18,18,18"
+                        StrokeThickness="1"
+                        VerticalOptions="End"
+                        WidthRequest="36">
+                        <Image Margin="{x:Static app:Dimens.SpacingSm}" Source="ic_camera.png" />
                     </Border>
                 </Grid>
 
                 <Label
                     Margin="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
-                    Text="Newwave Solutions"
-                    TextColor="{x:Static app:AppColors.White}"
                     HorizontalTextAlignment="Center"
-                    Style="{x:Static app:Styles.Title4}" />
+                    Style="{x:Static app:Styles.Title4}"
+                    Text="Newwave Solutions"
+                    TextColor="{x:Static app:AppColors.White}" />
 
                 <Label
-                    Text="Bạn chưa ghép đôi"
-                    TextColor="{x:Static app:AppColors.Green}"
                     HorizontalTextAlignment="Center"
-                    Style="{x:Static app:Styles.Subtitle6}" />
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    Text="Bạn chưa ghép đôi"
+                    TextColor="{x:Static app:AppColors.Green}" />
             </VerticalStackLayout>
 
             <HorizontalStackLayout
                 Grid.Row="1"
-                Margin="{app:EdgeInsets
-                    Left={x:Static app:Dimens.SpacingMd}
-                }"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
                 HorizontalOptions="Start"
-                VerticalOptions="Start"
-                Spacing="{x:Static app:Dimens.SpacingXs}">
-                <Image
-                    Source="ic_close.png" />
+                Spacing="{x:Static app:Dimens.SpacingXs}"
+                VerticalOptions="Start">
+                <Image Source="ic_close.png" />
                 <Label
+                    Style="{x:Static app:Styles.Subtitle6}"
                     Text="10"
-                    TextColor="{x:Static app:AppColors.Pink}"
-                    Style="{x:Static app:Styles.Subtitle6}" />
+                    TextColor="{x:Static app:AppColors.Pink}" />
             </HorizontalStackLayout>
 
-            <ContentView
-                VerticalOptions="Fill"
-                HorizontalOptions="End"
-                >
+            <ContentView HorizontalOptions="End" VerticalOptions="Fill">
                 <ContentView.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Command="{Binding ViewSettingsCommand}"/>
+                    <TapGestureRecognizer Command="{Binding ViewSettingsCommand}" />
                 </ContentView.GestureRecognizers>
                 <Image
-                    Margin="{app:EdgeInsets
-                        Right={x:Static app:Dimens.SpacingMd}
-                    }"
-                    VerticalOptions="Center"
-                    Source="ic_hoz_more.png" />
+                    Margin="{app:EdgeInsets Right={x:Static app:Dimens.SpacingMd}}"
+                    Source="ic_hoz_more.png"
+                    VerticalOptions="Center" />
             </ContentView>
         </Grid>
-        <Grid
-            Grid.Row="1"
-            BackgroundColor="{x:Static app:AppColors.BrColor}">
+        <Grid Grid.Row="1" BackgroundColor="{x:Static app:AppColors.BrColor}">
             <CollectionView>
                 <CollectionView.ItemsSource>
-                    <Array
-                        Type="{Type x:String}">
+                    <Array Type="{Type x:String}">
                         <x:String>Gà con</x:String>
                         <x:String>Gà vườn</x:String>
                         <x:String>Gà nòi</x:String>
@@ -133,40 +114,36 @@
                 </CollectionView.ItemsSource>
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
+                        HorizontalItemSpacing="{x:Static app:Dimens.SpacingMd}"
                         Orientation="Vertical"
                         Span="3"
-                        VerticalItemSpacing="{x:Static app:Dimens.SpacingMd}"
-                        HorizontalItemSpacing="{x:Static app:Dimens.SpacingMd}" />
+                        VerticalItemSpacing="{x:Static app:Dimens.SpacingMd}" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout
-                            Padding="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
-                            >
-                            <Image
-                                Source="ic_feature_locked.png" />
+                        <VerticalStackLayout Padding="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}">
+                            <Image Source="ic_feature_locked.png" />
                             <Label
-                                Text="{Binding .}"
                                 HorizontalTextAlignment="Center"
-                                TextColor="{x:Static app:AppColors.Grey40}"
-                                Style="{x:Static app:Styles.Title6}" />
+                                Style="{x:Static app:Styles.Title6}"
+                                Text="{Binding .}"
+                                TextColor="{x:Static app:AppColors.Grey40}" />
                         </VerticalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
             <Grid
-                VerticalOptions="End"
                 Padding="{app:EdgeInsets Bottom={x:Static app:Dimens.SpacingXxl}}"
-                RowDefinitions="48">
+                RowDefinitions="48"
+                VerticalOptions="End">
                 <Label
                     HorizontalOptions="Center"
-                    WidthRequest="200"
                     HorizontalTextAlignment="Center"
+                    Style="{x:Static app:Styles.Subtitle6}"
                     Text="Chức năng huy hiệu chưa được hỗ trợ ở phiên bản 1.0"
                     TextColor="{x:Static app:AppColors.Purple}"
-                    Style="{x:Static app:Styles.Subtitle6}"
-                    />
+                    WidthRequest="200" />
             </Grid>
         </Grid>
     </Grid>

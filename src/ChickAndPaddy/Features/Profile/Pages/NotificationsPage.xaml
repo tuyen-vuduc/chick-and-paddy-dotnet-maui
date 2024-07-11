@@ -1,89 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.NotificationsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="ChickAndPaddy.NotificationsPage"
     Title="Thông báo"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:NotificationsPageViewModel">
-    <Grid
-        RowSpacing="0"
-        RowDefinitions="48,*">
+    x:DataType="app:NotificationsPageViewModel"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="48,*" RowSpacing="0">
         <Grid
-            VerticalOptions="End"
-            RowDefinitions="48"
             BackgroundColor="{x:Static app:AppColors.White}"
-            Shadow="{x:Static app:Styles.Shadow1}">
+            RowDefinitions="48"
+            Shadow="{x:Static app:Styles.Shadow1}"
+            VerticalOptions="End">
             <Label
-                VerticalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="Thông báo"
                 Style="{x:Static app:Styles.Title4}"
-                TextColor="{x:Static app:AppColors.Black}" />
+                Text="Thông báo"
+                TextColor="{x:Static app:AppColors.Black}"
+                VerticalOptions="Center" />
             <ImageButton
-                Margin="{app:EdgeInsets
-                    Left={x:Static app:Dimens.SpacingMd}
-                }"
-                VerticalOptions="Center"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
+                Command="{Binding BackCommand}"
                 HorizontalOptions="Start"
                 Source="ic_back.png"
-                Command="{Binding BackCommand}" />
+                VerticalOptions="Center" />
         </Grid>
-        <Grid
-            BackgroundColor="{x:Static app:AppColors.BrColor}"
-            Grid.Row="1">
-            <CollectionView                
-                RemainingItemsThreshold="5"
-                RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}"
+        <Grid Grid.Row="1" BackgroundColor="{x:Static app:AppColors.BrColor}">
+            <CollectionView
                 ItemsSource="{Binding Notifications}"
-                >
+                RemainingItemsThreshold="5"
+                RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout
-                        Orientation="Vertical"
-                        ItemSpacing="0" />
+                    <LinearItemsLayout ItemSpacing="0" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="app:NotificationModel">
                         <Grid
                             Padding="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
                             ColumnDefinitions="28,*"
-                            ColumnSpacing="{x:Static app:Dimens.SpacingSm}"
-                            >
+                            ColumnSpacing="{x:Static app:Dimens.SpacingSm}">
                             <Grid
                                 Grid.Column="0"
                                 ColumnDefinitions="28"
+                                HorizontalOptions="Center"
                                 RowDefinitions="28"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center">
+                                VerticalOptions="Center">
                                 <Border
+                                    BackgroundColor="{x:Static app:AppColors.Purple}"
                                     Stroke="Transparent"
-                                    StrokeThickness="1"
                                     StrokeShape="RoundRectangle 14,14,14,14"
-                                    BackgroundColor="{x:Static app:AppColors.Purple}">
-                                    <Image
-                                        Margin="{app:EdgeInsets
-                                            All={x:Static app:Dimens.SpacingXs}
-                                        }"
-                                        Source="cap.png" />
+                                    StrokeThickness="1">
+                                    <Image Margin="{app:EdgeInsets All={x:Static app:Dimens.SpacingXs}}" Source="cap.png" />
                                 </Border>
-                                <Image
-                                    Source="{Binding IconUrl}">
+                                <Image Source="{Binding IconUrl}">
                                     <Image.Clip>
                                         <EllipseGeometry
+                                            Center="14,14"
                                             RadiusX="14"
-                                            RadiusY="14"
-                                            Center="14,14" />
+                                            RadiusY="14" />
                                     </Image.Clip>
                                 </Image>
                             </Grid>
                             <Label
                                 Grid.Column="1"
-                                Text="{Binding Title}"
                                 LineBreakMode="WordWrap"
                                 Style="{x:Static app:Styles.Subtitle6}"
+                                Text="{Binding Title}"
                                 TextColor="{x:Static app:AppColors.Grey50}" />
                         </Grid>
                     </DataTemplate>

@@ -1,42 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
+    x:Class="ChickAndPaddy.StoryView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:app="clr-namespace:ChickAndPaddy"
-    x:Class="ChickAndPaddy.StoryView"
+    xmlns:mtk="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root"
     x:DataType="app:NewsFeedModel">
     <Grid
         BackgroundColor="{x:Static app:AppColors.White}"
-        RowSpacing="0"
         RowDefinitions="16,61,16,Auto,Auto,16,36,16"
-        >
+        RowSpacing="0">
         <Grid
             Grid.Row="1"
-            ColumnSpacing="0"
             ColumnDefinitions="16,61,12,*,16"
+            ColumnSpacing="0"
             RowDefinitions="*,*">
             <Grid
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Grid.Column="1">
                 <Border
-                    StrokeThickness="1"
+                    BackgroundColor="{x:Static app:AppColors.LightBlue}"
                     Stroke="{x:Static app:AppColors.White}"
                     StrokeShape="RoundRectangle 12"
-                    BackgroundColor="{x:Static app:AppColors.LightBlue}" />
+                    StrokeThickness="1" />
                 <Image
-                    Source="{Binding AvatarUrl}"
                     Aspect="AspectFill"
-                    VerticalOptions="Center"
+                    HeightRequest="60"
                     HorizontalOptions="Center"
-                    WidthRequest="60"
-                    HeightRequest="60">
+                    Source="{Binding AvatarUrl}"
+                    VerticalOptions="Center"
+                    WidthRequest="60">
                     <Image.Clip>
-                        <RoundRectangleGeometry
-                            CornerRadius="12"
-                            Rect="0,0,60,60" />
+                        <RoundRectangleGeometry CornerRadius="12" Rect="0,0,60,60" />
                     </Image.Clip>
                 </Image>
             </Grid>
@@ -44,73 +41,67 @@
 
             <Label
                 Grid.Column="3"
-                VerticalOptions="End"
-                Text="{Binding Title}"
-                MaxLines="1"
                 LineBreakMode="TailTruncation"
-                Style="{x:Static app:Styles.Title5}" />
+                MaxLines="1"
+                Style="{x:Static app:Styles.Title5}"
+                Text="{Binding Title}"
+                VerticalOptions="End" />
             <HorizontalStackLayout
-                VerticalOptions="Start"
-                Spacing="{x:Static app:Dimens.SpacingXs}"
                 Grid.Row="1"
-                Grid.Column="3">
+                Grid.Column="3"
+                Spacing="{x:Static app:Dimens.SpacingXs}"
+                VerticalOptions="Start">
                 <Image
                     HorizontalOptions="Start"
-                    VerticalOptions="Center"
-                    Source="ic_date.png" />
+                    Source="ic_date.png"
+                    VerticalOptions="Center" />
                 <Label
                     HorizontalOptions="Start"
-                    VerticalOptions="Center"
+                    Style="{x:Static app:Styles.Body3}"
                     Text="{Binding CreatedAt, StringFormat='{0:MMM dd, yy}'}"
                     TextColor="{x:Static app:AppColors.Grey30}"
-                    Style="{x:Static app:Styles.Body3}" />
+                    VerticalOptions="Center" />
                 <Image
                     Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
                     HorizontalOptions="Start"
-                    VerticalOptions="Center"
-                    Source="ic_pin.png" />
+                    Source="ic_pin.png"
+                    VerticalOptions="Center" />
                 <Label
                     HorizontalOptions="Start"
-                    VerticalOptions="Center"
+                    Style="{x:Static app:Styles.Body3}"
                     Text="{Binding Location}"
                     TextColor="{x:Static app:AppColors.Grey30}"
-                    Style="{x:Static app:Styles.Body3}" />
+                    VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Grid>
 
         <ImageButton
-            Padding="{app:EdgeInsets
-                Horizontal={x:Static app:Dimens.SpacingMd},
-                Vertical={x:Static app:Dimens.SpacingSm}
-            }"
-            Source="ic_hoz_more.png"
-            VerticalOptions="Start"
-            HorizontalOptions="End"
             Grid.RowSpan="2"
-            Command="{Binding MoreCommand, Source={x:Reference root}}">
+            Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd},
+                                     Vertical={x:Static app:Dimens.SpacingSm}}"
+            Command="{Binding MoreCommand, Source={x:Reference root}}"
+            HorizontalOptions="End"
+            Source="ic_hoz_more.png"
+            VerticalOptions="Start">
             <ImageButton.Behaviors>
-                <mtk:IconTintColorBehavior
-                    TintColor="{x:Static app:AppColors.Grey30}" />
+                <mtk:IconTintColorBehavior TintColor="{x:Static app:AppColors.Grey30}" />
             </ImageButton.Behaviors>
         </ImageButton>
 
         <Label
             Grid.Row="3"
-            Margin="{app:EdgeInsets
-                Horizontal={x:Static app:Dimens.SpacingMd}
-            }"
+            Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
+            Style="{x:Static app:Styles.Subtitle6}"
             Text="{Binding Content}"
-            TextColor="{x:Static app:AppColors.Grey40}"
-            Style="{x:Static app:Styles.Subtitle6}" />
+            TextColor="{x:Static app:AppColors.Grey40}" />
 
         <Grid
             Grid.Row="4"
-            RowSpacing="0"
-            RowDefinitions="16,Auto">
+            RowDefinitions="16,Auto"
+            RowSpacing="0">
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="{app:DeviceEdge Edge=Width, Ratio=0.75}" />
+                    <RowDefinition Height="{app:DeviceEdge Edge=Width, Ratio=0.75}" />
                 </Grid.RowDefinitions>
                 <CarouselView
                     HorizontalScrollBarVisibility="Never"
@@ -119,49 +110,41 @@
                     <CarouselView.ItemTemplate>
                         <DataTemplate x:DataType="app:PhotoModel">
                             <Grid>
-                                <Image
-                                    Source="{Binding Url}"
-                                    Aspect="AspectFill" />
+                                <Image Aspect="AspectFill" Source="{Binding Url}" />
                             </Grid>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
                 <ContentView
-                    VerticalOptions="End"
                     Padding="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
-                    BackgroundColor="{app:Color
-                        Value={x:Static app:AppColors.Grey10},
-                        Alpha=0.2
-                    }">
+                    BackgroundColor="{app:Color Value={x:Static app:AppColors.Grey10},
+                                                Alpha=0.2}"
+                    VerticalOptions="End">
                     <IndicatorView
                         x:Name="photosIndicatorView"
-                        SelectedIndicatorColor="{x:Static app:AppColors.Pink}"
                         IndicatorColor="{x:Static app:AppColors.Grey40}"
                         IndicatorSize="6"
-                        />
+                        SelectedIndicatorColor="{x:Static app:AppColors.Pink}" />
                 </ContentView>
             </Grid>
         </Grid>
 
         <HorizontalStackLayout
-            Margin="{app:EdgeInsets
-                Horizontal={x:Static app:Dimens.SpacingMd}
-            }"
-            Spacing="{x:Static app:Dimens.SpacingMd}"
-            Grid.Row="6">
+            Grid.Row="6"
+            Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
+            Spacing="{x:Static app:Dimens.SpacingMd}">
             <ImageButton
-                VerticalOptions="Center"
-                HorizontalOptions="Start"
                 Aspect="AspectFill"
-                Source="ic_pink_heart.png"/>
+                HorizontalOptions="Start"
+                Source="ic_pink_heart.png"
+                VerticalOptions="Center" />
             <ImageButton
-                VerticalOptions="Center"
-                HorizontalOptions="Start"
                 Aspect="AspectFill"
-                Source="ic_messaging.png">
+                HorizontalOptions="Start"
+                Source="ic_messaging.png"
+                VerticalOptions="Center">
                 <ImageButton.Behaviors>
-                    <mtk:IconTintColorBehavior
-                        TintColor="{x:Static app:AppColors.Grey20}" />
+                    <mtk:IconTintColorBehavior TintColor="{x:Static app:AppColors.Grey20}" />
                 </ImageButton.Behaviors>
             </ImageButton>
         </HorizontalStackLayout>

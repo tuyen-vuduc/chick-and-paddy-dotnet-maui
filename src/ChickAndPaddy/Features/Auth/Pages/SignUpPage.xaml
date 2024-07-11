@@ -1,124 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.SignUpPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="ChickAndPaddy.SignUpPage"
-    BackgroundColor="{x:Static app:AppColors.BrColor}"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:SignUpPageViewModel">
+    x:DataType="app:SignUpPageViewModel"
+    BackgroundColor="{x:Static app:AppColors.BrColor}"
+    Shell.NavBarIsVisible="False">
     <Grid>
-        <ScrollView
-            VerticalScrollBarVisibility="Never"
-            >
-            <StackLayout
-                Spacing="0">
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="0">
                 <Image
-                    Margin="{app:EdgeInsets Top=80, Bottom={x:Static app:Dimens.SpacingMd}}"
-                    Source="cap_icon"
-                    SemanticProperties.Description="Chick and Paddy in MAUI"
+                    Margin="{app:EdgeInsets Top=80,
+                                            Bottom={x:Static app:Dimens.SpacingMd}}"
                     HeightRequest="48"
-                    HorizontalOptions="Center" />
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Chick and Paddy in MAUI"
+                    Source="cap_icon" />
                 <Label
                     Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}"
+                    HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Title3}"
-                    TextColor="{x:Static app:AppColors.Black}"
-                    HorizontalTextAlignment="Center"
-                    Text="Đăng ký" />
+                    Text="Đăng ký"
+                    TextColor="{x:Static app:AppColors.Black}" />
                 <Label
-                    Margin="{app:EdgeInsets
-                        Top={x:Static app:Dimens.SpacingSm},
-                        Bottom={x:Static app:Dimens.SpacingLg},
-                        Horizontal={x:Static app:Dimens.SpacingXxl}
-                    }"
-                    Style="{x:Static app:Styles.Subtitle6}"
-                    TextColor="{x:Static app:AppColors.Grey50}"
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingSm},
+                                            Bottom={x:Static app:Dimens.SpacingLg},
+                                            Horizontal={x:Static app:Dimens.SpacingXxl}}"
                     HorizontalTextAlignment="Center"
-                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn." />
+                    Style="{x:Static app:Styles.Subtitle6}"
+                    Text="Chúng tôi sẽ gửi OTP ở bước kế tiếp, Vui lòng hoàn tất thông tin của bạn."
+                    TextColor="{x:Static app:AppColors.Grey50}" />
 
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Bottom={x:Static app:Dimens.SpacingSm}}"
-                    PrefixIcon="ic_user.png"
-                    Text="{Binding Form.FullName}"
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Bottom={x:Static app:Dimens.SpacingSm}}"
                     IsValid="{Binding Form.FullNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Tên của bạn"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Bottom={x:Static app:Dimens.SpacingSm}}"
-                    PrefixIcon="ic_phone_call.png"
-                    Text="{Binding Form.PhoneNumber}"
+                    PrefixIcon="ic_user.png"
+                    Text="{Binding Form.FullName}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Bottom={x:Static app:Dimens.SpacingSm}}"
                     IsValid="{Binding Form.PhoneNumberErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
-                    Placeholder="Số điện thoại"
                     Keyboard="Telephone"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Bottom={x:Static app:Dimens.SpacingSm}}"
-                    PrefixIcon="ic_password.png"
-                    Text="{Binding Form.Password}"
+                    Placeholder="Số điện thoại"
+                    PrefixIcon="ic_phone_call.png"
+                    Text="{Binding Form.PhoneNumber}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Bottom={x:Static app:Dimens.SpacingSm}}"
+                    IsPassword="True"
                     IsValid="{Binding Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập mật khẩu"
-                    IsPassword="True"
-                    />
-                <app:RoundedEntry 
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg}
-                    }"
                     PrefixIcon="ic_password.png"
-                    Text="{Binding Form.ConfirmPassword}"
+                    Text="{Binding Form.Password}" />
+                <app:RoundedEntry
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg}}"
+                    IsPassword="True"
                     IsValid="{Binding Form.ConfirmPasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}}"
                     Placeholder="Nhập lại mật khẩu"
-                    IsPassword="True"
-                    />
+                    PrefixIcon="ic_password.png"
+                    Text="{Binding Form.ConfirmPassword}" />
 
                 <Label
-                    Margin="{app:EdgeInsets
-                        Horizontal={x:Static app:Dimens.SpacingLg},
-                        Top={x:Static app:Dimens.SpacingXl}}"
+                    Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
+                                            Top={x:Static app:Dimens.SpacingXl}}"
                     HorizontalTextAlignment="Center"
                     Style="{x:Static app:Styles.Body2}"
-                    TextColor="{x:Static app:AppColors.Red}" >
+                    TextColor="{x:Static app:AppColors.Red}">
                     <Label.Opacity>
                         <MultiBinding Converter="{Static app:AppConverters.AnyFalseToOpacity}">
-                            <Binding Path="Form.FullNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
-                            <Binding Path="Form.PhoneNumberErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
-                            <Binding Path="Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
-                            <Binding Path="Form.ConfirmPasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}"/>
+                            <Binding Path="Form.FullNameErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}" />
+                            <Binding Path="Form.PhoneNumberErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}" />
+                            <Binding Path="Form.PasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}" />
+                            <Binding Path="Form.ConfirmPasswordErrors, Converter={x:Static app:AppConverters.IsListNullOrEmpty}" />
                         </MultiBinding>
                     </Label.Opacity>
                     <Label.Text>
                         <MultiBinding Converter="{Static app:AppConverters.FirstItem}">
-                            <Binding Path="Form.FullNameErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
-                            <Binding Path="Form.PhoneNumberErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
-                            <Binding Path="Form.PasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
-                            <Binding Path="Form.ConfirmPasswordErrors" Converter="{x:Static app:AppConverters.FirstItem}"/>
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.FullNameErrors" />
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.PhoneNumberErrors" />
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.PasswordErrors" />
+                            <Binding Converter="{x:Static app:AppConverters.FirstItem}" Path="Form.ConfirmPasswordErrors" />
                         </MultiBinding>
                     </Label.Text>
                 </Label>
 
                 <Button
                     Margin="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingLg}}"
+                    Command="{Binding SignUpCommand}"
                     HorizontalOptions="Center"
                     Style="{x:Static app:Styles.ButtonPrimary}"
-                    Text="Đăng ký"
-                    Command="{Binding SignUpCommand}" />
+                    Text="Đăng ký" />
             </StackLayout>
         </ScrollView>
         <ImageButton
-            Margin="{app:EdgeInsets
-                Top={x:Static app:Dimens.SpacingLg},
-                Left={x:Static app:Dimens.SpacingMd}
-            }"
-            VerticalOptions="Start"
+            Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingLg},
+                                    Left={x:Static app:Dimens.SpacingMd}}"
+            Command="{Binding BackCommand}"
             HorizontalOptions="Start"
             Source="ic_back.png"
-            Command="{Binding BackCommand}" />
+            VerticalOptions="Start" />
     </Grid>
 </app:BasePage>
