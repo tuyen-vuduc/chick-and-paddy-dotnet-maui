@@ -1,77 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView
+    x:Class="ChickAndPaddy.CoupleHeaderView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
-    x:Class="ChickAndPaddy.CoupleHeaderView"
     x:Name="root"
     x:DataType="app:HomePageViewModel">
     <Grid
         BackgroundColor="{x:Static app:AppColors.White}"
-        RowSpacing="0"
-        RowDefinitions="182,30,30,80,4">
-        <Grid
-            Grid.RowSpan="2">
-            <Image
-                Aspect="AspectFill"
-                Source="{Binding CoupleCoverUrl}" />
-            <ContentView
-                Opacity="0.33"
-                BackgroundColor="{x:Static app:AppColors.Grey10}" />
+        RowDefinitions="182,30,30,80,4"
+        RowSpacing="0">
+        <Grid Grid.RowSpan="2">
+            <Image Aspect="AspectFill" Source="{Binding CoupleCoverUrl}" />
+            <ContentView BackgroundColor="{x:Static app:AppColors.Grey10}" Opacity="0.33" />
 
             <VerticalStackLayout
-                Padding="{app:EdgeInsets
-                    All={x:Static app:Dimens.SpacingSm}
-                }"
+                Padding="{app:EdgeInsets All={x:Static app:Dimens.SpacingSm}}"
+                HorizontalOptions="End"
                 Spacing="{x:Static app:Dimens.SpacingXs}"
-                VerticalOptions="End"
-                HorizontalOptions="End">
+                VerticalOptions="End">
                 <HorizontalStackLayout
-                    HorizontalOptions="End"
                     BindableLayout.ItemsSource="{Binding DaysSinceMet, StringFormat='{0}'}"
+                    HorizontalOptions="End"
                     Spacing="{x:Static app:Dimens.SpacingXs}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Grid
-                                ColumnDefinitions="40"
-                                RowDefinitions="42">
+                            <Grid ColumnDefinitions="40" RowDefinitions="42">
                                 <Border
+                                    BackgroundColor="{x:Static app:AppColors.Grey60}"
                                     Opacity="0.35"
-                                    StrokeThickness="0"
                                     StrokeShape="RoundRectangle 5,5,5,5"
-                                    BackgroundColor="{x:Static app:AppColors.Grey60}">
-                                </Border>
+                                    StrokeThickness="0" />
                                 <Label
-                                    Padding="{app:EdgeInsets
-                                        Horizontal={x:Static app:Dimens.SpacingSm},
-                                        Vertical={x:Static app:Dimens.SpacingXs}
-                                    }"
-                                    Text="{Binding .}"
+                                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingSm},
+                                                             Vertical={x:Static app:Dimens.SpacingXs}}"
                                     HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
                                     Style="{x:Static app:Styles.Title1}"
-                                    TextColor="{x:Static app:AppColors.White}" />
+                                    Text="{Binding .}"
+                                    TextColor="{x:Static app:AppColors.White}"
+                                    VerticalTextAlignment="Center" />
                             </Grid>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </HorizontalStackLayout>
 
-                <Grid
-                    HorizontalOptions="End">
+                <Grid HorizontalOptions="End">
                     <Border
+                        BackgroundColor="{x:Static app:AppColors.Grey60}"
                         Opacity="0.35"
-                        StrokeThickness="0"
                         StrokeShape="RoundRectangle 5,5,5,5"
-                        BackgroundColor="{x:Static app:AppColors.Grey60}">
-                    </Border>
+                        StrokeThickness="0" />
                     <Label
-                        Padding="{app:EdgeInsets
-                            Horizontal={x:Static app:Dimens.SpacingSm},
-                            Vertical={x:Static app:Dimens.SpacingXs}
-                        }"
-                        Text="Ngày quen nhau"
+                        Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingSm},
+                                                 Vertical={x:Static app:Dimens.SpacingXs}}"
                         HorizontalTextAlignment="Center"
                         Style="{x:Static app:Styles.Subtitle6}"
+                        Text="Ngày quen nhau"
                         TextColor="{x:Static app:AppColors.White}" />
                 </Grid>
             </VerticalStackLayout>
@@ -79,79 +63,65 @@
         </Grid>
 
         <Grid
-            Padding="{app:EdgeInsets
-                Horizontal={x:Static app:Dimens.SpacingMd}
-            }"
-            ColumnDefinitions="84"
-            Grid.RowSpan="2"
             Grid.Row="1"
+            Grid.RowSpan="2"
+            Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
+            ColumnDefinitions="84"
             ColumnSpacing="0">
             <Border
-                HorizontalOptions="End"
+                BackgroundColor="{x:Static app:AppColors.Purple}"
                 HeightRequest="36"
-                WidthRequest="36"
-                StrokeThickness="4"
+                HorizontalOptions="End"
                 Stroke="{x:Static app:AppColors.White}"
                 StrokeShape="RoundRectangle 18"
-                BackgroundColor="{x:Static app:AppColors.Purple}" />
-            <Border
-                HorizontalOptions="Start"
-                HeightRequest="56"
-                WidthRequest="56"
                 StrokeThickness="4"
+                WidthRequest="36" />
+            <Border
+                BackgroundColor="{x:Static app:AppColors.Pink}"
+                HeightRequest="56"
+                HorizontalOptions="Start"
                 Stroke="{x:Static app:AppColors.White}"
                 StrokeShape="RoundRectangle 28"
-                BackgroundColor="{x:Static app:AppColors.Pink}" />
+                StrokeThickness="4"
+                WidthRequest="56" />
         </Grid>
 
         <Label
             Grid.Row="3"
-            Margin="{app:EdgeInsets
-                Horizontal={x:Static app:Dimens.SpacingMd}
-            }"
-            Text="Gà con . Hạt thóc"
-            Style="{x:Static app:Styles.Title5}" />
+            Margin="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
+            Style="{x:Static app:Styles.Title5}"
+            Text="Gà con . Hạt thóc" />
 
         <HorizontalStackLayout
             Grid.Row="2"
             Grid.RowSpan="2"
+            Padding="{app:EdgeInsets All={x:Static app:Dimens.SpacingMd}}"
             HorizontalOptions="End"
-            VerticalOptions="Start"
-            Padding="{app:EdgeInsets
-                All={x:Static app:Dimens.SpacingMd}
-            }"
-            Spacing="{x:Static app:Dimens.SpacingSm}">
-            <ImageButton
-                Command="{Binding AddCommand, Source={x:Reference root}}"
-                Source="ic_new_story.png" />
-            <ImageButton
-                Command="{Binding ModeCommand, Source={x:Reference root}}"
-                Source="ic_grid.png" />
+            Spacing="{x:Static app:Dimens.SpacingSm}"
+            VerticalOptions="Start">
+            <ImageButton Command="{Binding AddCommand, Source={x:Reference root}}" Source="ic_new_story.png" />
+            <ImageButton Command="{Binding ModeCommand, Source={x:Reference root}}" Source="ic_grid.png" />
         </HorizontalStackLayout>
 
         <Grid
-            VerticalOptions="End"
             Grid.Row="3"
-            ColumnSpacing="0"
+            Padding="{app:EdgeInsets Vertical={x:Static app:Dimens.SpacingSm},
+                                     Horizontal={x:Static app:Dimens.SpacingXl}}"
             ColumnDefinitions="*,*"
-            Padding="{app:EdgeInsets
-                Vertical={x:Static app:Dimens.SpacingSm},
-                Horizontal={x:Static app:Dimens.SpacingXl}
-            }">
+            ColumnSpacing="0"
+            VerticalOptions="End">
             <Button
-                Text="Cột mốc"
                 Command="{Binding ViewMilestonesCommand, Source={x:Reference root}}"
-                Style="{x:Static app:Styles.ButtonOutlinedXs}" />
+                Style="{x:Static app:Styles.ButtonOutlinedXs}"
+                Text="Cột mốc" />
             <Button
                 Grid.Column="1"
-                Text="Mục tiêu"
                 Command="{Binding ViewObjectivesCommand, Source={x:Reference root}}"
-                Style="{x:Static app:Styles.ButtonFlatXs}" />
+                Style="{x:Static app:Styles.ButtonFlatXs}"
+                Text="Mục tiêu" />
         </Grid>
 
-        <ContentView
-            Grid.Row="4"
-            BackgroundColor="{x:Static app:AppColors.BrColor}" />
+        <ContentView Grid.Row="4" BackgroundColor="{x:Static app:AppColors.BrColor}" />
     </Grid>
 </ContentView>
 

@@ -21,9 +21,10 @@ public partial class Styles
     public static readonly Style BorderMd = CreateStyle<Border>()
         .Set(Border.StrokeProperty, AppColors.Green)
         .Set(Border.StrokeThicknessProperty, 1)
-        .Set(Border.StrokeShapeProperty, new RoundRectangle {
-                                            CornerRadius = new CornerRadius(16)
-                                        });
+        .Set(Border.StrokeShapeProperty, new RoundRectangle
+        {
+            CornerRadius = new CornerRadius(16)
+        });
 
     static readonly Style ButtonBase = CreateStyle<Button>()
         .Set(VisualElement.BackgroundColorProperty, AppColors.Purple)

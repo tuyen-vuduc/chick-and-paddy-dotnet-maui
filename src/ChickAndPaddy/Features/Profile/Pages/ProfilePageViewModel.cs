@@ -1,12 +1,7 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class ProfilePageViewModel : NavigationAwareBaseViewModel
+public partial class ProfilePageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public ProfilePageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-    }
 
     [ObservableProperty]
     string phoneNumber;

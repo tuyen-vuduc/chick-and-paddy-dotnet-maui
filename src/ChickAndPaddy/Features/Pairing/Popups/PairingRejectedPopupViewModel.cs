@@ -1,13 +1,7 @@
-﻿using System;
-namespace ChickAndPaddy
+﻿namespace ChickAndPaddy
 {
-    public partial class PairingRejectedPopupViewModel : BaseViewModel
+    public partial class PairingRejectedPopupViewModel(IAppNavigator appNavigator) : BaseViewModel(appNavigator)
     {
-        public PairingRejectedPopupViewModel(
-            IAppNavigator appNavigator
-            ) : base(appNavigator)
-        {
-        }
 
         [RelayCommand]
         private Task Done(object obj) => AppNavigator.NavigateAsync(AppRoutes.Home);

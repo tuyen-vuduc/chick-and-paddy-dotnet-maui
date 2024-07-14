@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChickAndPaddy;
+﻿namespace ChickAndPaddy;
 
 public static class FontNames
 {

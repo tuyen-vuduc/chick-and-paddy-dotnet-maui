@@ -1,16 +1,10 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class MyPairingIdPageViewModel : NavigationAwareBaseViewModel
-{
-    private readonly IPairingService pairingService;
-
-    public MyPairingIdPageViewModel(
+public partial class MyPairingIdPageViewModel(
         IPairingService pairingService,
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        this.pairingService = pairingService;
-    }
+        IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
+{
+    private readonly IPairingService pairingService = pairingService;
 
     [ObservableProperty]
     string myPairingId;

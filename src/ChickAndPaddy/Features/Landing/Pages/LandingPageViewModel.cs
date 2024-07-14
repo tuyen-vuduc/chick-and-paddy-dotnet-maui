@@ -1,19 +1,12 @@
 ﻿namespace ChickAndPaddy;
 
-public class LandingPageViewModel : BaseViewModel
-{
-    private readonly IAppSettingsService appSettingsService;
-    private readonly IAppInfo appInfo;
-
-    public LandingPageViewModel(
+public class LandingPageViewModel(
         IAppSettingsService appSettingsService,
         IAppNavigator appNavigator,
-        IAppInfo appInfo)
-        : base(appNavigator)
-    {
-        this.appSettingsService = appSettingsService;
-        this.appInfo = appInfo;
-    }
+        IAppInfo appInfo) : BaseViewModel(appNavigator)
+{
+    private readonly IAppSettingsService appSettingsService = appSettingsService;
+    private readonly IAppInfo appInfo = appInfo;
 
     public string VersionInfo => $"{appInfo.VersionString} ({appInfo.BuildString})";
 

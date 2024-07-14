@@ -22,7 +22,8 @@ public static class MauiProgram
             {
                 essentials.UseVersionTracking();
             })
-            .RegisterServices()
+            .RegisterCore()
+            .RegisterFeatures()
             .RegisterPages();
 
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("NoBorderEntry", (handler, view) =>
@@ -56,7 +57,7 @@ public static class MauiProgram
         return builder.Build();
     }
 
-    static MauiAppBuilder RegisterServices(this MauiAppBuilder builder)
+    static MauiAppBuilder RegisterCore(this MauiAppBuilder builder)
     {
         builder.Services.AddSingleton<IAppInfo>(AppInfo.Current);
         builder.Services.AddSingleton<IPreferences>(Preferences.Default);
@@ -64,14 +65,19 @@ public static class MauiProgram
         builder.Services.AddSingleton<IMessagingCenter>(MessagingCenter.Instance);
 
         builder.Services.AddSingleton<IAppNavigator, AppNavigator>();
-        builder.Services.AddSingleton<IAppSettingsService, AppSettingsService>();
+        return builder;
+    }
 
-        builder.Services.AddTransient<ILandingService, LandingService>();
-        builder.Services.AddSingleton<INotificationService, NotificationService>();
-        builder.Services.AddSingleton<IPairingService, PairingService>();
-        builder.Services.AddSingleton<INewsFeedService, NewsFeedService>();
-        builder.Services.AddSingleton<IProfileService, ProfileService>();
-
+    static MauiAppBuilder RegisterFeatures(this MauiAppBuilder builder)
+    {
+        builder.RegisterShared();
+        builder.RegisterAuth();
+        builder.RegisterGames();
+        builder.RegisterHome();
+        builder.RegisterLanding();
+        builder.RegisterMessaging();
+        builder.RegisterPairing();
+        builder.RegisterProfile();
         return builder;
     }
 

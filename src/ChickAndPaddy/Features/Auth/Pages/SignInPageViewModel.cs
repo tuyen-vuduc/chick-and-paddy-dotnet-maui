@@ -1,19 +1,12 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class SignInPageViewModel : BaseViewModel
-{
-    private readonly IAppSettingsService appSettingsService;
-
-    public SignInPageViewModel(
+public partial class SignInPageViewModel(
         IAppSettingsService appSettingsService,
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        Form = new();
-        this.appSettingsService = appSettingsService;
-    }
+        IAppNavigator appNavigator) : BaseViewModel(appNavigator)
+{
+    private readonly IAppSettingsService appSettingsService = appSettingsService;
 
-    public SignInFormModel Form { get; init; }
+    public SignInFormModel Form { get; init; } = new();
 
     [RelayCommand]
     Task SignInAsync()

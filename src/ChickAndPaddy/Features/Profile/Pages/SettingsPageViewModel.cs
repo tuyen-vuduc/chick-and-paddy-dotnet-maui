@@ -1,12 +1,7 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class SettingsPageViewModel : NavigationAwareBaseViewModel
+public partial class SettingsPageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public SettingsPageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-    }
 
     [RelayCommand]
     private void EditProfile()

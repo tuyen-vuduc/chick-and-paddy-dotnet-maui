@@ -1,16 +1,10 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class SettingsAndHelpPageViewModel : NavigationAwareBaseViewModel
-{
-    private readonly IAppSettingsService appSettings;
-
-    public SettingsAndHelpPageViewModel(
+public partial class SettingsAndHelpPageViewModel(
         IAppSettingsService appSettings,
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        this.appSettings = appSettings;
-    }
+        IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
+{
+    private readonly IAppSettingsService appSettings = appSettings;
 
     [RelayCommand]
     private Task CancelRelationshipAsync()

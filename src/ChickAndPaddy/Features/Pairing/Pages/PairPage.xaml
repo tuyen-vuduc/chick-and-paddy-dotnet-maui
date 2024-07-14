@@ -1,98 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <app:BasePage
+    x:Class="ChickAndPaddy.PairPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:app="clr-namespace:ChickAndPaddy"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="ChickAndPaddy.PairPage"
-    BackgroundColor="{x:Static app:AppColors.White}"
     Title="Ghép đôi"
     ios:Page.UseSafeArea="False"
-    Shell.NavBarIsVisible="False"
-    x:DataType="app:PairPageViewModel">
-    <Grid
-        RowSpacing="0"
-        RowDefinitions="48,*">
-        <Grid
-            BackgroundColor="{x:Static app:AppColors.BrColor}"
-            Grid.RowSpan="2">
+    x:DataType="app:PairPageViewModel"
+    BackgroundColor="{x:Static app:AppColors.White}"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="48,*" RowSpacing="0">
+        <Grid Grid.RowSpan="2" BackgroundColor="{x:Static app:AppColors.BrColor}">
             <Image
-                Source="ic_pairing_bg_topright.png"
+                Aspect="AspectFit"
                 HeightRequest="298"
-                WidthRequest="216"
-                Aspect="AspectFit"
                 HorizontalOptions="End"
-                VerticalOptions="Start" />
+                Source="ic_pairing_bg_topright.png"
+                VerticalOptions="Start"
+                WidthRequest="216" />
             <Image
-                Source="ic_pairing_bg_middle.png"
-                HeightRequest="130"
-                WidthRequest="101"
                 Aspect="AspectFit"
+                HeightRequest="130"
                 HorizontalOptions="Start"
-                VerticalOptions="Center" />
+                Source="ic_pairing_bg_middle.png"
+                VerticalOptions="Center"
+                WidthRequest="101" />
         </Grid>
         <Grid
-            VerticalOptions="End"
-            RowDefinitions="48"
             BackgroundColor="{x:Static app:AppColors.White}"
-            Shadow="{x:Static app:Styles.Shadow1}">
+            RowDefinitions="48"
+            Shadow="{x:Static app:Styles.Shadow1}"
+            VerticalOptions="End">
             <Label
-                VerticalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="Ghép đôi"
                 Style="{x:Static app:Styles.Title4}"
-                TextColor="{x:Static app:AppColors.Black}" />
+                Text="Ghép đôi"
+                TextColor="{x:Static app:AppColors.Black}"
+                VerticalOptions="Center" />
             <ImageButton
-                Margin="{app:EdgeInsets
-                    Left={x:Static app:Dimens.SpacingMd}
-                }"
-                VerticalOptions="Center"
+                Margin="{app:EdgeInsets Left={x:Static app:Dimens.SpacingMd}}"
+                Command="{Binding BackCommand}"
                 HorizontalOptions="Start"
                 Source="ic_back.png"
-                Command="{Binding BackCommand}" />
+                VerticalOptions="Center" />
         </Grid>
-        <Grid
-            Grid.Row="1">
-            <Grid
-                RowDefinitions="*,*">
+        <Grid Grid.Row="1">
+            <Grid RowDefinitions="*,*">
                 <Image
-                    VerticalOptions="End"
-                    HorizontalOptions="Center"
-                    Source="ic_pairing.png"
                     Aspect="AspectFill"
                     HeightRequest="302"
+                    HorizontalOptions="Center"
+                    Source="ic_pairing.png"
+                    VerticalOptions="End"
                     WidthRequest="302" />
                 <StackLayout
-                    VerticalOptions="Fill"
-                    Margin="{app:EdgeInsets
-                        Top={x:Static app:Dimens.SpacingXxl}
-                    }"
                     Grid.Row="1"
-                    Spacing="{x:Static app:Dimens.SpacingLg}">
+                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingXxl}}"
+                    Spacing="{x:Static app:Dimens.SpacingLg}"
+                    VerticalOptions="Fill">
                     <Grid
+                        Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd}}"
                         HorizontalOptions="Center"
-                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
-                        Padding="{app:EdgeInsets
-                            Horizontal={x:Static app:Dimens.SpacingMd}
-                        }">
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}">
                         <Label
-                            Style="{x:Static app:Styles.Subtitle5}"
-                            TextColor="{x:Static app:AppColors.Grey50}"
                             HorizontalTextAlignment="Center"
-                            Text="Kết nối cùng với partner của bạn để sử dụng tất cả các chức năng của app." />
+                            Style="{x:Static app:Styles.Subtitle5}"
+                            Text="Kết nối cùng với partner của bạn để sử dụng tất cả các chức năng của app."
+                            TextColor="{x:Static app:AppColors.Grey50}" />
                     </Grid>
                     <Button
-                        HorizontalOptions="Center"
-                        Text="ID của tôi"
                         Command="{Binding ViewMyPairingIdCommand}"
-                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
-                        Style="{x:Static app:Styles.ButtonPrimary}" />
-                    <Button
                         HorizontalOptions="Center"
-                        Text="Nhập ID ghép đôi"
+                        Style="{x:Static app:Styles.ButtonPrimary}"
+                        Text="ID của tôi"
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}" />
+                    <Button
                         Command="{Binding EnterMyPartnerIdCommand}"
-                        WidthRequest="{x:Static app:Dimens.ButtonWidth}"
-                        Style="{x:Static app:Styles.ButtonAccent}" />
+                        HorizontalOptions="Center"
+                        Style="{x:Static app:Styles.ButtonAccent}"
+                        Text="Nhập ID ghép đôi"
+                        WidthRequest="{x:Static app:Dimens.ButtonWidth}" />
                 </StackLayout>
             </Grid>
         </Grid>

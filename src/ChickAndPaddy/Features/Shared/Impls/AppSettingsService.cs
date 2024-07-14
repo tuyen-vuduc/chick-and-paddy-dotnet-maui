@@ -1,18 +1,12 @@
 ﻿namespace ChickAndPaddy;
 
-public class AppSettingsService : IAppSettingsService
-{
-    private readonly IPreferences preferences;
-    private readonly ISecureStorage secureStorage;
-
-    public AppSettingsService(
+public class AppSettingsService(
         IPreferences preferences,
         ISecureStorage secureStorage
-        )
-    {
-        this.preferences = preferences;
-        this.secureStorage = secureStorage;
-    }
+        ) : IAppSettingsService
+{
+    private readonly IPreferences preferences = preferences;
+    private readonly ISecureStorage secureStorage = secureStorage;
 
     public string MyPairingId
     {

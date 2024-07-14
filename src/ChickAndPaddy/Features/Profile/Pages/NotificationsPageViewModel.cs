@@ -1,20 +1,14 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class NotificationsPageViewModel : NavigationAwareBaseViewModel
+public partial class NotificationsPageViewModel(
+        INotificationService notificationService,
+        IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    private readonly INotificationService notificationService;
+    private readonly INotificationService notificationService = notificationService;
 
     private const int PAGE_SIZE = 20;
     private int currentPage;
     private bool hasMoreItems;
-
-    public NotificationsPageViewModel(
-        INotificationService notificationService,
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        this.notificationService = notificationService;
-    }
 
     [ObservableProperty]
     ObservableCollection<NotificationModel> notifications;

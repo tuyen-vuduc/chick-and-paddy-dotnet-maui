@@ -1,15 +1,10 @@
 ﻿namespace ChickAndPaddy;
 
-public class ProfileService : IProfileService
-{
-    private readonly IAppSettingsService appSettings;
-
-    public ProfileService(
+public class ProfileService(
         IAppSettingsService appSettings
-        )
-	{
-        this.appSettings = appSettings;
-    }
+        ) : IProfileService
+{
+    private readonly IAppSettingsService appSettings = appSettings;
 
     public string MyPairingId => "123789";
 
