@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
-namespace ChickAndPaddy
+﻿namespace ChickAndPaddy
 {
-    public partial class WalkthroughPageViewModel : NavigationAwareBaseViewModel
-    {
-        private readonly ILandingService landingService;
-
-        public WalkthroughPageViewModel(
+    public partial class WalkthroughPageViewModel(
             ILandingService landingService,
-            IAppNavigator appNavigator)
-            : base(appNavigator)
-        {
-            this.landingService = landingService;
-        }
+            IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
+    {
+        private readonly ILandingService landingService = landingService;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(AllowsToContinue))]
@@ -44,7 +34,7 @@ namespace ChickAndPaddy
         }
 
         [RelayCommand]
-        void Move(bool goback) => ItemPosition += goback ?  -1 : 1;
+        void Move(bool goback) => ItemPosition += goback ? -1 : 1;
 
         [RelayCommand]
         Task StartAsync() => SignInAsync();

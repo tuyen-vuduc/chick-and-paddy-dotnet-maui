@@ -1,25 +1,14 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
-{
-    private readonly IProfileService profileService;
-    private readonly IPairingService pairingService;
-    private readonly IMessagingCenter messagingCenter;
-
-    public PartnerFoundPageViewModel(
+public partial class PartnerFoundPageViewModel(
         IProfileService profileService,
         IPairingService pairingService,
         IMessagingCenter messagingCenter,
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        this.profileService = profileService;
-        this.pairingService = pairingService;
-        this.messagingCenter = messagingCenter;
-
-        messagingCenter.Unsubscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE);
-        messagingCenter.Subscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE, HandlePairingResponse);
-    }
+        IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
+{
+    private readonly IProfileService profileService = profileService;
+    private readonly IPairingService pairingService = pairingService;
+    private readonly IMessagingCenter messagingCenter = messagingCenter;
 
     [ObservableProperty]
     PartnerModel partner;
@@ -42,6 +31,8 @@ public partial class PartnerFoundPageViewModel : NavigationAwareBaseViewModel
         base.OnInit(query);
 
         Partner = query.GetData<PartnerModel>();
+        messagingCenter.Unsubscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE);
+        messagingCenter.Subscribe<object, bool>(this, AppMessages.PAIRING_RESPONSE, HandlePairingResponse);
     }
 
     protected override Task BackAsync()

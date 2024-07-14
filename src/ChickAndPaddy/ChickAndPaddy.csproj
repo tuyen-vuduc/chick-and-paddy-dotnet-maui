@@ -172,7 +172,6 @@
 	  <Folder Include="Features\Profile\Services\Impls\" />
 	  <Folder Include="Features\Pairing\Services\" />
 	  <Folder Include="Features\Pairing\Services\Impls\" />
-	  <Folder Include="Features\Shared\" />
 	  <Folder Include="Features\Shared\Impls\" />
 	  <Folder Include="Features\Pairing\Models\" />
 	  <Folder Include="Features\Home\Models\" />

@@ -1,10 +1,5 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class GamesPageViewModel : NavigationAwareBaseViewModel
+public partial class GamesPageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public GamesPageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-    }
 }

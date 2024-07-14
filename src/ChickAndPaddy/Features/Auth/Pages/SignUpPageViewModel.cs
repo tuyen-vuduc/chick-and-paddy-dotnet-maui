@@ -1,15 +1,9 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class SignUpPageViewModel : NavigationAwareBaseViewModel
+public partial class SignUpPageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public SignUpPageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        Form = new();
-    }
 
-    public SignUpFormModel Form { get; init; }
+    public SignUpFormModel Form { get; init; } = new();
 
     [RelayCommand]
     Task SignUpAsync()
@@ -21,7 +15,7 @@ public partial class SignUpPageViewModel : NavigationAwareBaseViewModel
             return Task.CompletedTask;
         }
 
-        return AppNavigator.GoBackAsync(); 
+        return AppNavigator.GoBackAsync();
     }
 }
 

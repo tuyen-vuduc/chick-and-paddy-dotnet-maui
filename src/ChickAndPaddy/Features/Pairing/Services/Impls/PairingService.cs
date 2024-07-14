@@ -1,26 +1,19 @@
-﻿using System;
+﻿namespace ChickAndPaddy;
 
-namespace ChickAndPaddy;
-
-public class PairingService : IPairingService
-{
-    private readonly IAppSettingsService appSettingsService;
-    private readonly IMessagingCenter messagingCenter;
-
-    public PairingService(
+public class PairingService(
         IAppSettingsService appSettingsService,
         IMessagingCenter messagingCenter
-    )
-    {
-        this.appSettingsService = appSettingsService;
-        this.messagingCenter = messagingCenter;
-    }
+    ) : IPairingService
+{
+    private readonly IAppSettingsService appSettingsService = appSettingsService;
+    private readonly IMessagingCenter messagingCenter = messagingCenter;
 
     public Task<PartnerModel> FindPartnerByPairingIdAsync(string pairingId)
     {
         if (pairingId?.Contains('0') == true) return Task.FromResult<PartnerModel>(null);
 
-        var partner = new PartnerModel {
+        var partner = new PartnerModel
+        {
             Id = Guid.NewGuid(),
             PairingId = pairingId,
             NickName = "Gà con",

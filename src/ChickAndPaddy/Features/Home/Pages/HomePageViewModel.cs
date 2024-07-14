@@ -1,23 +1,17 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class HomePageViewModel : NavigationAwareBaseViewModel
-{
-    const int PAGE_SIZE = 10;
-    private readonly IProfileService profileService;
-    private readonly INewsFeedService newsFeedService;
-
-    private int currentPage;
-    private bool hasMoreItems;
-
-    public HomePageViewModel(
+public partial class HomePageViewModel(
         IProfileService profileService,
         INewsFeedService newsFeedService,
         IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        this.profileService = profileService;
-        this.newsFeedService = newsFeedService;
-    }
+            : NavigationAwareBaseViewModel(appNavigator)
+{
+    const int PAGE_SIZE = 10;
+    private readonly IProfileService profileService = profileService;
+    private readonly INewsFeedService newsFeedService = newsFeedService;
+
+    private int currentPage;
+    private bool hasMoreItems;
 
     [ObservableProperty]
     string coupleCoverUrl;

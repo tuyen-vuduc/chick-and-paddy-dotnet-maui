@@ -1,16 +1,11 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class ForgotPasswordPageViewModel : NavigationAwareBaseViewModel
+public partial class ForgotPasswordPageViewModel(
+        IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public ForgotPasswordPageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-        Form = new();
-    }
 
     [ObservableProperty]
-    ForgotPasswordFormModel form;
+    ForgotPasswordFormModel form = new();
 
     [RelayCommand]
     private void GetOTP()

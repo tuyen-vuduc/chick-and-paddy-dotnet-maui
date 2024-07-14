@@ -1,12 +1,7 @@
 ﻿namespace ChickAndPaddy;
 
-public partial class PairPageViewModel : NavigationAwareBaseViewModel
+public partial class PairPageViewModel(IAppNavigator appNavigator) : NavigationAwareBaseViewModel(appNavigator)
 {
-    public PairPageViewModel(
-        IAppNavigator appNavigator)
-        : base(appNavigator)
-    {
-    }
 
     [RelayCommand]
     private Task ViewMyPairingIdAsync() => AppNavigator.NavigateAsync(AppRoutes.MyPairingId);
