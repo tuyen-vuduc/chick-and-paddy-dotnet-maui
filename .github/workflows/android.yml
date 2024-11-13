@@ -68,13 +68,10 @@ jobs:
     steps:
       - name: Download app bundle
         uses: actions/download-artifact@v4
-        with:
-          path: android-builds
     
       - name: Listing
         run: |
           ls -a
-          ls -a android-builds
       
       # How to create service account JSON file
       # https://github.com/marketplace/actions/upload-android-release-to-play-store
@@ -83,6 +80,6 @@ jobs:
         with:
             serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
             packageName: dev.tuyentv.dotnet.maui.social
-            releaseFiles: android-builds/dev.tuyentv.dotnet.maui.social-Signed.aab
+            releaseFiles: dev.tuyentv.dotnet.maui.social-Signed.aab
             track: production
     
