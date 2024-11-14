@@ -75,18 +75,32 @@
             </HorizontalStackLayout>
         </Grid>
 
-        <ImageButton
-            Grid.RowSpan="2"
-            Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingMd},
-                                     Vertical={x:Static app:Dimens.SpacingSm}}"
-            Command="{Binding MoreCommand, Source={x:Reference root}}"
+        <Grid
             HorizontalOptions="End"
-            Source="ic_hoz_more.png"
-            VerticalOptions="Start">
-            <ImageButton.Behaviors>
-                <mtk:IconTintColorBehavior TintColor="{x:Static app:AppColors.Grey30}" />
-            </ImageButton.Behaviors>
-        </ImageButton>
+            VerticalOptions="Start"
+            Padding="{app:EdgeInsets
+                Vertical={x:Static app:Dimens.SpacingSm},
+                Horizontal={x:Static app:Dimens.SpacingSm}
+            }"
+            Grid.RowSpan="2">
+            <Image
+                Margin="{app:EdgeInsets
+                    Vertical={x:Static app:Dimens.SpacingSm}
+                }"
+                Grid.RowSpan="2"
+                HorizontalOptions="End"
+                Source="ic_hoz_more.png"
+                VerticalOptions="Start">
+                <Image.Behaviors>
+                    <mtk:IconTintColorBehavior
+                        TintColor="{x:Static app:AppColors.Grey30}" />
+                </Image.Behaviors>
+            </Image>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding MoreCommand, Source={x:Reference root}}" />
+            </Grid.GestureRecognizers>
+        </Grid>
     </Grid>
 </ContentView>
 
