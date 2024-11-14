@@ -20,20 +20,22 @@
                 Spacing="{x:Static app:Dimens.SpacingXs}"
                 VerticalOptions="End">
                 <HorizontalStackLayout
-                    BindableLayout.ItemsSource="{Binding DaysSinceMet, StringFormat='{0}'}"
+                    BindableLayout.ItemsSource="{Binding DaysSinceMet, StringFormat='{}{0:00#}'}"
                     HorizontalOptions="End"
                     Spacing="{x:Static app:Dimens.SpacingXs}">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Grid ColumnDefinitions="40" RowDefinitions="42">
+                        <DataTemplate x:DataType="x:Char">
+                            <Grid ColumnDefinitions="40" RowDefinitions="56">
                                 <Border
                                     BackgroundColor="{x:Static app:AppColors.Grey60}"
                                     Opacity="0.35"
                                     StrokeShape="RoundRectangle 5,5,5,5"
                                     StrokeThickness="0" />
                                 <Label
-                                    Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingSm},
-                                                             Vertical={x:Static app:Dimens.SpacingXs}}"
+                                    Padding="{app:EdgeInsets
+                                        Horizontal={x:Static app:Dimens.SpacingSm},
+                                        Vertical={x:Static app:Dimens.SpacingXs}
+                                    }"
                                     HorizontalTextAlignment="Start"
                                     Style="{x:Static app:Styles.Title1}"
                                     Text="{Binding .}"
@@ -51,8 +53,10 @@
                         StrokeShape="RoundRectangle 5,5,5,5"
                         StrokeThickness="0" />
                     <Label
-                        Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingSm},
-                                                 Vertical={x:Static app:Dimens.SpacingXs}}"
+                        Padding="{app:EdgeInsets
+                            Horizontal={x:Static app:Dimens.SpacingSm},
+                            Vertical={x:Static app:Dimens.SpacingXs}
+                        }"
                         HorizontalTextAlignment="Center"
                         Style="{x:Static app:Styles.Subtitle6}"
                         Text="Ngày quen nhau"
@@ -99,8 +103,10 @@
             HorizontalOptions="End"
             Spacing="{x:Static app:Dimens.SpacingSm}"
             VerticalOptions="Start">
-            <ImageButton Command="{Binding AddCommand, Source={x:Reference root}}" Source="ic_new_story.png" />
-            <ImageButton Command="{Binding ModeCommand, Source={x:Reference root}}" Source="ic_grid.png" />
+            <ImageButton
+                Command="{Binding AddCommand, Source={x:Reference root}}" Source="ic_new_story.png" />
+            <ImageButton
+                Command="{Binding ModeCommand, Source={x:Reference root}}" Source="ic_grid.png" />
         </HorizontalStackLayout>
 
         <Grid
