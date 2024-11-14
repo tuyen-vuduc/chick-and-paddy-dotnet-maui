@@ -53,17 +53,21 @@
                 </Grid>
 
                 <Border
-                    Margin="{app:EdgeInsets Top={x:Static app:Dimens.SpacingXxl},
-                                            Horizontal={x:Static app:Dimens.SpacingLg}}"
+                    Margin="{app:EdgeInsets
+                        Top={x:Static app:Dimens.SpacingXxl},
+                        Horizontal={x:Static app:Dimens.SpacingLg}
+                    }"
                     HorizontalOptions="Center"
                     Style="{x:Static app:Styles.BorderMd}">
                     <HorizontalStackLayout
-                        Padding="{app:EdgeInsets Horizontal={x:Static app:Dimens.SpacingLg},
-                                                 Vertical={x:Static app:Dimens.SpacingSm}}"
+                        Padding="{app:EdgeInsets
+                            Horizontal={x:Static app:Dimens.SpacingLg},
+                            Vertical={x:Static app:Dimens.SpacingSm}
+                        }"
                         BindableLayout.ItemsSource="{Binding MyPairingId}"
                         Spacing="{x:Static app:Dimens.SpacingMd}">
                         <BindableLayout.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="x:Char">
                                 <Label
                                     Style="{x:Static app:Styles.Title2}"
                                     Text="{Binding .}"

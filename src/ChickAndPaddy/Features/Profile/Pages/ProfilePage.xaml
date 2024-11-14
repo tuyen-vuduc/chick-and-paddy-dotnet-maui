@@ -120,7 +120,7 @@
                         VerticalItemSpacing="{x:Static app:Dimens.SpacingMd}" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="x:String">
                         <VerticalStackLayout Padding="{app:EdgeInsets Top={x:Static app:Dimens.SpacingMd}}">
                             <Image Source="ic_feature_locked.png" />
                             <Label

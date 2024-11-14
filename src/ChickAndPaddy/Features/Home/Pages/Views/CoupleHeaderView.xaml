@@ -20,11 +20,11 @@
                 Spacing="{x:Static app:Dimens.SpacingXs}"
                 VerticalOptions="End">
                 <HorizontalStackLayout
-                    BindableLayout.ItemsSource="{Binding DaysSinceMet, StringFormat='{0}'}"
+                    BindableLayout.ItemsSource="{Binding DaysSinceMet, StringFormat='{}{0:00#}'}"
                     HorizontalOptions="End"
                     Spacing="{x:Static app:Dimens.SpacingXs}">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="x:Char">
                             <Grid ColumnDefinitions="40" RowDefinitions="56">
                                 <Border
                                     BackgroundColor="{x:Static app:AppColors.Grey60}"
